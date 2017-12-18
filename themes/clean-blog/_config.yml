@@ -4,6 +4,7 @@ menu:
   Archives: /archives
   #Tags: /tags
   #Categories: /categories
+  About: /about
   Github:
     url: https://github.com/jsonbruce
     icon: github
