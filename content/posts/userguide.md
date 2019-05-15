@@ -114,8 +114,34 @@ git push -f origin master
 cd ..
 ```
 
+# 域名解析
+添加指向以下 IP 的 `A` 记录:
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+主机记录为 `@` 和 `www`，最终生成八条解析记录。解析列表如下:
+
+```
+jsonbruce.com.		600	IN	A	185.199.111.153
+jsonbruce.com.		600	IN	A	185.199.110.153
+jsonbruce.com.		600	IN	A	185.199.109.153
+jsonbruce.com.		600	IN	A	185.199.108.153
+www.jsonbruce.com.	600	IN	A	185.199.111.153
+www.jsonbruce.com.	600	IN	A	185.199.110.153
+www.jsonbruce.com.	600	IN	A	185.199.109.153
+www.jsonbruce.com.	600	IN	A	185.199.108.153
+```
+
 # 设置 `GitHub`
-`GitHub Pages` 设置绑定域名等。
+`GitHub Pages` 绑定自定义域名:
+
+在仓库的 `Settings -> GitHub Pages -> Custom domain` 页面下填写自定义的域名。
 
 # 参考
 - Host on GitHub, https://gohugo.io/hosting-and-deployment/hosting-on-github/
+- Using a custom domain with GitHub Pages, https://help.github.com/en/articles/using-a-custom-domain-with-github-pages
