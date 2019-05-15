@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://www.example.com/about/</loc>
+    <loc>jsonbruce.com/about/</loc>
     <lastmod>2019-05-14T10:00:40+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.example.com/</loc>
+    <loc>jsonbruce.com/</loc>
     <lastmod>2019-05-14T10:00:40+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://www.example.com/posts/userguide/</loc>
+    <loc>jsonbruce.com/posts/userguide/</loc>
     <lastmod>2019-05-14T09:42:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.example.com/posts/</loc>
+    <loc>jsonbruce.com/posts/</loc>
     <lastmod>2019-05-14T09:42:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://www.example.com/categories/</loc>
+    <loc>jsonbruce.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://www.example.com/tags/</loc>
+    <loc>jsonbruce.com/tags/</loc>
     <priority>0</priority>
   </url>
   
