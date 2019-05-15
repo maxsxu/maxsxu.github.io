@@ -1,4 +1,4 @@
-baseurl = ""
+baseURL = "https://jsonbruce.com"
 title = "Max"
 theme = "hugo-coder"
 languagecode = "en"
