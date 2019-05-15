@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Max</title>
-    <link>jsonbruce.com/posts/</link>
+    <link>/posts/</link>
     <description>Recent content in Posts on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 14 May 2019 09:42:22 +0800</lastBuildDate>
     
-	<atom:link href="jsonbruce.com/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hugo 和 GitHub Pages 使用指南</title>
-      <link>jsonbruce.com/posts/userguide/</link>
+      <link>/posts/userguide/</link>
       <pubDate>Tue, 14 May 2019 09:42:22 +0800</pubDate>
       
-      <guid>jsonbruce.com/posts/userguide/</guid>
+      <guid>/posts/userguide/</guid>
       <description>简介 hugo 是一个基于 golang 静态网站生成程序，类似于 hexo。
 GitHub Pages 是 GitHub 提供的一项服务，可以直接从 GitHub 仓库为个人，组织或项目页面提供基于SSL的免费和快速静态托管。
 之前个人主页使用的 hexo 来生成的，是基于 node.js 构建的，速度较慢，
