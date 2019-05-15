@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Max Xu">
+    <meta name="description" content="John Doe&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo 和 GitHub Pages 使用指南"/>
+<meta name="twitter:description" content="简介 hugo 是一个基于 golang 静态网站生成程序，类似于 hexo。
+GitHub Pages 是 GitHub 提供的一项服务，可以直接从 GitHub 仓库为个人，组织或项目页面提供基于SSL的免费和快速静态托管。
+之前个人主页使用的 hexo 来生成的，是基于 node.js 构建的，速度较慢，
+安装 hugo mkdir $HOME/src cd $HOME/src git clone https://github.com/gohugoio/hugo.git cd hugo go install --tags extended 注意
+ 从 hugo 0.48 开始使用 go mod 进行依赖管理 使用 Linux 包管理安装的 hugo 版本可能较低，有些主题不支持  使用 官方教程是创建两个仓库: 一个放源码(hugo new site .的所有文件)，一个放静态页面(生成的 public/目录)。
+个人习惯使用一个仓库，不同分支。
+ 一个仓库: jsonbruce.github.io 不同分支: master 分支用于静态页面，hugo 分支用于源码, hexo 分支用于之前 hexo 源码  初始化 1."/>
+
+    <meta property="og:title" content="Hugo 和 GitHub Pages 使用指南" />
+<meta property="og:description" content="简介 hugo 是一个基于 golang 静态网站生成程序，类似于 hexo。
+GitHub Pages 是 GitHub 提供的一项服务，可以直接从 GitHub 仓库为个人，组织或项目页面提供基于SSL的免费和快速静态托管。
+之前个人主页使用的 hexo 来生成的，是基于 node.js 构建的，速度较慢，
+安装 hugo mkdir $HOME/src cd $HOME/src git clone https://github.com/gohugoio/hugo.git cd hugo go install --tags extended 注意
+ 从 hugo 0.48 开始使用 go mod 进行依赖管理 使用 Linux 包管理安装的 hugo 版本可能较低，有些主题不支持  使用 官方教程是创建两个仓库: 一个放源码(hugo new site .的所有文件)，一个放静态页面(生成的 public/目录)。
+个人习惯使用一个仓库，不同分支。
+ 一个仓库: jsonbruce.github.io 不同分支: master 分支用于静态页面，hugo 分支用于源码, hexo 分支用于之前 hexo 源码  初始化 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.example.com/posts/userguide/" />
+<meta property="article:published_time" content="2019-05-14T09:42:22&#43;08:00"/>
+<meta property="article:modified_time" content="2019-05-14T09:42:22&#43;08:00"/>
+
+
+    
+      <base href="http://www.example.com/posts/userguide/">
+    
+    <title>
+  Hugo 和 GitHub Pages 使用指南 · Max
+</title>
+
+    
+      <link rel="canonical" href="http://www.example.com/posts/userguide/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="http://www.example.com/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="http://www.example.com/css/custom.css">
+    
+
+    <link rel="icon" type="image/png" href="http://www.example.com/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://www.example.com/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.56.0-DEV" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="http://www.example.com">
+      Max
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://www.example.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://www.example.com/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Hugo 和 GitHub Pages 使用指南</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-05-14T09:42:22&#43;08:00'>
+                May 14, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<h1 id="简介">简介</h1>
+
+<p><code>hugo</code> 是一个基于 <code>golang</code> 静态网站生成程序，类似于 <code>hexo</code>。</p>
+
+<p><code>GitHub Pages</code> 是 <code>GitHub</code> 提供的一项服务，可以直接从 <code>GitHub</code> 仓库为个人，组织或项目页面提供基于SSL的免费和快速静态托管。</p>
+
+<p>之前个人主页使用的 <code>hexo</code> 来生成的，是基于 <code>node.js</code> 构建的，速度较慢，</p>
+
+<h1 id="安装-hugo">安装 <code>hugo</code></h1>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir $HOME/src
+cd $HOME/src
+git clone https://github.com/gohugoio/hugo.git
+cd hugo
+go install --tags extended</code></pre></div>
+<p><strong>注意</strong></p>
+
+<ul>
+<li>从 <code>hugo 0.48</code> 开始使用 <code>go mod</code> 进行依赖管理</li>
+<li>使用 Linux 包管理安装的 <code>hugo</code> 版本可能较低，有些主题不支持</li>
+</ul>
+
+<h1 id="使用">使用</h1>
+
+<p>官方教程是创建两个仓库: 一个放源码(<code>hugo new site .</code>的所有文件)，一个放静态页面(生成的 <code>public/</code>目录)。</p>
+
+<p>个人习惯使用一个仓库，不同分支。</p>
+
+<ul>
+<li>一个仓库: <code>jsonbruce.github.io</code></li>
+<li>不同分支: <code>master</code> 分支用于静态页面，<code>hugo</code> 分支用于源码, <code>hexo</code> 分支用于之前 hexo 源码</li>
+</ul>
+
+<h2 id="初始化">初始化</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">1. 克隆仓库
+git clone git@github.com:jsonbruce/jsonbruce.github.io.git
+
+cd jsonbruce.github.io.git
+
+2. 创建一个空分支 <span style="font-style:italic">`</span>hugo<span style="font-style:italic">`</span> 用于放源码
+git checkout --orphan hugo
+git rm -rf .
+
+3. 初始化源码
+hugo new site .
+
+4. 添加主题
+git submodule add https://github.com/luizdepra/hugo-coder.git themes/hugo-coder
+
+5. 配置 <span style="font-style:italic">`</span>config.toml<span style="font-style:italic">`</span>
+
+4. 设置 <span style="font-style:italic">`</span>public<span style="font-style:italic">`</span> 目录为 <span style="font-style:italic">`</span>master<span style="font-style:italic">`</span> 分支目录树
+git worktree add -B master public origin/hugo</code></pre></div>
+<h2 id="创建文章">创建文章</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new about.md
+
+hugo new posts/userguide.md</code></pre></div>
+<h2 id="部署脚本">部署脚本</h2>
+
+<p>在 <code>hugo</code> 分支的根目录下执行。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="">#!/bin/bash
+</span><span style=""></span>
+<span style="font-weight:bold">if</span> [[ <span style="font-weight:bold">$(</span>git status -s<span style="font-weight:bold">)</span> ]]
+<span style="font-weight:bold">then</span>
+    echo <span style="font-style:italic">&#34;The working directory is dirty. Please commit any pending changes.&#34;</span>
+    exit 1;
+<span style="font-weight:bold">fi</span>
+
+echo -e <span style="font-style:italic">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+
+echo <span style="font-style:italic">&#34;Deleting old publication&#34;</span>
+rm -rf public
+mkdir public
+git worktree prune
+rm -rf .git/worktrees/public/
+
+echo <span style="font-style:italic">&#34;Checking out master branch into public&#34;</span>
+git worktree add -B master public origin/master
+
+echo <span style="font-style:italic">&#34;Removing existing files&#34;</span>
+rm -rf public/*
+
+echo <span style="font-style:italic">&#34;Generating site&#34;</span>
+hugo <span style="font-style:italic"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
+
+echo <span style="font-style:italic">&#34;Updating master branch&#34;</span>
+<span style="font-style:italic"># Go To Public folder and add changes to git.</span>
+cd public &amp;&amp; git add --all 
+
+<span style="font-style:italic"># Commit changes.</span>
+msg=<span style="font-style:italic">&#34;rebuilding site `date`&#34;</span>
+<span style="font-weight:bold">if</span> [ $# -eq 1 ]
+  <span style="font-weight:bold">then</span> msg=<span style="font-style:italic">&#34;</span>$1<span style="font-style:italic">&#34;</span>
+<span style="font-weight:bold">fi</span>
+git commit -m <span style="font-style:italic">&#34;</span>$msg<span style="font-style:italic">&#34;</span>
+
+<span style="font-style:italic"># Push source.</span>
+git push -f origin master
+
+<span style="font-style:italic"># Come Back up to the Project Root</span>
+cd ..</code></pre></div>
+<h1 id="设置-github">设置 <code>GitHub</code></h1>
+
+<p><code>GitHub Pages</code> 设置绑定域名等。</p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>Host on GitHub, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li>
+</ul>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
