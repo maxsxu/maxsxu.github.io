@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://jsonbruce.com/about/</loc>
     <lastmod>2019-05-14T10:00:40+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://jsonbruce.com/</loc>
     <lastmod>2019-05-14T10:00:40+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/posts/userguide/</loc>
+    <loc>https://jsonbruce.com/posts/userguide/</loc>
     <lastmod>2019-05-14T09:42:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/</loc>
+    <loc>https://jsonbruce.com/posts/</loc>
     <lastmod>2019-05-14T09:42:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://jsonbruce.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://jsonbruce.com/tags/</loc>
     <priority>0</priority>
   </url>
   
