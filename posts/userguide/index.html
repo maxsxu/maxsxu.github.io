@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="author" content="Max Xu">
-    <meta name="description" content="John Doe&#39;s personal website">
-    <meta name="keywords" content="blog,developer,personal">
+    <meta name="description" content="Max Xu&#39;s personal website">
+    <meta name="keywords" content="blog,software,engineer,developer,personal">
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hugo 和 GitHub Pages 使用指南"/>
@@ -59,13 +59,11 @@ GitHub Pages 是 GitHub 提供的一项服务，可以直接从 GitHub 仓库为
     
 
     
-      <link rel="stylesheet" href="/css/custom.css">
-    
 
-    <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta name="generator" content="Hugo 0.55.5" />
   </head>
 
   <body class=" ">
@@ -227,14 +225,33 @@ git push -f origin master
 
 <span style="font-style:italic"># Come Back up to the Project Root</span>
 cd ..</code></pre></div>
+<h1 id="域名解析">域名解析</h1>
+
+<p>添加指向以下 IP 的 <code>A</code> 记录:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153</pre></div>
+<p>主机记录为 <code>@</code> 和 <code>www</code>，最终生成八条解析记录。解析列表如下:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">jsonbruce.com.		600	IN	A	185.199.111.153
+jsonbruce.com.		600	IN	A	185.199.110.153
+jsonbruce.com.		600	IN	A	185.199.109.153
+jsonbruce.com.		600	IN	A	185.199.108.153
+www.jsonbruce.com.	600	IN	A	185.199.111.153
+www.jsonbruce.com.	600	IN	A	185.199.110.153
+www.jsonbruce.com.	600	IN	A	185.199.109.153
+www.jsonbruce.com.	600	IN	A	185.199.108.153</pre></div>
 <h1 id="设置-github">设置 <code>GitHub</code></h1>
 
-<p><code>GitHub Pages</code> 设置绑定域名等。</p>
+<p><code>GitHub Pages</code> 绑定自定义域名:</p>
+
+<p>在仓库的 <code>Settings -&gt; GitHub Pages -&gt; Custom domain</code> 页面下填写自定义的域名。</p>
 
 <h1 id="参考">参考</h1>
 
 <ul>
 <li>Host on GitHub, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li>
+<li>Using a custom domain with GitHub Pages, <a href="https://help.github.com/en/articles/using-a-custom-domain-with-github-pages">https://help.github.com/en/articles/using-a-custom-domain-with-github-pages</a></li>
 </ul>
 
       </div>
