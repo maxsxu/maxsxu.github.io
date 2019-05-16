@@ -57,7 +57,7 @@ echo "jsonbruce.com" > static/CNAME
 6. 配置 `config.toml`
 
 7. 设置 `public` 目录为 `master` 分支目录树
-git worktree add -B master public origin/hugo
+git worktree add -B master public origin/master
 ```
 
 ## 创建文章

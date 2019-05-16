@@ -1,18 +1,24 @@
 baseURL = "https://jsonbruce.com"
 title = "Max"
 theme = "hugo-coder"
-languagecode = "en"
-defaultcontentlanguage = "en"
+languageCode = "en"
+defaultContentLanguage = "en"
+hasCJKLanguage = true
 
 paginate = 20
-canonifyurls = true
+canonifyURLs = true
 
-pygmentsstyle = "bw"
-pygmentscodefences = true
-pygmentscodefencesguesssyntax = true
+pygmentsStyle = "monokai"
+pygmentsCodefences = true
+pygmentsUseClasses  = false
+pygmentsCodefencesGuessSyntax = true
 
 googleAnalytics = "UA-140227175-1"
 disqusShortname = ""
+
+enableRobotsTXT = true
+enableEmoji = true
+enableGitInfo = true
 
 [params]
     author = "Max Xu"
@@ -33,6 +39,8 @@ disqusShortname = ""
 
     math = true
     # custom_css = ["css/custom.css"]
+
+    toc = true
 
 # Social links
 [[params.social]]
