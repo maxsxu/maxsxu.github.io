@@ -49,7 +49,7 @@ git rm -rf .
 hugo new site .
 
 4. 添加主题
-git submodule add https://github.com/luizdepra/hugo-coder.git themes/hugo-coder
+git submodule add git@github.com:jsonbruce/hugo-coder.git themes/hugo-coder
 
 5. 添加自定义域名
 echo "jsonbruce.com" > static/CNAME
