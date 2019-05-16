@@ -19,7 +19,7 @@ disqusShortname = ""
     info = "Full Stack Software Engineer"
     description = "Max Xu's personal website"
     keywords = "blog,software,engineer,developer,personal"
-    avatarurl = "images/avatar.panda.jpg"
+    avatarurl = "images/avatar.png"
 
     favicon_32 = "images/favicon-32x32.png"
     favicon_16 = "images/favicon-16x16.png"
