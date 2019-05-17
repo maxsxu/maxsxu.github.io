@@ -14,7 +14,7 @@ pygmentsUseClasses  = false
 pygmentsCodefencesGuessSyntax = true
 
 googleAnalytics = "UA-140227175-1"
-disqusShortname = ""
+# disqusShortname = "jsonbruce"
 
 enableRobotsTXT = true
 enableEmoji = true
@@ -38,9 +38,8 @@ enableGitInfo = true
     rtl = false
 
     math = true
-    # custom_css = ["css/custom.css"]
+    custom_css = []
 
-    toc = true
 
 # Social links
 [[params.social]]
