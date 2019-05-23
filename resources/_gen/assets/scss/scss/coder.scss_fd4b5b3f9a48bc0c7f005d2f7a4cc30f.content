@@ -10,7 +10,7 @@ html {
 body {
   color: #212121;
   background-color: #FAFAFA;
-  font-family: Merriweather, Georgia, serif;
+  font-family: trebuchet ms, Verdana, verdana ref, segoe ui, Candara, lucida grande, lucida sans unicode, lucida sans, Tahoma, sans-serif;
   font-size: 1.6em;
   font-weight: 300;
   line-height: 1.8em; }
@@ -22,7 +22,10 @@ body {
 a {
   font-weight: 300;
   color: #1565c0;
-  text-decoration: none; }
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: .4s;
+  transition-timing-function: ease-out; }
   a:focus, a:hover {
     text-decoration: underline; }
 
@@ -35,7 +38,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Lato, Helvetica, sans-serif;
+  font-family: trebuchet ms, Verdana, verdana ref, segoe ui, Candara, lucida grande, lucida sans unicode, lucida sans, Tahoma, sans-serif;
   font-weight: 700;
   color: #000;
   margin: 6.4rem 0 3.2rem 0; }
@@ -188,6 +191,11 @@ img {
   font-size: .8em;
   font-weight: bold; }
 
+#TableOfContents a {
+  color: #212121; }
+  #TableOfContents a:hover, #TableOfContents a:focus {
+    color: #1565c0; }
+
 @media (min-width: 1300px) {
   .site-main {
     margin-top: 8em; }
@@ -291,7 +299,8 @@ img {
   list-style: none;
   padding: 0; }
   .list ul li {
-    font-size: 1.8rem; }
+    font-size: 1.8rem;
+    font-family: trebuchet ms, Verdana, verdana ref, segoe ui, Candara, lucida grande, lucida sans unicode, lucida sans, Tahoma, sans-serif; }
     @media only screen and (max-width: 768px) {
       .list ul li {
         margin: 1.6rem 0 1.6rem 0; } }
@@ -299,16 +308,15 @@ img {
       display: inline-block;
       width: 20.0rem;
       text-align: right;
-      margin-right: 3.0rem; }
+      margin-right: 3.0rem;
+      color: #818383; }
       @media only screen and (max-width: 768px) {
         .list ul li .date {
           display: block;
           text-align: left; } }
     .list ul li .title {
       font-size: 1.8rem;
-      color: #212121;
-      font-family: Lato, Helvetica, sans-serif;
-      font-weight: 700; }
+      color: #212121; }
       .list ul li .title:hover, .list ul li .title:focus {
         color: #1565c0; }
 
@@ -324,7 +332,8 @@ img {
     .centered .about h2 {
       margin-top: 1.0rem;
       margin-bottom: 0.5rem;
-      font-size: 2.4rem; }
+      font-size: 2.4rem;
+      font-weight: 400; }
       @media only screen and (max-width: 768px) {
         .centered .about h2 {
           font-size: 2.0rem; } }
@@ -365,13 +374,16 @@ img {
         .centered .error h2 {
           font-size: 2.8rem; } }
 
+.utterances {
+  margin: 0; }
+
 .navigation {
   height: 6.0rem;
   width: 100%; }
   .navigation a, .navigation span {
     display: inline;
     font-size: 1.6rem;
-    font-family: Lato, Helvetica, sans-serif;
+    font-family: trebuchet ms, Verdana, verdana ref, segoe ui, Candara, lucida grande, lucida sans unicode, lucida sans, Tahoma, sans-serif;
     font-weight: 700;
     line-height: 6.0rem;
     color: #212121; }
@@ -444,7 +456,7 @@ img {
 .pagination {
   margin-top: 6.0rem;
   text-align: center;
-  font-family: Lato, Helvetica, sans-serif; }
+  font-family: trebuchet ms, Verdana, verdana ref, segoe ui, Candara, lucida grande, lucida sans unicode, lucida sans, Tahoma, sans-serif; }
   .pagination li {
     display: inline;
     text-align: center;
