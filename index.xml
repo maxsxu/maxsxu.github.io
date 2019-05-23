@@ -6,10 +6,19 @@
     <description>Recent content on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 14 May 2019 10:00:40 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 May 2019 21:21:24 +0800</lastBuildDate>
     
 	<atom:link href="https://jsonbruce.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Helm Chart 开发: 自动生成 Kubernetes Dashbord 的 TLS Secret</title>
+      <link>https://jsonbruce.com/posts/helm-chart-develop-autocreate-tls-secret/</link>
+      <pubDate>Thu, 23 May 2019 21:21:24 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/posts/helm-chart-develop-autocreate-tls-secret/</guid>
+      <description>背景 部署 Kubernetes Dashbord 有很多方式，其中最方便的还是通过 Helm 来部署。 官方提供了 Helm Chart，在其 README 中说只需要执行下面一条命令就可以部署 Dashboard: helm install stable/kubernetes-dashboard 但实际上发现</description>
+    </item>
     
     <item>
       <title>About Me</title>

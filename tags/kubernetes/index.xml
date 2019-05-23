@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Max</title>
-    <link>https://jsonbruce.com/posts/</link>
-    <description>Recent content in Posts on Max</description>
+    <title>Kubernetes on Max</title>
+    <link>https://jsonbruce.com/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 23 May 2019 21:21:24 +0800</lastBuildDate>
     
-	<atom:link href="https://jsonbruce.com/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jsonbruce.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://jsonbruce.com/posts/helm-chart-develop-autocreate-tls-secret/</guid>
       <description>背景 部署 Kubernetes Dashbord 有很多方式，其中最方便的还是通过 Helm 来部署。 官方提供了 Helm Chart，在其 README 中说只需要执行下面一条命令就可以部署 Dashboard: helm install stable/kubernetes-dashboard 但实际上发现</description>
-    </item>
-    
-    <item>
-      <title>Hugo 和 GitHub Pages 使用指南</title>
-      <link>https://jsonbruce.com/posts/userguide/</link>
-      <pubDate>Tue, 14 May 2019 09:42:22 +0800</pubDate>
-      
-      <guid>https://jsonbruce.com/posts/userguide/</guid>
-      <description>简介 hugo 是一个基于 golang 静态网站生成程序，类似于 hexo。 GitHub Pages 是 GitHub 提供的一项服务，可以直接从 GitHub 仓库为个人，组织或项目页面提供基于SSL的免费和快速</description>
     </item>
     
   </channel>
