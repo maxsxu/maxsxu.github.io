@@ -22,7 +22,7 @@ enableGitInfo = true
 
 [params]
     author = "Max Xu"
-    info = "Full Stack Software Engineer"
+    info = "Software Engineer"
     description = "Max Xu's personal website"
     keywords = "blog,software,engineer,developer,personal"
     avatarurl = "images/avatar.png"
