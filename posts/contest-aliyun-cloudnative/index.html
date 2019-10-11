@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Max Xu">
+    <meta name="description" content="Max Xu&#39;s personal website">
+    <meta name="keywords" content="blog,software,engineer,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="阿里云开发者社区云原生应用大赛"/>
+<meta name="twitter:description" content="阿里云开发者社区云原生应用大赛, kubernetes-dashborad-tls, helm chart"/>
+
+    <meta property="og:title" content="阿里云开发者社区云原生应用大赛" />
+<meta property="og:description" content="阿里云开发者社区云原生应用大赛, kubernetes-dashborad-tls, helm chart" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jsonbruce.com/posts/contest-aliyun-cloudnative/" />
+<meta property="article:published_time" content="2019-09-21T16:54:44+08:00" />
+<meta property="article:modified_time" content="2019-09-21T16:54:44+08:00" />
+
+
+    
+      <base href="https://jsonbruce.com/posts/contest-aliyun-cloudnative/">
+    
+    <title>
+  阿里云开发者社区云原生应用大赛 · Max
+</title>
+
+    
+      <link rel="canonical" href="https://jsonbruce.com/posts/contest-aliyun-cloudnative/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jsonbruce.com/css/coder.min.74dded979ccea07b121f9effc955011ca567f89069980b995b7d2b04fea9fe00.css" integrity="sha256-dN3tl5zOoHsSH57/yVUBHKVn&#43;JBpmAuZW30rBP6p/gA=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.58.3" />
+
+    
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WWNFBZB');</script>
+    
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140227175-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140227175-1');
+    </script>
+
+  </head>
+
+  <body class=" ">
+    
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WWNFBZB"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jsonbruce.com">
+      Max
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jsonbruce.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jsonbruce.com/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">阿里云开发者社区云原生应用大赛</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-09-21T16:54:44&#43;08:00'>
+                September 21, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://jsonbruce.com/categories/contest/">Contest</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jsonbruce.com/tags/kubernetes/">Kubernetes</a>
+      <span class="separator">•</span>
+    <a href="https://jsonbruce.com/tags/helm/">Helm</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+
+<p>前一阵子看到钉钉群里有同学分享了这个比赛，点进去看了下，结果第二天就要截止了。。。但是觉得大赛出发点非常好（主要是又有机会拿 T 恤，哈哈哈），恰好上次写了一个可以自动生成 TLS Secret 的 kubernetes-dashbord Helm Chart，于是连夜提交了一波，项目地址为: <a href="https://github.com/cloudnativeapp/charts/tree/master/submitted/kubernetes-dashboard-tls">kubernetes-dashborad-tls</a></p>
+
+<p>大赛要求必须使用 <code>Helm v3</code>，就是要这种前瞻性的比赛项目，有利于优秀技术的推广。关于 <code>helm v3</code> 相对于 <code>helm v2</code> 又很多重大的变化，当然最突出的改变在于去掉了 <code>Tiller</code> 这个组件。</p>
+
+<h1 id="大赛介绍">大赛介绍</h1>
+
+<p>引用<a href="https://developer.aliyun.com/special/apphubchallenge">官方介绍</a>:</p>
+
+<blockquote>
+<p>云原生应用，是指符合“云原生”理念的应用开发与交付模式，这是当前在云时代最受欢迎的应用开发最佳实践。</p>
+
+<p>在现今的云原生生态当中，已经有很多成熟的开源软件被制作成了 Helm Charts，使得用户可以非常方便地下载和使用，比如 Nginx，Apache、Elasticsearch、Redis 等等。不过，在开放<a href="https://developer.aliyun.com/hub">云原生应用中心 App hub（Helm Charts 中国站)</a> 发布之前，国内用户一直都很难直接下载使用这些 Charts。而现在，AppHub 不仅为国内用户实时同步了官方 Helm Hub 里的所有应用，还自动替换了这些 Charts 里所有不可访问的镜像 URL（比如 <code>gcr.io</code>, <code>quay.io</code> 等），终于使得国内开发者通过 helm install “一键安装”应用成为了可能。</p>
+
+<p>而云原生应用开发大赛，旨在鼓励和普及 Helm Charts 在国内的使用，帮助国内开发者通过云原生的方式打包和分发自己的应用，从而更好的借助云原生的浪潮，让自己的软件在云时代发挥出最大的能量！</p>
+</blockquote>
+
+<h1 id="竟然获奖了">竟然获奖了!</h1>
+
+<p>一件阿里云 T 恤</p>
+
+<p><img src="https://jsonbruce.com/images/tshirt-aliyun.jpeg" alt="" /></p>
+
+      </div>
+
+      <footer>
+        <script src="https://utteranc.es/client.js"
+          repo="jsonbruce/jsonbruce.github.io"
+          issue-term="og:title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+
+        
+
+
+        
+      </footer>
+    </article>
+
+    <aside id="toc">
+      <div class="toc-title">Table of Contents</div>
+      <nav id="TableOfContents">
+<ul>
+<li><a href="#大赛介绍">大赛介绍</a></li>
+<li><a href="#竟然获奖了">竟然获奖了!</a></li>
+</ul>
+</nav>
+    </aside>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+  </body>
+
+</html>
