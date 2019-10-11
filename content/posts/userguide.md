@@ -12,7 +12,12 @@ draft: false
 之前个人主页使用的 `hexo` 来生成的，是基于 `node.js` 构建的，速度较慢，
 
 # 安装 `hugo`
-```bash
+```console
+brew install hugo
+```
+
+在 Linux 上安装
+```console
 mkdir $HOME/src
 cd $HOME/src
 git clone https://github.com/gohugoio/hugo.git
@@ -35,7 +40,7 @@ go install --tags extended
 - 不同分支: `master` 分支用于静态页面，`hugo` 分支用于源码, `hexo` 分支用于之前 hexo 源码
 
 ## 初始化
-```bash
+```console
 1. 克隆仓库
 git clone git@github.com:jsonbruce/jsonbruce.github.io.git
 
@@ -61,14 +66,18 @@ git worktree add -B master public origin/master
 ```
 
 ## 创建文章
-```bash
-hugo new about.md
+```console
+hugo new posts/<new-post>.md
+```
 
-hugo new posts/userguide.md
+创建新的导航栏使用
+
+```console
+hugo new <new-nav>.md
 ```
 
 ## 部署脚本
-在 `hugo` 分支的根目录下执行。
+在 `hugo` 分支的根目录创建 `deploy.sh` 脚本:
 
 ```bash
 #!/bin/bash
@@ -114,6 +123,8 @@ git push -f origin master
 cd ..
 ```
 
+之后写好文章发布就直接在 `hugo` 分支的根目录执行 `deploy.sh` 脚本即可。
+
 # 域名解析
 添加指向以下 IP 的 `A` 记录:
 
@@ -141,6 +152,13 @@ www.jsonbruce.com.	600	IN	A	185.199.108.153
 `GitHub Pages` 绑定自定义域名:
 
 在仓库的 `Settings -> GitHub Pages -> Custom domain` 页面下填写自定义的域名。
+
+# 静态资源
+如图片放在 `static/images/avatar.png`，文章中的引用方式为
+
+```
+![](/images/avatar.png)
+```
 
 # 参考
 - Host on GitHub, https://gohugo.io/hosting-and-deployment/hosting-on-github/
