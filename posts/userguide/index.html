@@ -143,7 +143,9 @@
 <p>之前个人主页使用的 <code>hexo</code> 来生成的，是基于 <code>node.js</code> 构建的，速度较慢，</p>
 
 <h1 id="安装-hugo">安装 <code>hugo</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir $HOME/src
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">brew install hugo</code></pre></div>
+<p>在 Linux 上安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">mkdir $HOME/src
 cd $HOME/src
 git clone https://github.com/gohugoio/hugo.git
 cd hugo
@@ -167,35 +169,35 @@ go install --tags extended</code></pre></div>
 </ul>
 
 <h2 id="初始化">初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">1</span>. 克隆仓库
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">1. 克隆仓库
 git clone git@github.com:jsonbruce/jsonbruce.github.io.git
 
 cd jsonbruce.github.io.git
 
-<span style="color:#ae81ff">2</span>. 创建一个空分支 <span style="color:#e6db74">`</span>hugo<span style="color:#e6db74">`</span> 用于放源码
+2. 创建一个空分支 `hugo` 用于放源码
 git checkout --orphan hugo
 git rm -rf .
 
-<span style="color:#ae81ff">3</span>. 初始化源码
+3. 初始化源码
 hugo new site .
 
-<span style="color:#ae81ff">4</span>. 添加主题
+4. 添加主题
 git submodule add git@github.com:jsonbruce/hugo-coder.git themes/hugo-coder
 
-<span style="color:#ae81ff">5</span>. 添加自定义域名
-echo <span style="color:#e6db74">&#34;jsonbruce.com&#34;</span> &gt; static/CNAME
+5. 添加自定义域名
+echo &#34;jsonbruce.com&#34; &gt; static/CNAME
 
-<span style="color:#ae81ff">6</span>. 配置 <span style="color:#e6db74">`</span>config.toml<span style="color:#e6db74">`</span>
+6. 配置 `config.toml`
 
-<span style="color:#ae81ff">7</span>. 设置 <span style="color:#e6db74">`</span>public<span style="color:#e6db74">`</span> 目录为 <span style="color:#e6db74">`</span>master<span style="color:#e6db74">`</span> 分支目录树
+7. 设置 `public` 目录为 `master` 分支目录树
 git worktree add -B master public origin/master</code></pre></div>
 <h2 id="创建文章">创建文章</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new about.md
-
-hugo new posts/userguide.md</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">hugo new posts/&lt;new-post&gt;.md</code></pre></div>
+<p>创建新的导航栏使用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">hugo new &lt;new-nav&gt;.md</code></pre></div>
 <h2 id="部署脚本">部署脚本</h2>
 
-<p>在 <code>hugo</code> 分支的根目录下执行。</p>
+<p>在 <code>hugo</code> 分支的根目录创建 <code>deploy.sh</code> 脚本:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#66d9ef">$(</span>git status -s<span style="color:#66d9ef">)</span> <span style="color:#f92672">]]</span>
@@ -237,6 +239,8 @@ git push -f origin master
 
 <span style="color:#75715e"># Come Back up to the Project Root</span>
 cd ..</code></pre></div>
+<p>之后写好文章发布就直接在 <code>hugo</code> 分支的根目录执行 <code>deploy.sh</code> 脚本即可。</p>
+
 <h1 id="域名解析">域名解析</h1>
 
 <p>添加指向以下 IP 的 <code>A</code> 记录:</p>
@@ -259,6 +263,10 @@ www.jsonbruce.com.	600	IN	A	185.199.108.153</pre></div>
 
 <p>在仓库的 <code>Settings -&gt; GitHub Pages -&gt; Custom domain</code> 页面下填写自定义的域名。</p>
 
+<h1 id="静态资源">静态资源</h1>
+
+<p>如图片放在 <code>static/images/avatar.png</code>，文章中的引用方式为</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">![](/images/avatar.png)</pre></div>
 <h1 id="参考">参考</h1>
 
 <ul>
@@ -299,6 +307,7 @@ www.jsonbruce.com.	600	IN	A	185.199.108.153</pre></div>
 </ul></li>
 <li><a href="#域名解析">域名解析</a></li>
 <li><a href="#设置-github">设置 <code>GitHub</code></a></li>
+<li><a href="#静态资源">静态资源</a></li>
 <li><a href="#参考">参考</a></li>
 </ul>
 </nav>
