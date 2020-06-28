@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.73.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -132,44 +132,32 @@
       </header>
 
       <div>
-        
-
-<h1 id="简介">简介</h1>
-
+        <h1 id="简介">简介</h1>
 <p><code>hugo</code> 是一个基于 <code>golang</code> 静态网站生成程序，类似于 <code>hexo</code>。</p>
-
 <p><code>GitHub Pages</code> 是 <code>GitHub</code> 提供的一项服务，可以直接从 <code>GitHub</code> 仓库为个人，组织或项目页面提供基于SSL的免费和快速静态托管。</p>
-
 <p>之前个人主页使用的 <code>hexo</code> 来生成的，是基于 <code>node.js</code> 构建的，速度较慢，</p>
-
 <h1 id="安装-hugo">安装 <code>hugo</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">brew install hugo</code></pre></div>
-<p>在 Linux 上安装</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">mkdir $HOME/src
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">brew install hugo
+</code></pre></div><p>在 Linux 上安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mkdir $HOME/src
 cd $HOME/src
 git clone https://github.com/gohugoio/hugo.git
 cd hugo
-go install --tags extended</code></pre></div>
-<p><strong>注意</strong></p>
-
+go install --tags extended
+</code></pre></div><p><strong>注意</strong></p>
 <ul>
 <li>从 <code>hugo 0.48</code> 开始使用 <code>go mod</code> 进行依赖管理</li>
 <li>使用 Linux 包管理安装的 <code>hugo</code> 版本可能较低，有些主题不支持</li>
 </ul>
-
 <h1 id="使用">使用</h1>
-
 <p>官方教程是创建两个仓库: 一个放源码(<code>hugo new site .</code>的所有文件)，一个放静态页面(生成的 <code>public/</code>目录)。</p>
-
 <p>个人习惯使用一个仓库，不同分支。</p>
-
 <ul>
 <li>一个仓库: <code>jsonbruce.github.io</code></li>
 <li>不同分支: <code>master</code> 分支用于静态页面，<code>hugo</code> 分支用于源码, <code>hexo</code> 分支用于之前 hexo 源码</li>
 </ul>
-
 <h2 id="初始化">初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">1. 克隆仓库
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">1. 克隆仓库
 git clone git@github.com:jsonbruce/jsonbruce.github.io.git
 
 cd jsonbruce.github.io.git
@@ -190,20 +178,19 @@ echo &#34;jsonbruce.com&#34; &gt; static/CNAME
 6. 配置 `config.toml`
 
 7. 设置 `public` 目录为 `master` 分支目录树
-git worktree add -B master public origin/master</code></pre></div>
-<h2 id="创建文章">创建文章</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">hugo new posts/&lt;new-post&gt;.md</code></pre></div>
-<p>创建新的导航栏使用</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">hugo new &lt;new-nav&gt;.md</code></pre></div>
-<h2 id="部署脚本">部署脚本</h2>
-
+git worktree add -B master public origin/master
+</code></pre></div><h2 id="创建文章">创建文章</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">hugo new posts/&lt;new-post&gt;.md
+</code></pre></div><p>创建新的导航栏使用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">hugo new &lt;new-nav&gt;.md
+</code></pre></div><h2 id="部署脚本">部署脚本</h2>
 <p>在 <code>hugo</code> 分支的根目录创建 <code>deploy.sh</code> 脚本:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#66d9ef">$(</span>git status -s<span style="color:#66d9ef">)</span> <span style="color:#f92672">]]</span>
 <span style="color:#66d9ef">then</span>
     echo <span style="color:#e6db74">&#34;The working directory is dirty. Please commit any pending changes.&#34;</span>
-    exit <span style="color:#ae81ff">1</span>;
+    exit 1;
 <span style="color:#66d9ef">fi</span>
 
 echo -e <span style="color:#e6db74">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
@@ -238,37 +225,30 @@ git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6
 git push -f origin master
 
 <span style="color:#75715e"># Come Back up to the Project Root</span>
-cd ..</code></pre></div>
-<p>之后写好文章发布就直接在 <code>hugo</code> 分支的根目录执行 <code>deploy.sh</code> 脚本即可。</p>
-
+cd ..
+</code></pre></div><p>之后写好文章发布就直接在 <code>hugo</code> 分支的根目录执行 <code>deploy.sh</code> 脚本即可。</p>
 <h1 id="域名解析">域名解析</h1>
-
 <p>添加指向以下 IP 的 <code>A</code> 记录:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">185.199.108.153
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">185.199.108.153
 185.199.109.153
 185.199.110.153
-185.199.111.153</pre></div>
-<p>主机记录为 <code>@</code> 和 <code>www</code>，最终生成八条解析记录。解析列表如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">jsonbruce.com.		600	IN	A	185.199.111.153
+185.199.111.153
+</code></pre></div><p>主机记录为 <code>@</code> 和 <code>www</code>，最终生成八条解析记录。解析列表如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">jsonbruce.com.		600	IN	A	185.199.111.153
 jsonbruce.com.		600	IN	A	185.199.110.153
 jsonbruce.com.		600	IN	A	185.199.109.153
 jsonbruce.com.		600	IN	A	185.199.108.153
 www.jsonbruce.com.	600	IN	A	185.199.111.153
 www.jsonbruce.com.	600	IN	A	185.199.110.153
 www.jsonbruce.com.	600	IN	A	185.199.109.153
-www.jsonbruce.com.	600	IN	A	185.199.108.153</pre></div>
-<h1 id="设置-github">设置 <code>GitHub</code></h1>
-
+www.jsonbruce.com.	600	IN	A	185.199.108.153
+</code></pre></div><h1 id="设置-github">设置 <code>GitHub</code></h1>
 <p><code>GitHub Pages</code> 绑定自定义域名:</p>
-
 <p>在仓库的 <code>Settings -&gt; GitHub Pages -&gt; Custom domain</code> 页面下填写自定义的域名。</p>
-
 <h1 id="静态资源">静态资源</h1>
-
 <p>如图片放在 <code>static/images/avatar.png</code>，文章中的引用方式为</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">![](/images/avatar.png)</pre></div>
-<h1 id="参考">参考</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">![](/images/avatar.png)
+</code></pre></div><h1 id="参考">参考</h1>
 <ul>
 <li>Host on GitHub, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li>
 <li>Using a custom domain with GitHub Pages, <a href="https://help.github.com/en/articles/using-a-custom-domain-with-github-pages">https://help.github.com/en/articles/using-a-custom-domain-with-github-pages</a></li>
@@ -296,20 +276,11 @@ www.jsonbruce.com.	600	IN	A	185.199.108.153</pre></div>
     <aside id="toc">
       <div class="toc-title">Table of Contents</div>
       <nav id="TableOfContents">
-<ul>
-<li><a href="#简介">简介</a></li>
-<li><a href="#安装-hugo">安装 <code>hugo</code></a></li>
-<li><a href="#使用">使用</a>
-<ul>
-<li><a href="#初始化">初始化</a></li>
-<li><a href="#创建文章">创建文章</a></li>
-<li><a href="#部署脚本">部署脚本</a></li>
-</ul></li>
-<li><a href="#域名解析">域名解析</a></li>
-<li><a href="#设置-github">设置 <code>GitHub</code></a></li>
-<li><a href="#静态资源">静态资源</a></li>
-<li><a href="#参考">参考</a></li>
-</ul>
+  <ul>
+    <li><a href="#初始化">初始化</a></li>
+    <li><a href="#创建文章">创建文章</a></li>
+    <li><a href="#部署脚本">部署脚本</a></li>
+  </ul>
 </nav>
     </aside>
 
@@ -321,7 +292,7 @@ www.jsonbruce.com.	600	IN	A	185.199.108.153</pre></div>
       <footer class="footer">
   <section class="container">
     
-     © 2019
+     © 2020
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.

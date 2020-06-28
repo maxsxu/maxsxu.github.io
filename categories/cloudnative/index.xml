@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CloudNative on Max</title>
@@ -6,10 +6,19 @@
     <description>Recent content in CloudNative on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 23 May 2019 21:21:24 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2020 16:19:24 +0800</lastBuildDate>
     
 	<atom:link href="https://jsonbruce.com/categories/cloudnative/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>升级到 Harbor 2.0.0</title>
+      <link>https://jsonbruce.com/posts/upgrade-to-harbor2/</link>
+      <pubDate>Sun, 28 Jun 2020 16:19:24 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/posts/upgrade-to-harbor2/</guid>
+      <description>前言 早就看到 Harbor v2 GA 了，但线上业务在正常跑也就没有管，上周 Harbor 正式从 CNCF 毕业了（第 11 个毕业毕业项目），我想是时候拥抱变化了。 升级 线上的 Harbor v1 是用 Helm 部</description>
+    </item>
     
     <item>
       <title>Helm Chart 开发: 自动生成 Kubernetes Dashbord 的 TLS Secret</title>
