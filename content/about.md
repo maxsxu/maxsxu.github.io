@@ -7,7 +7,7 @@ draft: false
 
 I'm a software engineer.
 
-`Max Xu` is my english name.
+`Max Xu` is my English name.
 
 `jsonbruce` is my ID. Because `Jason Bourne` and `Bruce Lee` are two of my favorite action actors. I made a combination.
 
