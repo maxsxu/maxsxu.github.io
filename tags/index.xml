@@ -44,20 +44,29 @@
     </item>
     
     <item>
-      <title>Helm</title>
-      <link>https://jsonbruce.com/tags/helm/</link>
-      <pubDate>Sat, 21 Sep 2019 16:54:44 +0800</pubDate>
+      <title>DevOps</title>
+      <link>https://jsonbruce.com/tags/devops/</link>
+      <pubDate>Thu, 11 Jun 2020 02:03:59 +0800</pubDate>
       
-      <guid>https://jsonbruce.com/tags/helm/</guid>
+      <guid>https://jsonbruce.com/tags/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kubernetes</title>
       <link>https://jsonbruce.com/tags/kubernetes/</link>
-      <pubDate>Sat, 21 Sep 2019 16:54:44 +0800</pubDate>
+      <pubDate>Thu, 11 Jun 2020 02:03:59 +0800</pubDate>
       
       <guid>https://jsonbruce.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Helm</title>
+      <link>https://jsonbruce.com/tags/helm/</link>
+      <pubDate>Sat, 21 Sep 2019 16:54:44 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/tags/helm/</guid>
       <description></description>
     </item>
     

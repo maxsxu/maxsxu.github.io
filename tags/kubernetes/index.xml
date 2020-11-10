@@ -6,7 +6,16 @@
     <description>Recent content in Kubernetes on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Sep 2019 16:54:44 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Jun 2020 02:03:59 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes 高可用集群和 DevOps 平台部署</title>
+      <link>https://jsonbruce.com/posts/kubernetes-ha-cluster-devops/</link>
+      <pubDate>Thu, 11 Jun 2020 02:03:59 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/posts/kubernetes-ha-cluster-devops/</guid>
+      <description>Kubernetes 已然成为了云原生时代的操作系统，在容器管理、自动化编排等方面扮演着重要的角色。本文记录了部署 Kubernetes 高可用集群作为底层容器集群管理平台，并基于此</description>
+    </item>
+    
     <item>
       <title>阿里云开发者社区云原生应用大赛</title>
       <link>https://jsonbruce.com/posts/contest-aliyun-cloudnative/</link>
