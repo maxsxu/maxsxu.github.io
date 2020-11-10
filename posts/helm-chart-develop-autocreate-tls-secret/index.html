@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="generator" content="Hugo 0.78.1" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -203,45 +203,45 @@
 </ul>
 <p><strong>输出:</strong> 与 <code>genCA</code> 一样，返回一个包含 <code>Cert</code> 和 <code>Key</code> 属性的证书对象。</p>
 <p>了解上面两个函数的用法后，在 <code>secret.yaml</code> 模板文件定义自动生成证书:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML">{{- $ca := genCA <span style="color:#e6db74">&#34;kubernetes-dashboard-ca&#34;</span> <span style="color:#ae81ff">365</span> }}
-{{- $cert := genSignedCert .Values.ingress.tls.hosts.name nil (list .Values.ingress.tls.hosts.name) <span style="color:#ae81ff">365</span> $ca }}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML">{{- <span style="color:#ae81ff">$ca := genCA &#34;kubernetes-dashboard-ca&#34; 365 }}</span>
+{{- <span style="color:#ae81ff">$cert := genSignedCert .Values.ingress.tls.hosts.name nil (list .Values.ingress.tls.hosts.name) 365 $ca }}</span>
 </code></pre></div><p>为了便于取值，其中 <code>.Values.ingress.tls</code> 变量已在 <code>values.yaml</code> 文件中重新定义为字典 (<code>dict</code>) 而不是官方的列表 (<code>list</code>)。这样获得了自动生成的CA和证书后，我们就可以继续定义自动生成的 Secret 了:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML"><span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Secret
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;{{ template &#34;</span>kubernetes-dashboard.tlsSecretName<span style="color:#e6db74">&#34; . }}&#34;</span>
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">app</span>: {{ template <span style="color:#e6db74">&#34;kubernetes-dashboard.name&#34;</span> . }}
-    <span style="color:#66d9ef">chart</span>: {{ template <span style="color:#e6db74">&#34;kubernetes-dashboard.chart&#34;</span> . }}
-    <span style="color:#66d9ef">heritage</span>: {{ .Release.Service }}
-    <span style="color:#66d9ef">release</span>: {{ .Release.Name }}
-<span style="color:#66d9ef">type</span>: kubernetes.io/tls
-<span style="color:#66d9ef">data</span>:
-  <span style="color:#66d9ef">tls.crt</span>: {{ $cert.Cert | b64enc | quote }}
-  <span style="color:#66d9ef">tls.key</span>: {{ $cert.Key | b64enc | quote }}
-  <span style="color:#66d9ef">ca.crt</span>: {{ $ca.Cert | b64enc | quote }}
-{{- end }}
-{{- end }}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;{{ template &#34;</span><span style="color:#ae81ff">kubernetes-dashboard.tlsSecretName&#34; . }}&#34;</span>
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">app</span>: {{ <span style="color:#ae81ff">template &#34;kubernetes-dashboard.name&#34; . }}</span>
+    <span style="color:#f92672">chart</span>: {{ <span style="color:#ae81ff">template &#34;kubernetes-dashboard.chart&#34; . }}</span>
+    <span style="color:#f92672">heritage</span>: {{ <span style="color:#ae81ff">.Release.Service }}</span>
+    <span style="color:#f92672">release</span>: {{ <span style="color:#ae81ff">.Release.Name }}</span>
+<span style="color:#f92672">type</span>: <span style="color:#ae81ff">kubernetes.io/tls</span>
+<span style="color:#f92672">data</span>:
+  <span style="color:#f92672">tls.crt</span>: {{ <span style="color:#ae81ff">$cert.Cert | b64enc | quote }}</span>
+  <span style="color:#f92672">tls.key</span>: {{ <span style="color:#ae81ff">$cert.Key | b64enc | quote }}</span>
+  <span style="color:#f92672">ca.crt</span>: {{ <span style="color:#ae81ff">$ca.Cert | b64enc | quote }}</span>
+{{- <span style="color:#ae81ff">end }}</span>
+{{- <span style="color:#ae81ff">end }}</span>
 </code></pre></div><p>其中 <code>kubernetes-dashboard.tlsSecretName</code> 是自动生成的 Secret 名称，是我在 <code>_helpers.tpl</code> 模板辅助文件中定义的模板变量。</p>
 <h2 id="第二步-ingress-挂载-secret">第二步: <code>Ingress</code> 挂载 <code>Secret</code></h2>
 <p><code>ingress.yaml</code> 模板文件描述了 Ingress 资源的定义，可以看到官方的做法是直接填充 TLS 配置值列表。配置值来源于提前生成的 Secret。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML">  {{- if .Values.ingress.tls }}
-  <span style="color:#66d9ef">tls</span>:
-{{ toYaml .Values.ingress.tls | indent <span style="color:#ae81ff">4</span> }}
-  {{- end -}}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML">  {{- <span style="color:#ae81ff">if .Values.ingress.tls }}</span>
+  <span style="color:#f92672">tls</span>:
+{{ <span style="color:#ae81ff">toYaml .Values.ingress.tls | indent 4 }}</span>
+  {{- <span style="color:#ae81ff">end -}}</span>
 </code></pre></div><p>现在有了自动生成的 Secret 资源，可以直接挂载了:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML">{{- $tls := .Values.ingress.tls -}}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML">{{- <span style="color:#ae81ff">$tls := .Values.ingress.tls -}}</span>
 
-{{- if $tls }}
-  <span style="color:#66d9ef">tls</span>:
-    - <span style="color:#66d9ef">hosts</span>:
-        - {{ $tls.hosts.name }}
-      {{- if $tls.secretName }}
-      <span style="color:#66d9ef">secretName</span>: {{ $tls.secretName }}
-      {{- else }}
-      <span style="color:#66d9ef">secretName</span>:  <span style="color:#e6db74">&#34;{{ template &#34;</span>kubernetes-dashboard.tlsSecretName<span style="color:#e6db74">&#34; . }}&#34;</span>
-      {{- end }}
-{{- end }}
+{{- <span style="color:#ae81ff">if $tls }}</span>
+  <span style="color:#f92672">tls</span>:
+    - <span style="color:#f92672">hosts</span>:
+        - {{ <span style="color:#ae81ff">$tls.hosts.name }}</span>
+      {{- <span style="color:#ae81ff">if $tls.secretName }}</span>
+      <span style="color:#f92672">secretName</span>: {{ <span style="color:#ae81ff">$tls.secretName }}</span>
+      {{- <span style="color:#ae81ff">else }}</span>
+      <span style="color:#f92672">secretName</span>:  <span style="color:#e6db74">&#34;{{ template &#34;</span><span style="color:#ae81ff">kubernetes-dashboard.tlsSecretName&#34; . }}&#34;</span>
+      {{- <span style="color:#ae81ff">end }}</span>
+{{- <span style="color:#ae81ff">end }}</span>
 </code></pre></div><h1 id="总结">总结</h1>
 <p>通过上面的 Chart 增强操作之后，就可以实现一键部署 Dashboard 了，不需要提前手动创建 Secret 了（当然，也支持手动创建的）。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install --name kubernetes-dashboard --namespace kube-system ./kubernetes-dashboard

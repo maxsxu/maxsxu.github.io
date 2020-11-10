@@ -6,10 +6,15 @@
     <description>Recent content in Categories on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Jul 2020 18:23:42 +0800</lastBuildDate>
-    
-	<atom:link href="https://jsonbruce.com/categories/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 06 Nov 2020 21:02:26 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudNative</title>
+      <link>https://jsonbruce.com/categories/cloudnative/</link>
+      <pubDate>Fri, 06 Nov 2020 21:02:26 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/categories/cloudnative/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Security</title>
@@ -17,15 +22,6 @@
       <pubDate>Sat, 04 Jul 2020 18:23:42 +0800</pubDate>
       
       <guid>https://jsonbruce.com/categories/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CloudNative</title>
-      <link>https://jsonbruce.com/categories/cloudnative/</link>
-      <pubDate>Sun, 28 Jun 2020 16:19:24 +0800</pubDate>
-      
-      <guid>https://jsonbruce.com/categories/cloudnative/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,15 @@
     <description>Recent content in Posts on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Jul 2020 18:23:42 +0800</lastBuildDate>
-    
-	<atom:link href="https://jsonbruce.com/posts/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 06 Nov 2020 21:02:26 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于 Serverless 的车牌识别云服务</title>
+      <link>https://jsonbruce.com/posts/lpr-based-on-serverless/</link>
+      <pubDate>Fri, 06 Nov 2020 21:02:26 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/posts/lpr-based-on-serverless/</guid>
+      <description>Serverless 被誉为“云计算的下个十年”。本文从实际开发一个车牌识别云服务出发，让开发者直观感受到 Serverless 带来的变革。 需求 产品经理提了个新需求，开发一个车牌识</description>
+    </item>
     
     <item>
       <title>macOS Catlina 对 CA 证书的新要求</title>
