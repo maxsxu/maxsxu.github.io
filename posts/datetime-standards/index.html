@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Max Xu">
+    <meta name="description" content="Max Xu&#39;s personal website">
+    <meta name="keywords" content="blog,software,engineer,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="日期时间规范"/>
+<meta name="twitter:description" content="日期时间格式规范的目标是作为统一的标准，来规范和统一不同时区、不同语言、不同国家对同一个时刻的表示。 概念 时区 时区（Time Zone) 是地球上的区域使"/>
+
+    <meta property="og:title" content="日期时间规范" />
+<meta property="og:description" content="日期时间格式规范的目标是作为统一的标准，来规范和统一不同时区、不同语言、不同国家对同一个时刻的表示。 概念 时区 时区（Time Zone) 是地球上的区域使" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jsonbruce.com/posts/datetime-standards/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-03T15:52:46&#43;08:00" />
+<meta property="article:modified_time" content="2021-02-03T15:52:46&#43;08:00" />
+
+
+
+    
+      <base href="https://jsonbruce.com/posts/datetime-standards/">
+    
+    <title>
+  日期时间规范 · Max
+</title>
+
+    
+      <link rel="canonical" href="https://jsonbruce.com/posts/datetime-standards/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://jsonbruce.com/css/coder.min.74dded979ccea07b121f9effc955011ca567f89069980b995b7d2b04fea9fe00.css" integrity="sha256-dN3tl5zOoHsSH57/yVUBHKVn&#43;JBpmAuZW30rBP6p/gA=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.82.0" />
+
+    
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WWNFBZB');</script>
+    
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140227175-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140227175-1');
+    </script>
+
+  </head>
+
+  <body class=" ">
+    
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WWNFBZB"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://jsonbruce.com">
+      Max
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jsonbruce.com/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://jsonbruce.com/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">日期时间规范</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2021-02-03T15:52:46&#43;08:00'>
+                February 3, 2021
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://jsonbruce.com/categories/develop/">Develop</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://jsonbruce.com/tags/datetime/">Datetime</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>日期时间格式规范的目标是作为统一的标准，来规范和统一不同时区、不同语言、不同国家对同一个时刻的表示。</p>
+<h1 id="概念">概念</h1>
+<ul>
+<li>时区</li>
+</ul>
+<p>时区（Time Zone) 是地球上的区域使用同一个时间定义。1884 年在华盛顿召开国际经度会议时，为了克服时间上的混乱，规定将全球划分为 24 个时区。 在中国采用首都北京所在地东八区的时间为全国统一使用时间。</p>
+<ul>
+<li>时差</li>
+</ul>
+<p>世界各国位于地球不同位置上，因此不同国家，特别是东西跨度大的国家日出、日落时间必有偏差。这些偏差就是时差。</p>
+<ul>
+<li>夏令时</li>
+</ul>
+<p>夏令时（Daylight Saving Time, DST），又称 “日光节约时制” 和 “夏令时间”，是一种为节约能源而人为规定地方时间的制度。一般在天亮早的夏季人为将时间调快一小时，可以使人早起早睡，减少照明量，以充分利用光照资源，从而节约照明用电。
+1986 年到 1991 年期间，中国曾实行夏令时制度。</p>
+<ul>
+<li>冬令时</li>
+</ul>
+<p>冬令时通常是指当地使用的标准时间。在使用夏令时的地区，夏天时钟拨快一小时，冬天再拨回标准时间。</p>
+<ul>
+<li>时间戳</li>
+</ul>
+<p>时间戳是一个数字，定义为格林威治时间 1970 年 01 月 01 日 00 时 00 分 00 秒 (北京时间 1970 年 01 月 01 日 08 时 00 分 00 秒) 起至现在的总秒数。注意，同一时刻不同时区获得的时间戳是相同的。</p>
+<ul>
+<li>本地时间</li>
+</ul>
+<p>本地时间只包括当前的时间，不包含任何时区信息。同一时刻，东八区的本地时间比零时区的本地时间快了 8 个小时。</p>
+<ul>
+<li>标准时间</li>
+</ul>
+<p>在不同时区之间交换时间数据，除了用纯数字的时间戳，还有一种更方便人类阅读的表示方式：标准时间的偏移量表示方法。</p>
+<ul>
+<li>GMT</li>
+</ul>
+<p>GMT（Greenwich Mean Time，格林威治平均时间）是时区时间。指位于英国伦敦郊区的皇家格林尼治天文台当地的平太阳时，因为本初子午线被定义为通过那里的经线。
+GMT 已被 UTC 取代。</p>
+<ul>
+<li>UTC</li>
+</ul>
+<p>UTC（Coordinated Universal Time, 协调世界时）是标准时间。是目前通用的世界时间标准, UTC 作为一个标准时间和各个时区时间换算。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">GMT: UTC +0    =    GMT: GMT +0
+CST: UTC +8    =    CST: GMT +8
+PST: UTC -8    =    PST: GMT -8
+</code></pre></div><ul>
+<li>PST</li>
+</ul>
+<p>PST (Pacific Standard Time, 太平洋时间)</p>
+<ul>
+<li>CST</li>
+</ul>
+<p>CST (China Standard Time, 北京时间)</p>
+<h1 id="标准">标准</h1>
+<h2 id="iso-8601">ISO 8601</h2>
+<blockquote>
+<p>国际标准。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ISO 8601:1988</td>
+<td style="text-align:center">Data elements and interchange formats — Information interchange — Representation of dates and times</td>
+</tr>
+<tr>
+<td style="text-align:center">ISO 8601:1988/COR 1:1991</td>
+<td style="text-align:center">Data elements and interchange formats — Information interchange — Representation of dates and times — Technical Corrigendum 1</td>
+</tr>
+<tr>
+<td style="text-align:center">ISO 8601:2000</td>
+<td style="text-align:center">Data elements and interchange formats — Information interchange — Representation of dates and times</td>
+</tr>
+<tr>
+<td style="text-align:center">ISO 8601:2004</td>
+<td style="text-align:center">Data elements and interchange formats — Information interchange — Representation of dates and times</td>
+</tr>
+<tr>
+<td style="text-align:center">ISO 8601-1:2019</td>
+<td style="text-align:center">Date and time — Representations for information interchange — Part 1: Basic rules</td>
+</tr>
+<tr>
+<td style="text-align:center">ISO 8601-2:2019</td>
+<td style="text-align:center">Date and time — Representations for information interchange — Part 2: Extensions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rfc-3339">RFC 3339</h2>
+<blockquote>
+<p>国际标准。</p>
+</blockquote>
+<p>RFC3339 详细定义了互联网上日期 / 时间的偏移量表示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">2017-12-08T00:00:00.00Z
+</code></pre></div><p>这个代表了 UTC 时间的 2017 年 12 月 08 日零时</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">2017-12-08T00:08:00.00+08:00
+</code></pre></div><p>这个代表了同一时刻的，东八区北京时间（CST）表示的方法</p>
+<p>上面两个时间的时间戳是等价的。两个的区别，就是在本地时间后面增加了时区信息。Z 表示零时区。+08:00 表示 UTC 时间增加 8 小时。</p>
+<p>这种表示方式容易让人疑惑的点是从标准时间换算 UTC 时间。以 CST 转换 UTC 为例，没有看文档的情况下，根据 +08:00 的结尾，很容易根据直觉在本地时间再加上 8 小时。正确的计算方法是本地时间减去多增加的 8 小时。+08:00 减去 8 小时才是 UTC 时间，-08:00 加上 8 小时才是 UTC 时间。</p>
+<h2 id="gbt-7408-2005">GB/T 7408-2005</h2>
+<blockquote>
+<p>国家标准。</p>
+</blockquote>
+<p>国家标准《数据元和交换格式 信息交换 日期和时间表示法》 由 TC83（全国电子业务标准化技术委员会）归口上报及执行 ，主管部门为 国家标准化管理委员会。</p>
+<p>本标准等同采用 ISO 国际标准：ISO 8601:2000。</p>
+<h1 id="参考">参考</h1>
+<ul>
+<li>ISO 8601, <a href="https://www.iso.org/iso-8601-date-and-time-format.html">https://www.iso.org/iso-8601-date-and-time-format.html</a></li>
+<li>RFC 3339, <a href="https://www.ietf.org/rfc/rfc3339.txt">https://www.ietf.org/rfc/rfc3339.txt</a></li>
+<li>GB/T 7408-2005, <a href="http://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D77FD1D3A7E05397BE0A0AB82A">http://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D77FD1D3A7E05397BE0A0AB82A</a></li>
+<li>Time Zone Abbreviations, <a href="https://www.timeanddate.com/time/zones/">https://www.timeanddate.com/time/zones/</a></li>
+<li>Wikipedia ISO 8601, <a href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a></li>
+</ul>
+
+      </div>
+
+      <footer>
+        <script src="https://utteranc.es/client.js"
+          repo="jsonbruce/jsonbruce.github.io"
+          issue-term="og:title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+
+        
+
+
+        
+      </footer>
+    </article>
+
+    <aside id="toc">
+      <div class="toc-title">Table of Contents</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#iso-8601">ISO 8601</a></li>
+    <li><a href="#rfc-3339">RFC 3339</a></li>
+    <li><a href="#gbt-7408-2005">GB/T 7408-2005</a></li>
+  </ul>
+</nav>
+    </aside>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2021
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+  </body>
+
+</html>

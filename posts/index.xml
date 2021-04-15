@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Nov 2020 21:02:26 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Feb 2021 15:52:46 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>日期时间规范</title>
+      <link>https://jsonbruce.com/posts/datetime-standards/</link>
+      <pubDate>Wed, 03 Feb 2021 15:52:46 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/posts/datetime-standards/</guid>
+      <description>日期时间格式规范的目标是作为统一的标准，来规范和统一不同时区、不同语言、不同国家对同一个时刻的表示。 概念 时区 时区（Time Zone) 是地球上的区域使</description>
+    </item>
+    
     <item>
       <title>基于 Serverless 的车牌识别云服务</title>
       <link>https://jsonbruce.com/posts/lpr-based-on-serverless/</link>
