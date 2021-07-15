@@ -17,8 +17,8 @@
 <meta property="og:description" content="简介 hugo 是一个基于 golang 静态网站生成程序，类似于 hexo。 GitHub Pages 是 GitHub 提供的一项服务，可以直接从 GitHub 仓库为个人，组织或项目页面提供基于SSL的免费和快速" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jsonbruce.com/posts/userguide/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-05-14T09:42:22&#43;08:00" />
-<meta property="article:modified_time" content="2019-10-11T20:49:12&#43;08:00" />
+<meta property="article:published_time" content="2019-05-14T09:42:22+08:00" />
+<meta property="article:modified_time" content="2019-10-11T20:49:12+08:00" />
 
 
 
@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.82.0" />
+    <meta name="generator" content="Hugo 0.85.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -158,28 +158,28 @@ go install --tags extended
 <li>不同分支: <code>master</code> 分支用于静态页面，<code>hugo</code> 分支用于源码, <code>hexo</code> 分支用于之前 hexo 源码</li>
 </ul>
 <h2 id="初始化">初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">1. 克隆仓库
-git clone git@github.com:jsonbruce/jsonbruce.github.io.git
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#ae81ff">1</span>. <span style="color:#960050;background-color:#1e0010">克隆仓库</span>
+git clone git<span style="color:#f92672">@</span>github.com:jsonbruce<span style="color:#f92672">/</span>jsonbruce.github.io.git
 
 cd jsonbruce.github.io.git
 
-2. 创建一个空分支 `hugo` 用于放源码
-git checkout --orphan hugo
-git rm -rf .
+<span style="color:#ae81ff">2</span>. <span style="color:#960050;background-color:#1e0010">创建一个空分支</span> <span style="color:#f92672">`</span>hugo<span style="color:#f92672">`</span> <span style="color:#960050;background-color:#1e0010">用于放源码</span>
+git checkout <span style="color:#f92672">--</span>orphan hugo
+git rm <span style="color:#f92672">-</span>rf .
 
-3. 初始化源码
+<span style="color:#ae81ff">3</span>. <span style="color:#960050;background-color:#1e0010">初始化源码</span>
 hugo new site .
 
-4. 添加主题
-git submodule add git@github.com:jsonbruce/hugo-coder.git themes/hugo-coder
+<span style="color:#ae81ff">4</span>. <span style="color:#960050;background-color:#1e0010">添加主题</span>
+git submodule <span style="color:#66d9ef">add</span> git<span style="color:#f92672">@</span>github.com:jsonbruce<span style="color:#f92672">/</span>hugo<span style="color:#f92672">-</span>coder.git themes<span style="color:#f92672">/</span>hugo<span style="color:#f92672">-</span>coder
 
-5. 添加自定义域名
-echo &#34;jsonbruce.com&#34; &gt; static/CNAME
+<span style="color:#ae81ff">5</span>. <span style="color:#960050;background-color:#1e0010">添加自定义域名</span>
+echo <span style="color:#e6db74">&#34;jsonbruce.com&#34;</span> <span style="color:#f92672">&gt;</span> static<span style="color:#f92672">/</span>CNAME
 
-6. 配置 `config.toml`
+<span style="color:#ae81ff">6</span>. <span style="color:#960050;background-color:#1e0010">配置</span> <span style="color:#f92672">`</span>config.toml<span style="color:#f92672">`</span>
 
-7. 设置 `public` 目录为 `master` 分支目录树
-git worktree add -B master public origin/master
+<span style="color:#ae81ff">7</span>. <span style="color:#960050;background-color:#1e0010">设置</span> <span style="color:#f92672">`</span>public<span style="color:#f92672">`</span> <span style="color:#960050;background-color:#1e0010">目录为</span> <span style="color:#f92672">`</span>master<span style="color:#f92672">`</span> <span style="color:#960050;background-color:#1e0010">分支目录树</span>
+git worktree <span style="color:#66d9ef">add</span> <span style="color:#f92672">-</span>B master public origin<span style="color:#f92672">/</span>master
 </code></pre></div><h2 id="创建文章">创建文章</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">hugo new posts/&lt;new-post&gt;.md
 </code></pre></div><p>创建新的导航栏使用</p>

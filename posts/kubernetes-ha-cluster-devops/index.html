@@ -17,8 +17,8 @@
 <meta property="og:description" content="Kubernetes 已然成为了云原生时代的操作系统，在容器管理、自动化编排等方面扮演着重要的角色。本文记录了部署 Kubernetes 高可用集群作为底层容器集群管理平台，并基于此" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jsonbruce.com/posts/kubernetes-ha-cluster-devops/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-06-11T02:03:59&#43;08:00" />
-<meta property="article:modified_time" content="2020-11-11T11:50:45&#43;08:00" />
+<meta property="article:published_time" content="2020-06-11T02:03:59+08:00" />
+<meta property="article:modified_time" content="2020-11-11T11:50:45+08:00" />
 
 
 
@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.82.0" />
+    <meta name="generator" content="Hugo 0.85.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -573,48 +573,48 @@ spec:
 </code></pre></div><h2 id="创建-pool-和-storageclass">创建 Pool 和 StorageClass</h2>
 <h3 id="cephblockpool">CephBlockPool</h3>
 <p><code>rook-block-storageclass.yaml</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">apiVersion: ceph.rook.io/v1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">apiVersion: ceph.rook.io<span style="color:#f92672">/</span>v1
 kind: CephBlockPool
 metadata:
   name: replicapool
-  namespace: kube-storage
+  namespace: kube<span style="color:#f92672">-</span>storage
 spec:
   failureDomain: host
   replicated:
-    size: 3
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
+    size: <span style="color:#ae81ff">3</span>
+<span style="color:#f92672">-</span><span style="color:#75715e">--
+</span><span style="color:#75715e">apiVersion: storage.k8s.io/v1
+</span><span style="color:#75715e"></span>kind: StorageClass
 metadata:
-   name: rook-ceph-block
+   name: rook<span style="color:#f92672">-</span>ceph<span style="color:#f92672">-</span>block
    annotations:
-    storageclass.kubernetes.io/is-default-class: &#34;true&#34;
-# Change &#34;rook-ceph&#34; provisioner prefix to match the operator namespace if needed
-provisioner: kube-storage.rbd.csi.ceph.com
+    storageclass.kubernetes.io<span style="color:#f92672">/</span><span style="color:#66d9ef">is</span><span style="color:#f92672">-</span><span style="color:#66d9ef">default</span><span style="color:#f92672">-</span>class: <span style="color:#e6db74">&#34;true&#34;</span>
+<span style="color:#75715e"># Change &#34;rook-ceph&#34; provisioner prefix to match the operator namespace if needed
+</span><span style="color:#75715e"></span>provisioner: kube<span style="color:#f92672">-</span>storage.rbd.csi.ceph.com
 parameters:
-    # clusterID is the namespace where the rook cluster is running
-    clusterID: kube-storage
-    # Ceph pool into which the RBD image shall be created
-    pool: replicapool
+    <span style="color:#75715e"># clusterID is the namespace where the rook cluster is running
+</span><span style="color:#75715e"></span>    clusterID: kube<span style="color:#f92672">-</span>storage
+    <span style="color:#75715e"># Ceph pool into which the RBD image shall be created
+</span><span style="color:#75715e"></span>    pool: replicapool
 
-    # RBD image format. Defaults to &#34;2&#34;.
-    imageFormat: &#34;2&#34;
+    <span style="color:#75715e"># RBD image format. Defaults to &#34;2&#34;.
+</span><span style="color:#75715e"></span>    imageFormat: <span style="color:#e6db74">&#34;2&#34;</span>
 
-    # RBD image features. Available for imageFormat: &#34;2&#34;. CSI RBD currently supports only `layering` feature.
-    imageFeatures: layering
+    <span style="color:#75715e"># RBD image features. Available for imageFormat: &#34;2&#34;. CSI RBD currently supports only `layering` feature.
+</span><span style="color:#75715e"></span>    imageFeatures: layering
 
-    # The secrets contain Ceph admin credentials.
-    csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
-    csi.storage.k8s.io/provisioner-secret-namespace: kube-storage
-    csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
-    csi.storage.k8s.io/node-stage-secret-namespace: kube-storage
+    <span style="color:#75715e"># The secrets contain Ceph admin credentials.
+</span><span style="color:#75715e"></span>    csi.storage.k8s.io<span style="color:#f92672">/</span>provisioner<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>name: rook<span style="color:#f92672">-</span>csi<span style="color:#f92672">-</span>rbd<span style="color:#f92672">-</span>provisioner
+    csi.storage.k8s.io<span style="color:#f92672">/</span>provisioner<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>namespace: kube<span style="color:#f92672">-</span>storage
+    csi.storage.k8s.io<span style="color:#f92672">/</span>node<span style="color:#f92672">-</span>stage<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>name: rook<span style="color:#f92672">-</span>csi<span style="color:#f92672">-</span>rbd<span style="color:#f92672">-</span>node
+    csi.storage.k8s.io<span style="color:#f92672">/</span>node<span style="color:#f92672">-</span>stage<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>namespace: kube<span style="color:#f92672">-</span>storage
 
-    # Specify the filesystem type of the volume. If not specified, csi-provisioner
-    # will set default as `ext4`.
-    #csi.storage.k8s.io/fstype: xfs
-
-# Delete the rbd volume when a PVC is deleted
-reclaimPolicy: Delete
+    <span style="color:#75715e"># Specify the filesystem type of the volume. If not specified, csi-provisioner
+</span><span style="color:#75715e"></span>    <span style="color:#75715e"># will set default as `ext4`.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">#csi.storage.k8s.io/fstype: xfs
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># Delete the rbd volume when a PVC is deleted
+</span><span style="color:#75715e"></span>reclaimPolicy: <span style="color:#66d9ef">Delete</span>
 </code></pre></div><p>创建</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl -n kube-storage create -f rook-block-storageclass.yaml
 </code></pre></div><p>标记默认 StorageClass</p>
@@ -805,22 +805,22 @@ sudo cp mirrors.internal.ca.crt /etc/docker/certs.d/mirrors.internal/ca.crt
   --set upgradeCheck.enabled=false \
   gitlab/gitlab
 </code></pre></div><p>输出如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">WARNING: Automatic TLS certificate generation with cert-manager is disabled and no TLS certificates were provided. Self-signed certificates were generated.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">WARNING: Automatic TLS certificate generation <span style="color:#66d9ef">with</span> cert<span style="color:#f92672">-</span>manager <span style="color:#66d9ef">is</span> disabled <span style="color:#66d9ef">and</span> no TLS certificates were provided. Self<span style="color:#f92672">-</span>signed certificates were generated.
 
-You may retrieve the CA root for these certificates from the `gitlab-wildcard-tls-ca` secret, via the following command. It can then be imported to a web browser or system store.
+You may retrieve the CA root <span style="color:#66d9ef">for</span> these certificates <span style="color:#66d9ef">from</span> the <span style="color:#f92672">`</span>gitlab<span style="color:#f92672">-</span>wildcard<span style="color:#f92672">-</span>tls<span style="color:#f92672">-</span>ca<span style="color:#f92672">`</span> secret, via the following command. It can <span style="color:#66d9ef">then</span> be imported <span style="color:#66d9ef">to</span> a web browser <span style="color:#66d9ef">or</span> system store.
 
-    kubectl get secret gitlab-wildcard-tls-ca -ojsonpath=&#39;{.data.cfssl_ca}&#39; | base64 --decode &gt; code.internal.ca.pem
+    kubectl get secret gitlab<span style="color:#f92672">-</span>wildcard<span style="color:#f92672">-</span>tls<span style="color:#f92672">-</span>ca <span style="color:#f92672">-</span>ojsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.cfssl_ca}&#39;</span> <span style="color:#f92672">|</span> base64 <span style="color:#f92672">--</span>decode <span style="color:#f92672">&gt;</span> code.internal.ca.pem
 
-If you do not wish to use self-signed certificates, please set the following properties:
-  - global.ingress.tls.secretName
-  OR
-  - global.ingress.tls.enabled (set to `true`)
-  - gitlab.unicorn.ingress.tls.secretName
-  - registry.ingress.tls.secretName
-  - minio.ingress.tls.secretName
+<span style="color:#66d9ef">If</span> you do <span style="color:#66d9ef">not</span> wish <span style="color:#66d9ef">to</span> <span style="color:#66d9ef">use</span> self<span style="color:#f92672">-</span>signed certificates, please <span style="color:#66d9ef">set</span> the following properties:
+  <span style="color:#f92672">-</span> global.ingress.tls.secretName
+  <span style="color:#66d9ef">OR</span>
+  <span style="color:#f92672">-</span> global.ingress.tls.<span style="color:#a6e22e">enabled</span> (<span style="color:#66d9ef">set</span> <span style="color:#66d9ef">to</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">true</span><span style="color:#f92672">`</span>)
+  <span style="color:#f92672">-</span> gitlab.unicorn.ingress.tls.secretName
+  <span style="color:#f92672">-</span> registry.ingress.tls.secretName
+  <span style="color:#f92672">-</span> minio.ingress.tls.secretName
 
 
-WARNING: If you are upgrading from a previous version of the GitLab Helm Chart, there is a major upgrade to the included PostgreSQL chart, which requires manual steps be performed. Please see our upgrade documentation for more information: https://docs.gitlab.com/charts/installation/upgrade.html
+WARNING: <span style="color:#66d9ef">If</span> you are upgrading <span style="color:#66d9ef">from</span> a previous version of the GitLab Helm Chart, there <span style="color:#66d9ef">is</span> a major upgrade <span style="color:#66d9ef">to</span> the included PostgreSQL chart, which requires manual steps be performed. Please see our upgrade documentation <span style="color:#66d9ef">for</span> more information: https:<span style="color:#f92672">//</span>docs.gitlab.com<span style="color:#f92672">/</span>charts<span style="color:#f92672">/</span>installation<span style="color:#f92672">/</span>upgrade.html
 </code></pre></div><ul>
 <li>默认用户名: <code>root</code></li>
 <li>默认密码: 在 Secret <code>gitlab-gitlab-initial-root-password</code></li>

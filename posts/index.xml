@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>NVIDIA 宣布 containerd 支持 NVIDIA GPU Operator</title>
+      <link>https://jsonbruce.com/posts/announcing-containerd-support-for-the-nvidia-gpu-operator/</link>
+      <pubDate>Mon, 01 Feb 2021 21:01:02 +0800</pubDate>
+      
+      <guid>https://jsonbruce.com/posts/announcing-containerd-support-for-the-nvidia-gpu-operator/</guid>
+      <description>多年来，docker 是 Kubernetes 支持的唯一容器运行时。随着时间的推移，对其他运行时的支持不仅成为可能，而且通常是首选，因为围绕通用容器​​运行时接口</description>
+    </item>
+    
+    <item>
       <title>基于 Serverless 的车牌识别云服务</title>
       <link>https://jsonbruce.com/posts/lpr-based-on-serverless/</link>
       <pubDate>Fri, 06 Nov 2020 21:02:26 +0800</pubDate>
