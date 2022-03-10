@@ -18,7 +18,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jsonbruce.com/posts/announcing-containerd-support-for-the-nvidia-gpu-operator/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-01T21:01:02+08:00" />
-<meta property="article:modified_time" content="2021-02-01T21:01:02+08:00" />
+<meta property="article:modified_time" content="2021-07-15T21:50:12+08:00" />
 
 
 
@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.93.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -139,10 +139,10 @@
 <p>直到最近，NVIDIA GPU Operator 仅在使用 docker 或 cri-o 作为底层容器运行时的 Kubernetes 上运行。从版本 1.4.0 开始，也提供了对 containerd 的集成支持。</p>
 <p>支持 <code>containerd</code> 一直是 GPU Operator 的一项长期功能要求，因为它使 <code>microK8s</code> 等系统（仅在 containerd 上运行）和 NVIDIA 边缘计算平台 (EGX) 能够覆盖更广泛的用户。</p>
 <p>以最简单的形式，部署具有 <code>containerd</code> 支持的 GPU 算子只需在 Helm Chart 中设置一个值并运行 helm install：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm install --wait --generate-name \
-   nvidia/gpu-operator \
-   --set operator.defaultRuntime=&#34;containerd&#34;
-</code></pre></div><p>在这篇博客中，您将了解如何在 GPU Operator 中启用容器化支持、可用的可自定义功能以及它的工作原理。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm install --wait --generate-name \
+</span></span><span style="display:flex;"><span>   nvidia/gpu-operator \
+</span></span><span style="display:flex;"><span>   --set operator.defaultRuntime=&#34;containerd&#34;
+</span></span></code></pre></div><p>在这篇博客中，您将了解如何在 GPU Operator 中启用容器化支持、可用的可自定义功能以及它的工作原理。</p>
 <h1 id="在-gpu-operator-中支持-containerd">在 GPU Operator 中支持 containerd</h1>
 <p>NVIDIA GPU Operator 简化了 Kubernetes 中的 GPU 生命周期管理。使用单个 helm 命令，您可以将 GPU Operator 安装到 Kubernetes 集群上，并使 GPU 可供最终用户使用。</p>
 <p>在底层，Node Feature Discovery 用于检测配备 GPU 的集群节点并为其提供任何所需的软件组件。其中包括 NVIDIA GPU 驱动程序、NVIDIA 容器运行时、Kubernetes 设备插件、DCGM 监控代理和 GPU 功能发现。安装后，GPU Operator 会持续监控集群的状态，将这些组件添加到任何新的 GPU 节点，这些节点会随着时间的推移而连接。 GPU Operator 的高级状态机如下所示。</p>
@@ -155,19 +155,19 @@
 <li>向 <code>containerd</code> 发送 SIGHUP 以强制配置更改生效</li>
 </ol>
 <p>其余的工作只是添加必要的管道以通过 helm 提供此功能。以下代码示例显示了可用于配置具有 containerd 支持的 GPU Operator 的 helm 设置。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">operator:
-  defaultRuntime: containerd
-toolkit:
-  env:
-  - name: CONTAINERD_CONFIG
-    value: /etc/containerd/config.toml
-  - name: CONTAINERD_SOCKET
-    value: /run/containerd/containerd.sock
-  - name: CONTAINERD_RUNTIME_CLASS
-    value: nvidia
-  - name: CONTAINERD_SET_AS_DEFAULT
-    value: true
-</code></pre></div><p>唯一需要的设置是将 <code>operator.defaultRuntime</code> 设置为 <code>containerd</code>。这会触发 GPU Operator 加载具有 <code>containerd</code> 支持的 Container Toolkit。其余设置是可选的，用于自定义底层的特定容器设置。前面显示的值是默认值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>operator:
+</span></span><span style="display:flex;"><span>  defaultRuntime: containerd
+</span></span><span style="display:flex;"><span>toolkit:
+</span></span><span style="display:flex;"><span>  env:
+</span></span><span style="display:flex;"><span>  - name: CONTAINERD_CONFIG
+</span></span><span style="display:flex;"><span>    value: /etc/containerd/config.toml
+</span></span><span style="display:flex;"><span>  - name: CONTAINERD_SOCKET
+</span></span><span style="display:flex;"><span>    value: /run/containerd/containerd.sock
+</span></span><span style="display:flex;"><span>  - name: CONTAINERD_RUNTIME_CLASS
+</span></span><span style="display:flex;"><span>    value: nvidia
+</span></span><span style="display:flex;"><span>  - name: CONTAINERD_SET_AS_DEFAULT
+</span></span><span style="display:flex;"><span>    value: true
+</span></span></code></pre></div><p>唯一需要的设置是将 <code>operator.defaultRuntime</code> 设置为 <code>containerd</code>。这会触发 GPU Operator 加载具有 <code>containerd</code> 支持的 Container Toolkit。其余设置是可选的，用于自定义底层的特定容器设置。前面显示的值是默认值。</p>
 <ul>
 <li>
 <p><code>CONTAINERD_CONFIG</code>：主机上到 <code>containerd</code> 配置的路径已更新，支持 <code>nvidia-container-runtime</code>。默认情况下，它指向 <code>/etc/containerd/config.toml</code>（<code>containerd</code> 的默认位置）。如果您的 <code>containerd</code> 安装不在默认位置，则应自定义此值。</p>
@@ -183,18 +183,18 @@ toolkit:
 </li>
 </ul>
 <p>以下代码示例使用 <code>containerd</code> 支持和前面描述的每个可选设置的显式值启动 GPU Operator。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm install --wait --generate-name \
-    nvidia/gpu-operator \
-    --set operator.defaultRuntime=containerd \
-    --set toolkit.env[0].name=CONTAINERD_CONFIG \
-    --set toolkit.env[0].value=/etc/containerd/config.toml \
-    --set toolkit.env[1].name=CONTAINERD_SOCKET \
-    --set toolkit.env[1].value=/run/containerd/containerd.sock \
-    --set toolkit.env[2].name=CONTAINERD_RUNTIME_CLASS \
-    --set toolkit.env[2].value=nvidia \
-    --set toolkit.env[3].name=CONTAINERD_SET_AS_DEFAULT \
-    --set toolkit.env[3].value=true
-</code></pre></div><p>以上。您现在应该拥有启动 GPU Operator 并使用 <code>containerd</code> 运行所需的所有工具。更多信息，请参考<a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/getting-started.html">官方文档</a>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm install --wait --generate-name \
+</span></span><span style="display:flex;"><span>    nvidia/gpu-operator \
+</span></span><span style="display:flex;"><span>    --set operator.defaultRuntime=containerd \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[0].name=CONTAINERD_CONFIG \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[0].value=/etc/containerd/config.toml \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[1].name=CONTAINERD_SOCKET \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[1].value=/run/containerd/containerd.sock \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[2].name=CONTAINERD_RUNTIME_CLASS \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[2].value=nvidia \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[3].name=CONTAINERD_SET_AS_DEFAULT \
+</span></span><span style="display:flex;"><span>    --set toolkit.env[3].value=true
+</span></span></code></pre></div><p>以上。您现在应该拥有启动 GPU Operator 并使用 <code>containerd</code> 运行所需的所有工具。更多信息，请参考<a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/getting-started.html">官方文档</a>。</p>
 <h1 id="references">References</h1>
 <ul>
 <li><a href="https://developer.nvidia.com/blog/announcing-containerd-support-for-the-nvidia-gpu-operator/">https://developer.nvidia.com/blog/announcing-containerd-support-for-the-nvidia-gpu-operator/</a></li>
@@ -233,7 +233,7 @@ toolkit:
       <footer class="footer">
   <section class="container">
     
-     © 2021
+     © 2022
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.

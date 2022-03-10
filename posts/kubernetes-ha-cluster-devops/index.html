@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.93.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -207,26 +207,26 @@
 <h2 id="配置-ansible">配置 ansible</h2>
 <p><code>Ansible</code> 用于集群节点的批量操作非常方便，自身是基于 Python 开发的。</p>
 <p>使用 <code>k8s-10-129-12-18</code> 节点作为 ansible 管理节点。配置 <code>/etc/ansible/hosts</code> 文件:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-s" data-lang="s">[k8s]
-k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[13<span style="color:#f92672">:</span><span style="color:#ae81ff">17</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
-
-[k8s<span style="color:#f92672">-</span>lb]
-k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[18<span style="color:#f92672">:</span><span style="color:#ae81ff">19</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
-
-[k8s<span style="color:#f92672">-</span>master]
-k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[13<span style="color:#f92672">:</span><span style="color:#ae81ff">15</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
-
-[k8s<span style="color:#f92672">-</span>worker]
-k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[16<span style="color:#f92672">:</span><span style="color:#ae81ff">17</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
-</code></pre></div><p>需要用到的 Ansible <code>ad-hoc</code> 命令:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-s" data-lang="s"><span style="display:flex;"><span>[k8s]
+</span></span><span style="display:flex;"><span>k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[13<span style="color:#f92672">:</span><span style="color:#ae81ff">17</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[k8s<span style="color:#f92672">-</span>lb]
+</span></span><span style="display:flex;"><span>k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[18<span style="color:#f92672">:</span><span style="color:#ae81ff">19</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[k8s<span style="color:#f92672">-</span>master]
+</span></span><span style="display:flex;"><span>k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[13<span style="color:#f92672">:</span><span style="color:#ae81ff">15</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[k8s<span style="color:#f92672">-</span>worker]
+</span></span><span style="display:flex;"><span>k8s<span style="color:#ae81ff">-10-129-12</span><span style="color:#f92672">-</span>[16<span style="color:#f92672">:</span><span style="color:#ae81ff">17</span>]<span style="color:#f92672">:</span><span style="color:#ae81ff">2892</span>
+</span></span></code></pre></div><p>需要用到的 Ansible <code>ad-hoc</code> 命令:</p>
 <ul>
 <li>复制文件到所有节点: ansible -m copy -a &ldquo;src=test.txt dest=~/&rdquo;</li>
 <li>所有节点安装软件: ansible -m apt -b -K -a &ldquo;name=chrony state=present&rdquo;</li>
 <li>工作节点执行 shell 命令: ansible k8s-worker -m shell -a &ldquo;echo $PATH&rdquo;</li>
 <li>sudo 权限执行: ansible k8s-worker -m shell -b -K -a &ldquo;ll /var/lib/docker&rdquo;</li>
 <li>批量下载 docker 镜像
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">for i in `cat ~/gitlab.images`;do ansible k8s-worker -m shell -a &#34;docker pull $i&#34;;done
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>for i in `cat ~/gitlab.images`;do ansible k8s-worker -m shell -a &#34;docker pull $i&#34;;done
+</span></span></code></pre></div></li>
 </ul>
 <h2 id="同步时钟">同步时钟</h2>
 <p>执行 <code>ansible -m apt -b -K -a &quot;name=chrony state=present&quot;</code> 给所有节点安装 <code>chrony</code> 来同步时钟。底层时钟同步是分布式系统协同的保证。</p>
@@ -244,171 +244,171 @@ k8s-10-219-12-19</p>
 <ul>
 <li><code>/etc/hosts</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">10.219.12.13  k8s-10-219-12-13.localhost k8s-10-219-12-13
-</code></pre></div><h2 id="同步基础软件和软件源">同步基础软件和软件源</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>10.219.12.13  k8s-10-219-12-13.localhost k8s-10-219-12-13
+</span></span></code></pre></div><h2 id="同步基础软件和软件源">同步基础软件和软件源</h2>
 <ul>
 <li>docker &amp;&amp; kubernetes</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># step 1: 安装必要的一些系统工具
-sudo apt update &amp;&amp; sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-
-# step 2: 安装GPG证书
-curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
-curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
-
-# Step 3: 写入软件源信息
-sudo add-apt-repository &#34;deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&#34;
-sudo sh -c &#34;echo &#39;deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main&#39; &gt; /etc/apt/sources.list.d/kubernetes.list&#34;
-
-# Step 4: 更新并安装
-sudo apt-mark unhold kubeadm kubectl kubelet
-sudo apt update &amp;&amp; sudo apt install docker-ce kubelet kubeadm kubectl -y
-sudo apt-mark hold kubeadm kubectl kubelet
-
-# Step 5: 清理
-sudo apt autoremove -y &amp;&amp; sudo apt autoclean -y
-</code></pre></div><h2 id="更新-kubeadm-kubectl-kubelet">更新 kubeadm, kubectl, kubelet</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo apt-mark unhold kubeadm kubectl kubelet
-sudo apt update &amp;&amp; sudo apt upgrade -y
-sudo apt-mark hold kubeadm kubectl kubelet
-</code></pre></div><h2 id="同步-docker-配置">同步 docker 配置</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># step 1: 安装必要的一些系统工具
+</span></span><span style="display:flex;"><span>sudo apt update &amp;&amp; sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># step 2: 安装GPG证书
+</span></span><span style="display:flex;"><span>curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+</span></span><span style="display:flex;"><span>curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># Step 3: 写入软件源信息
+</span></span><span style="display:flex;"><span>sudo add-apt-repository &#34;deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&#34;
+</span></span><span style="display:flex;"><span>sudo sh -c &#34;echo &#39;deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main&#39; &gt; /etc/apt/sources.list.d/kubernetes.list&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># Step 4: 更新并安装
+</span></span><span style="display:flex;"><span>sudo apt-mark unhold kubeadm kubectl kubelet
+</span></span><span style="display:flex;"><span>sudo apt update &amp;&amp; sudo apt install docker-ce kubelet kubeadm kubectl -y
+</span></span><span style="display:flex;"><span>sudo apt-mark hold kubeadm kubectl kubelet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># Step 5: 清理
+</span></span><span style="display:flex;"><span>sudo apt autoremove -y &amp;&amp; sudo apt autoclean -y
+</span></span></code></pre></div><h2 id="更新-kubeadm-kubectl-kubelet">更新 kubeadm, kubectl, kubelet</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo apt-mark unhold kubeadm kubectl kubelet
+</span></span><span style="display:flex;"><span>sudo apt update &amp;&amp; sudo apt upgrade -y
+</span></span><span style="display:flex;"><span>sudo apt-mark hold kubeadm kubectl kubelet
+</span></span></code></pre></div><h2 id="同步-docker-配置">同步 docker 配置</h2>
 <p>为了提高 docker 的最大性能，编辑 <code>/etc/docker/daemon.json</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">{
-  &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
-  &#34;storage-driver&#34;: &#34;overlay2&#34;,
-  &#34;max-concurrent-downloads&#34;: 10,
-  &#34;max-concurrent-uploads&#34;: 10,
-  &#34;log-driver&#34;: &#34;json-file&#34;,
-  &#34;log-opts&#34;: {
-    &#34;max-size&#34;: &#34;10m&#34;,
-    &#34;max-file&#34;: &#34;1&#34;
-  }
-}
-</code></pre></div><p>注意: 当 <code>max-file</code> 小于 2 或未设置 <code>max-size</code> 时<code>compress</code> 不能为 true.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
+</span></span><span style="display:flex;"><span>  &#34;storage-driver&#34;: &#34;overlay2&#34;,
+</span></span><span style="display:flex;"><span>  &#34;max-concurrent-downloads&#34;: 10,
+</span></span><span style="display:flex;"><span>  &#34;max-concurrent-uploads&#34;: 10,
+</span></span><span style="display:flex;"><span>  &#34;log-driver&#34;: &#34;json-file&#34;,
+</span></span><span style="display:flex;"><span>  &#34;log-opts&#34;: {
+</span></span><span style="display:flex;"><span>    &#34;max-size&#34;: &#34;10m&#34;,
+</span></span><span style="display:flex;"><span>    &#34;max-file&#34;: &#34;1&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>注意: 当 <code>max-file</code> 小于 2 或未设置 <code>max-size</code> 时<code>compress</code> 不能为 true.</p>
 <h1 id="负载均衡节点配置">负载均衡节点配置</h1>
 <p>使用 <code>haproxy</code> 和 <code>keepalived</code> 的组合实现负载均衡，作为 <code>kube-apiserver</code> 的代理，为整个集群提供流量入口。</p>
 <p>直接使用集成了二者的 docker 镜像运行容器，启动负载均衡:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">HAPROXY_CONFIG_FILE=/root/haproxy/haproxy.cfg
-KEEPALIVED_CONFIG_FILE=/root/keepalived/keepalived.conf
-
-docker run -it -d --net=host --privileged \
-    -v ${HAPROXY_CONFIG_FILE}:/usr/local/etc/haproxy/haproxy.cfg \
-    -v ${KEEPALIVED_CONFIG_FILE}:/etc/keepalived/keepalived.conf \
-    --name kubernetes-proxy \
-    haproxy-keepalived
-</code></pre></div><p><code>harproxy.cfg</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">global
-    daemon
-    maxconn     4000
-    log         127.0.0.1 local2
-    pidfile     /var/run/haproxy.pid
-
-defaults
-    mode                    http
-    log                     global
-    retries                 3
-    timeout connect         10s
-    timeout client          1m
-    timeout server          1m
-
-listen kubernetes-master
-    bind *:6443
-    mode tcp
-    balance roundrobin
-    server master1 10.219.12.13:6443 check maxconn 2000
-    server master2 10.219.12.14:6443 check maxconn 2000
-    server master3 10.219.12.15:6443 check maxconn 2000
-
-listen kubernetes-http
-    bind *:80
-    mode tcp
-    balance roundrobin
-    server master1 10.219.12.13:80 check maxconn 2000
-    server master2 10.219.12.14:80 check maxconn 2000
-    server master3 10.219.12.15:80 check maxconn 2000
-
-listen kubernetes-https
-    bind *:443
-    mode tcp
-    balance roundrobin
-    server master1 10.219.12.13:443 check maxconn 2000
-    server master2 10.219.12.14:443 check maxconn 2000
-    server master3 10.219.12.15:443 check maxconn 2000
-
-listen kubernetes-ssh
-    bind *:22
-    mode tcp
-    balance roundrobin
-    server master1 10.219.12.13:22 check maxconn 2000
-    server master2 10.219.12.14:22 check maxconn 2000
-    server master3 10.219.12.15:22 check maxconn 2000
-</code></pre></div><p><code>keepalived.conf</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">global_defs {
-   router_id LVS_DEVEL
-}
-
-vrrp_script check_haproxy {
-    script &#34;pgrep haproxy&#34;
-    interval 2
-    weight -2
-    fall 10
-    rise 2
-}
-
-vrrp_instance VI_1 {
-    state MASTER
-    interface ens160
-    virtual_router_id 51
-    priority 300
-    advert_int 1
-    authentication {
-        auth_type PASS
-        auth_pass 35f18af7190d51c9f7f78f37300a0cbd
-    }
-    virtual_ipaddress {
-        10.219.12.8
-    }
-    track_script {
-        check_haproxy
-    }
-}
-</code></pre></div><h1 id="控制节点配置">控制节点配置</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>HAPROXY_CONFIG_FILE=/root/haproxy/haproxy.cfg
+</span></span><span style="display:flex;"><span>KEEPALIVED_CONFIG_FILE=/root/keepalived/keepalived.conf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker run -it -d --net=host --privileged \
+</span></span><span style="display:flex;"><span>    -v ${HAPROXY_CONFIG_FILE}:/usr/local/etc/haproxy/haproxy.cfg \
+</span></span><span style="display:flex;"><span>    -v ${KEEPALIVED_CONFIG_FILE}:/etc/keepalived/keepalived.conf \
+</span></span><span style="display:flex;"><span>    --name kubernetes-proxy \
+</span></span><span style="display:flex;"><span>    haproxy-keepalived
+</span></span></code></pre></div><p><code>harproxy.cfg</code> 文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>global
+</span></span><span style="display:flex;"><span>    daemon
+</span></span><span style="display:flex;"><span>    maxconn     4000
+</span></span><span style="display:flex;"><span>    log         127.0.0.1 local2
+</span></span><span style="display:flex;"><span>    pidfile     /var/run/haproxy.pid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>defaults
+</span></span><span style="display:flex;"><span>    mode                    http
+</span></span><span style="display:flex;"><span>    log                     global
+</span></span><span style="display:flex;"><span>    retries                 3
+</span></span><span style="display:flex;"><span>    timeout connect         10s
+</span></span><span style="display:flex;"><span>    timeout client          1m
+</span></span><span style="display:flex;"><span>    timeout server          1m
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>listen kubernetes-master
+</span></span><span style="display:flex;"><span>    bind *:6443
+</span></span><span style="display:flex;"><span>    mode tcp
+</span></span><span style="display:flex;"><span>    balance roundrobin
+</span></span><span style="display:flex;"><span>    server master1 10.219.12.13:6443 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master2 10.219.12.14:6443 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master3 10.219.12.15:6443 check maxconn 2000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>listen kubernetes-http
+</span></span><span style="display:flex;"><span>    bind *:80
+</span></span><span style="display:flex;"><span>    mode tcp
+</span></span><span style="display:flex;"><span>    balance roundrobin
+</span></span><span style="display:flex;"><span>    server master1 10.219.12.13:80 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master2 10.219.12.14:80 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master3 10.219.12.15:80 check maxconn 2000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>listen kubernetes-https
+</span></span><span style="display:flex;"><span>    bind *:443
+</span></span><span style="display:flex;"><span>    mode tcp
+</span></span><span style="display:flex;"><span>    balance roundrobin
+</span></span><span style="display:flex;"><span>    server master1 10.219.12.13:443 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master2 10.219.12.14:443 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master3 10.219.12.15:443 check maxconn 2000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>listen kubernetes-ssh
+</span></span><span style="display:flex;"><span>    bind *:22
+</span></span><span style="display:flex;"><span>    mode tcp
+</span></span><span style="display:flex;"><span>    balance roundrobin
+</span></span><span style="display:flex;"><span>    server master1 10.219.12.13:22 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master2 10.219.12.14:22 check maxconn 2000
+</span></span><span style="display:flex;"><span>    server master3 10.219.12.15:22 check maxconn 2000
+</span></span></code></pre></div><p><code>keepalived.conf</code> 文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>global_defs {
+</span></span><span style="display:flex;"><span>   router_id LVS_DEVEL
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vrrp_script check_haproxy {
+</span></span><span style="display:flex;"><span>    script &#34;pgrep haproxy&#34;
+</span></span><span style="display:flex;"><span>    interval 2
+</span></span><span style="display:flex;"><span>    weight -2
+</span></span><span style="display:flex;"><span>    fall 10
+</span></span><span style="display:flex;"><span>    rise 2
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vrrp_instance VI_1 {
+</span></span><span style="display:flex;"><span>    state MASTER
+</span></span><span style="display:flex;"><span>    interface ens160
+</span></span><span style="display:flex;"><span>    virtual_router_id 51
+</span></span><span style="display:flex;"><span>    priority 300
+</span></span><span style="display:flex;"><span>    advert_int 1
+</span></span><span style="display:flex;"><span>    authentication {
+</span></span><span style="display:flex;"><span>        auth_type PASS
+</span></span><span style="display:flex;"><span>        auth_pass 35f18af7190d51c9f7f78f37300a0cbd
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    virtual_ipaddress {
+</span></span><span style="display:flex;"><span>        10.219.12.8
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    track_script {
+</span></span><span style="display:flex;"><span>        check_haproxy
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="控制节点配置">控制节点配置</h1>
 <p>创建 <code>kubeadm-config.yaml</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">apiVersion: kubeadm.k8s.io/v1beta2
-kind: ClusterConfiguration
-kubernetesVersion: &#34;v1.17.4&#34;
-controlPlaneEndpoint: &#34;kubernetes.internal:6443&#34;
-imageRepository: &#34;registry.aliyuncs.com/google_containers&#34;
-networking:
-  podSubnet: 192.168.0.0/16
-apiServer:
-  extraArgs:
-    service-node-port-range: 22-32767
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: kubeadm.k8s.io/v1beta2
+</span></span><span style="display:flex;"><span>kind: ClusterConfiguration
+</span></span><span style="display:flex;"><span>kubernetesVersion: &#34;v1.17.4&#34;
+</span></span><span style="display:flex;"><span>controlPlaneEndpoint: &#34;kubernetes.internal:6443&#34;
+</span></span><span style="display:flex;"><span>imageRepository: &#34;registry.aliyuncs.com/google_containers&#34;
+</span></span><span style="display:flex;"><span>networking:
+</span></span><span style="display:flex;"><span>  podSubnet: 192.168.0.0/16
+</span></span><span style="display:flex;"><span>apiServer:
+</span></span><span style="display:flex;"><span>  extraArgs:
+</span></span><span style="display:flex;"><span>    service-node-port-range: 22-32767
+</span></span></code></pre></div><ul>
 <li>无法访问 <code>k8s.gcr.io</code>，设置 <code>imageRepository</code> 属性</li>
 <li>无法访问 <code>https://dl.k8s.io/release/stable-1.txt</code>，设置 <code>kubernetesVersion</code> 属性的具体版本，不要用 <code>stable</code></li>
 </ul>
 <h2 id="第一个控制节点初始化">第一个控制节点初始化</h2>
 <p>选择 <code>k8s-10-219-12-13</code> 作为第一个控制节点，执行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo kubeadm init --config=kubeadm-config.yaml --upload-certs
-</code></pre></div><p>输出</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo kubeadm init --config=kubeadm-config.yaml --upload-certs
+</span></span></code></pre></div><p>输出</p>
 <p><img src="https://jsonbruce.com/images/kubernetes-ha-cluster-devops_2020-11-11-02-59-43.png" alt=""></p>
 <p>可以看到最后输出了一些帮助信息，分别是用于配置 <code>kubectl</code> 上下文的命令、用于添加工作节点的命令和用于添加其它控制节点的命令，记录下来稍后会用到。</p>
 <h2 id="部署cni">部署CNI</h2>
 <p>Kubernetes 的网络模型是一个大扁平的网络模型，需要部署 CNI 插件为集群提供网络服务。这里选择 <code>calico</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl apply -f calico.yaml
-</code></pre></div><h2 id="其余控制节点加入">其余控制节点加入</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl apply -f calico.yaml
+</span></span></code></pre></div><h2 id="其余控制节点加入">其余控制节点加入</h2>
 <p>执行在初始化之后输出的添加命令，添加其它节点，执行后输出</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">...
-
-To start administering your cluster from this node, you need to run the following as a regular user:
-
-        mkdir -p $HOME/.kube
-        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-        sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-Run &#39;kubectl get nodes&#39; to see this node join the cluster.
-</code></pre></div><p>看到最后也给出了需要执行的命令，用于配置 <code>kubectl</code> 上下文。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>To start administering your cluster from this node, you need to run the following as a regular user:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        mkdir -p $HOME/.kube
+</span></span><span style="display:flex;"><span>        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+</span></span><span style="display:flex;"><span>        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Run &#39;kubectl get nodes&#39; to see this node join the cluster.
+</span></span></code></pre></div><p>看到最后也给出了需要执行的命令，用于配置 <code>kubectl</code> 上下文。</p>
 <p>如果 certificate-key 过期了，则在控制节点执行 <code>kubeadm init phase upload-certs --upload-certs</code> 即可。</p>
 <h1 id="工作节点配置">工作节点配置</h1>
 <p>所有控制节点加入到控制平面之后，就可以继续加入 worker 节点，在所有工作节点执行在初始化节点输出的加入工作节点命令，输出如下，注意没有使用到 certificate-key:</p>
@@ -417,45 +417,45 @@ Run &#39;kubectl get nodes&#39; to see this node join the cluster.
 <h1 id="部署-helm">部署 Helm</h1>
 <p><code>Helm</code> 被称为 Kubernetes 的包管理器，用于方便的部署其它云原生应用。</p>
 <p>在节点 13 执行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">wget https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz &amp;&amp; sudo tar xzf helm-v3.1.2-linux-amd64.tar.gz -C /usr/local/bin/ --strip-components=1 linux-amd64/helm
-</code></pre></div><p>添加阿里云镜像</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm repo add stable http://mirror.azure.cn/kubernetes/charts
-helm repo add apphub https://apphub.aliyuncs.com/
-</code></pre></div><h1 id="部署-metallb">部署 MetalLB</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>wget https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz &amp;&amp; sudo tar xzf helm-v3.1.2-linux-amd64.tar.gz -C /usr/local/bin/ --strip-components=1 linux-amd64/helm
+</span></span></code></pre></div><p>添加阿里云镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm repo add stable http://mirror.azure.cn/kubernetes/charts
+</span></span><span style="display:flex;"><span>helm repo add apphub https://apphub.aliyuncs.com/
+</span></span></code></pre></div><h1 id="部署-metallb">部署 MetalLB</h1>
 <p>由于 Kubernetes 本身的网络方案中的 LB 功能仅限于提供商，所以需要第三方插件来实现 LB 网络的功能， <code>MetalLB</code> 就是这样一个插件。
 部署到 <code>kube-network</code> 命名空间中</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl create namespace kube-network
-</code></pre></div><p>下载 Chart 包</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm pull stable/metallb
-</code></pre></div><p>编辑 <code>values.yaml</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">configInline:
-    # Example ARP Configuration
-    address-pools:
-      - name: default
-        protocol: layer2
-        addresses:
-          - 10.219.12.200-10.219.12.250
-</code></pre></div><p>安装</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm install metallb --namespace kube-network ./metallb
-</code></pre></div><h1 id="部署-nginx-ingress">部署 nginx-ingress</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace kube-network
+</span></span></code></pre></div><p>下载 Chart 包</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm pull stable/metallb
+</span></span></code></pre></div><p>编辑 <code>values.yaml</code> 文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>configInline:
+</span></span><span style="display:flex;"><span>    # Example ARP Configuration
+</span></span><span style="display:flex;"><span>    address-pools:
+</span></span><span style="display:flex;"><span>      - name: default
+</span></span><span style="display:flex;"><span>        protocol: layer2
+</span></span><span style="display:flex;"><span>        addresses:
+</span></span><span style="display:flex;"><span>          - 10.219.12.200-10.219.12.250
+</span></span></code></pre></div><p>安装</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm install metallb --namespace kube-network ./metallb
+</span></span></code></pre></div><h1 id="部署-nginx-ingress">部署 nginx-ingress</h1>
 <p><code>nginx-ingress</code> 用于提供 <code>Ingress</code> 服务。
 部署到 <code>kube-network</code> 命名空间中</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl create namespace kube-network
-</code></pre></div><p>安装</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm install nginx-ingress \
-  --namespace kube-network \
-  --set controller.image.repository=&#34;quay.azk8s.cn/kubernetes-ingress-controller/nginx-ingress-controller&#34; \
-  --set controller.service.nodePorts.http=80 \
-  --set controller.service.nodePorts.https=443 \
-  --set controller.service.nodePorts.tcp.22=22 \
-  --set defaultBackend.image.repository=&#34;gcr.azk8s.cn/google-containers/defaultbackend-amd64&#34; \
-  --set tcp.22=&#34;kube-gitlab/gitlab-gitlab-shell:22&#34; \
-  stable/nginx-ingress
-</code></pre></div><p>设置默认 SSL 证书</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl -n kube-network create secret tls default-ssl-certificate --cert=internal-server.crt --key=internal-server.key
-</code></pre></div><p>然后更新 nginx-ingress-controller Deployment 的 spec.containers.args 增加一个参数</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">- &#39;--default-ssl-certificate=kube-network/default-ssl-certificate&#39;
-</code></pre></div><p>然后集群里的所有的 Ingress 都有证书了，甚至不用更改 Ingress 的任何配置。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace kube-network
+</span></span></code></pre></div><p>安装</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm install nginx-ingress \
+</span></span><span style="display:flex;"><span>  --namespace kube-network \
+</span></span><span style="display:flex;"><span>  --set controller.image.repository=&#34;quay.azk8s.cn/kubernetes-ingress-controller/nginx-ingress-controller&#34; \
+</span></span><span style="display:flex;"><span>  --set controller.service.nodePorts.http=80 \
+</span></span><span style="display:flex;"><span>  --set controller.service.nodePorts.https=443 \
+</span></span><span style="display:flex;"><span>  --set controller.service.nodePorts.tcp.22=22 \
+</span></span><span style="display:flex;"><span>  --set defaultBackend.image.repository=&#34;gcr.azk8s.cn/google-containers/defaultbackend-amd64&#34; \
+</span></span><span style="display:flex;"><span>  --set tcp.22=&#34;kube-gitlab/gitlab-gitlab-shell:22&#34; \
+</span></span><span style="display:flex;"><span>  stable/nginx-ingress
+</span></span></code></pre></div><p>设置默认 SSL 证书</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl -n kube-network create secret tls default-ssl-certificate --cert=internal-server.crt --key=internal-server.key
+</span></span></code></pre></div><p>然后更新 nginx-ingress-controller Deployment 的 spec.containers.args 增加一个参数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>- &#39;--default-ssl-certificate=kube-network/default-ssl-certificate&#39;
+</span></span></code></pre></div><p>然后集群里的所有的 Ingress 都有证书了，甚至不用更改 Ingress 的任何配置。
 新的 Ingress 不用指定 tls.secretName 即可</p>
 <p><strong>注意</strong>
 internal-server.crt 必须为证书链.
@@ -463,243 +463,243 @@ internal-server.crt 必须为证书链.
 <p>否则，Harbor registry 是无法登录的。因为 ingress 只返回了 server 证书，没有 intermediate 和 root 证书，所以无法信任。</p>
 <h1 id="部署-metrics-server">部署 metrics-server</h1>
 <p>部署 <code>HPA</code> (如部署 GitLab) 必须要有 metrics-server</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl create namespace kube-metrics
-</code></pre></div><p>部署</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm upgrade --install metrics-server \
-  --namespace kube-metrics \
-  --set rbac.pspEnabled=true \
-  --set hostNetwork.enabled=false \
-  --set args[0]=&#34;--v=2&#34; \
-  --set args[1]=&#34;--kubelet-insecure-tls&#34; \
-  --set args[2]=&#34;--kubelet-preferred-address-types=InternalIP&#34; \
-  --set image.repository=&#34;gcr.azk8s.cn/google_containers/metrics-server-amd64&#34; \
-  stable/metrics-server
-</code></pre></div><p>部署好之后，Dashboard 会新增 CPU 和 Memory 的指标图</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace kube-metrics
+</span></span></code></pre></div><p>部署</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm upgrade --install metrics-server \
+</span></span><span style="display:flex;"><span>  --namespace kube-metrics \
+</span></span><span style="display:flex;"><span>  --set rbac.pspEnabled=true \
+</span></span><span style="display:flex;"><span>  --set hostNetwork.enabled=false \
+</span></span><span style="display:flex;"><span>  --set args[0]=&#34;--v=2&#34; \
+</span></span><span style="display:flex;"><span>  --set args[1]=&#34;--kubelet-insecure-tls&#34; \
+</span></span><span style="display:flex;"><span>  --set args[2]=&#34;--kubelet-preferred-address-types=InternalIP&#34; \
+</span></span><span style="display:flex;"><span>  --set image.repository=&#34;gcr.azk8s.cn/google_containers/metrics-server-amd64&#34; \
+</span></span><span style="display:flex;"><span>  stable/metrics-server
+</span></span></code></pre></div><p>部署好之后，Dashboard 会新增 CPU 和 Memory 的指标图</p>
 <h1 id="部署-kubernetes-dashboard">部署 Kubernetes Dashboard</h1>
 <p><code>Dashboard</code> 是 K8s 官方提供的 GUI 工具，用于可视化查看集群的总体状态，还可以进行部署和扩缩容等操作。
 部署到 <code>kube-public</code> 命名空间中</p>
 <p>升级到使用 2.0</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm upgrade --install kubernetes-dashboard \
-  --namespace kube-public \
-  --set extraArgs[0]=&#34;--token-ttl=0&#34; \
-  --set ingress.enabled=true \
-  --set ingress.hosts[0]=&#34;k8s.internal&#34; \
-  --set ingress.tls[0].hosts[0]=&#34;k8s.internal&#34; \
-  --set metricsScraper.enabled=true \
-  kubernetes-dashboard/kubernetes-dashboard
-</code></pre></div><p>由于设置了全局 ingress 证书，所以安装 dashboard 时无需指定证书的 secret.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm upgrade --install kubernetes-dashboard \
+</span></span><span style="display:flex;"><span>  --namespace kube-public \
+</span></span><span style="display:flex;"><span>  --set extraArgs[0]=&#34;--token-ttl=0&#34; \
+</span></span><span style="display:flex;"><span>  --set ingress.enabled=true \
+</span></span><span style="display:flex;"><span>  --set ingress.hosts[0]=&#34;k8s.internal&#34; \
+</span></span><span style="display:flex;"><span>  --set ingress.tls[0].hosts[0]=&#34;k8s.internal&#34; \
+</span></span><span style="display:flex;"><span>  --set metricsScraper.enabled=true \
+</span></span><span style="display:flex;"><span>  kubernetes-dashboard/kubernetes-dashboard
+</span></span></code></pre></div><p>由于设置了全局 ingress 证书，所以安装 dashboard 时无需指定证书的 secret.</p>
 <p>2.0 版本默认去掉了 admin 权限，需要手动添加下设置 cluster-admin 权限
 s</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cat &lt;&lt; EOF | kubectl create -f -
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: kubernetes-dashboard
-  namespace: kube-public
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-  - kind: ServiceAccount
-    name: kubernetes-dashboard
-    namespace: kube-public
-EOF
-</code></pre></div><h1 id="部署-rook">部署 Rook</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cat &lt;&lt; EOF | kubectl create -f -
+</span></span><span style="display:flex;"><span>apiVersion: rbac.authorization.k8s.io/v1
+</span></span><span style="display:flex;"><span>kind: ClusterRoleBinding
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: kubernetes-dashboard
+</span></span><span style="display:flex;"><span>  namespace: kube-public
+</span></span><span style="display:flex;"><span>roleRef:
+</span></span><span style="display:flex;"><span>  apiGroup: rbac.authorization.k8s.io
+</span></span><span style="display:flex;"><span>  kind: ClusterRole
+</span></span><span style="display:flex;"><span>  name: cluster-admin
+</span></span><span style="display:flex;"><span>subjects:
+</span></span><span style="display:flex;"><span>  - kind: ServiceAccount
+</span></span><span style="display:flex;"><span>    name: kubernetes-dashboard
+</span></span><span style="display:flex;"><span>    namespace: kube-public
+</span></span><span style="display:flex;"><span>EOF
+</span></span></code></pre></div><h1 id="部署-rook">部署 Rook</h1>
 <p><code>Rook</code> 是一个存储编排工具，可以方便的部署 <code>ceph</code> 集群。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl create namespace kube-storage
-</code></pre></div><p>将部署到 15, 16, 17 三个节点，注意必须启用 rbd 内核模块</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo modprobe rbd
-</code></pre></div><h2 id="部署-rook-ceph-operator">部署 rook-ceph Operator</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace kube-storage
+</span></span></code></pre></div><p>将部署到 15, 16, 17 三个节点，注意必须启用 rbd 内核模块</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo modprobe rbd
+</span></span></code></pre></div><h2 id="部署-rook-ceph-operator">部署 rook-ceph Operator</h2>
 <p>使用 <code>rook</code> 部署 <code>ceph</code> 集群是基于 <code>Operator</code> 实现的。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm repo add rook-release https://charts.rook.io/release
-
-helm upgrade --install rook-ceph \
-  --namespace kube-storage \
-  --set image.repository=&#34;dockerhub.azk8s.cn/rook/ceph&#34; \
-  --set csi.cephcsi.image=&#34;quay.azk8s.cn/cephcsi/cephcsi:v2.0.0&#34; \
-  --set csi.registrar.image=&#34;quay.azk8s.cn/k8scsi/csi-node-driver-registrar:v1.2.0&#34; \
-  --set csi.provisioner.image=&#34;quay.azk8s.cn/k8scsi/csi-provisioner:v1.4.0&#34; \
-  --set csi.snapshotter.image=&#34;quay.azk8s.cn/k8scsi/csi-snapshotter:v1.2.2&#34; \
-  --set csi.attacher.image=&#34;quay.azk8s.cn/k8scsi/csi-attacher:v2.1.0&#34; \
-  --set csi.resizer.image=&#34;quay.azk8s.cn/k8scsi/csi-resizer:v0.4.0&#34; \
-  rook-release/rook-ceph
-</code></pre></div><h2 id="创建-ceph-集群">创建 Ceph 集群</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm repo add rook-release https://charts.rook.io/release
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>helm upgrade --install rook-ceph \
+</span></span><span style="display:flex;"><span>  --namespace kube-storage \
+</span></span><span style="display:flex;"><span>  --set image.repository=&#34;dockerhub.azk8s.cn/rook/ceph&#34; \
+</span></span><span style="display:flex;"><span>  --set csi.cephcsi.image=&#34;quay.azk8s.cn/cephcsi/cephcsi:v2.0.0&#34; \
+</span></span><span style="display:flex;"><span>  --set csi.registrar.image=&#34;quay.azk8s.cn/k8scsi/csi-node-driver-registrar:v1.2.0&#34; \
+</span></span><span style="display:flex;"><span>  --set csi.provisioner.image=&#34;quay.azk8s.cn/k8scsi/csi-provisioner:v1.4.0&#34; \
+</span></span><span style="display:flex;"><span>  --set csi.snapshotter.image=&#34;quay.azk8s.cn/k8scsi/csi-snapshotter:v1.2.2&#34; \
+</span></span><span style="display:flex;"><span>  --set csi.attacher.image=&#34;quay.azk8s.cn/k8scsi/csi-attacher:v2.1.0&#34; \
+</span></span><span style="display:flex;"><span>  --set csi.resizer.image=&#34;quay.azk8s.cn/k8scsi/csi-resizer:v0.4.0&#34; \
+</span></span><span style="display:flex;"><span>  rook-release/rook-ceph
+</span></span></code></pre></div><h2 id="创建-ceph-集群">创建 Ceph 集群</h2>
 <p>OSD 的底层存储方式有两种 (storeType):</p>
 <ul>
 <li><code>filestore</code>。 用于目录.</li>
 <li><code>bluestore</code>. 用于设备. 要单独挂一块硬盘 (如 /dev/sdc) 才能使用. 没有文件系统和分区的空硬盘设备。需要裸盘或裸分区</li>
 </ul>
 <p>设置 master 节点可调度</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">max@k8s-10-219-12-13:~$ kubectl taint node k8s-10-129-12-15 node-role.kubernetes.io/master-
-node/k8s-10-129-12-15 untainted
-</code></pre></div><p><code>rook-cluster.yaml</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">apiVersion: ceph.rook.io/v1
-kind: CephCluster
-metadata:
-  name: rook-ceph
-  namespace: kube-storage
-spec:
-  ...
-
-  storage: # cluster level storage configuration and selection
-    useAllNodes: true
-    useAllDevices: false
-    #deviceFilter:
-    config:
-      # The default and recommended storeType is dynamically set to bluestore for devices and filestore for directories.
-      # Set the storeType explicitly only if it is required not to use the default.
-      storeType: filestore
-# Cluster level list of directories to use for filestore-based OSD storage. If uncomment, this example would create an OSD under the dataDirHostPath.
-    directories:
-      - path: /var/lib/storage
-
-    ...
-</code></pre></div><p>创建</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl create -f rook-cluster.yaml
-</code></pre></div><p>然后就可以发现在 15, 16, 17 三个节点创建了 <code>/var/lib/storage</code> 目录，结构如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/var/lib/storage/
-├── kube-storage
-│   ├── client.admin.keyring
-│   ├── crash
-│   ├── kube-storage.config
-│   └── log
-├── mon-a
-│   └── data
-├── mon-b
-│   └── data
-└── mon-c
-    └── data
-</code></pre></div><h2 id="创建-pool-和-storageclass">创建 Pool 和 StorageClass</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>max@k8s-10-219-12-13:~$ kubectl taint node k8s-10-129-12-15 node-role.kubernetes.io/master-
+</span></span><span style="display:flex;"><span>node/k8s-10-129-12-15 untainted
+</span></span></code></pre></div><p><code>rook-cluster.yaml</code> 文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: ceph.rook.io/v1
+</span></span><span style="display:flex;"><span>kind: CephCluster
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: rook-ceph
+</span></span><span style="display:flex;"><span>  namespace: kube-storage
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  storage: # cluster level storage configuration and selection
+</span></span><span style="display:flex;"><span>    useAllNodes: true
+</span></span><span style="display:flex;"><span>    useAllDevices: false
+</span></span><span style="display:flex;"><span>    #deviceFilter:
+</span></span><span style="display:flex;"><span>    config:
+</span></span><span style="display:flex;"><span>      # The default and recommended storeType is dynamically set to bluestore for devices and filestore for directories.
+</span></span><span style="display:flex;"><span>      # Set the storeType explicitly only if it is required not to use the default.
+</span></span><span style="display:flex;"><span>      storeType: filestore
+</span></span><span style="display:flex;"><span># Cluster level list of directories to use for filestore-based OSD storage. If uncomment, this example would create an OSD under the dataDirHostPath.
+</span></span><span style="display:flex;"><span>    directories:
+</span></span><span style="display:flex;"><span>      - path: /var/lib/storage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span></code></pre></div><p>创建</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create -f rook-cluster.yaml
+</span></span></code></pre></div><p>然后就可以发现在 15, 16, 17 三个节点创建了 <code>/var/lib/storage</code> 目录，结构如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>/var/lib/storage/
+</span></span><span style="display:flex;"><span>├── kube-storage
+</span></span><span style="display:flex;"><span>│   ├── client.admin.keyring
+</span></span><span style="display:flex;"><span>│   ├── crash
+</span></span><span style="display:flex;"><span>│   ├── kube-storage.config
+</span></span><span style="display:flex;"><span>│   └── log
+</span></span><span style="display:flex;"><span>├── mon-a
+</span></span><span style="display:flex;"><span>│   └── data
+</span></span><span style="display:flex;"><span>├── mon-b
+</span></span><span style="display:flex;"><span>│   └── data
+</span></span><span style="display:flex;"><span>└── mon-c
+</span></span><span style="display:flex;"><span>    └── data
+</span></span></code></pre></div><h2 id="创建-pool-和-storageclass">创建 Pool 和 StorageClass</h2>
 <h3 id="cephblockpool">CephBlockPool</h3>
 <p><code>rook-block-storageclass.yaml</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">apiVersion: ceph.rook.io<span style="color:#f92672">/</span>v1
-kind: CephBlockPool
-metadata:
-  name: replicapool
-  namespace: kube<span style="color:#f92672">-</span>storage
-spec:
-  failureDomain: host
-  replicated:
-    size: <span style="color:#ae81ff">3</span>
-<span style="color:#f92672">-</span><span style="color:#75715e">--
-</span><span style="color:#75715e">apiVersion: storage.k8s.io/v1
-</span><span style="color:#75715e"></span>kind: StorageClass
-metadata:
-   name: rook<span style="color:#f92672">-</span>ceph<span style="color:#f92672">-</span>block
-   annotations:
-    storageclass.kubernetes.io<span style="color:#f92672">/</span><span style="color:#66d9ef">is</span><span style="color:#f92672">-</span><span style="color:#66d9ef">default</span><span style="color:#f92672">-</span>class: <span style="color:#e6db74">&#34;true&#34;</span>
-<span style="color:#75715e"># Change &#34;rook-ceph&#34; provisioner prefix to match the operator namespace if needed
-</span><span style="color:#75715e"></span>provisioner: kube<span style="color:#f92672">-</span>storage.rbd.csi.ceph.com
-parameters:
-    <span style="color:#75715e"># clusterID is the namespace where the rook cluster is running
-</span><span style="color:#75715e"></span>    clusterID: kube<span style="color:#f92672">-</span>storage
-    <span style="color:#75715e"># Ceph pool into which the RBD image shall be created
-</span><span style="color:#75715e"></span>    pool: replicapool
-
-    <span style="color:#75715e"># RBD image format. Defaults to &#34;2&#34;.
-</span><span style="color:#75715e"></span>    imageFormat: <span style="color:#e6db74">&#34;2&#34;</span>
-
-    <span style="color:#75715e"># RBD image features. Available for imageFormat: &#34;2&#34;. CSI RBD currently supports only `layering` feature.
-</span><span style="color:#75715e"></span>    imageFeatures: layering
-
-    <span style="color:#75715e"># The secrets contain Ceph admin credentials.
-</span><span style="color:#75715e"></span>    csi.storage.k8s.io<span style="color:#f92672">/</span>provisioner<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>name: rook<span style="color:#f92672">-</span>csi<span style="color:#f92672">-</span>rbd<span style="color:#f92672">-</span>provisioner
-    csi.storage.k8s.io<span style="color:#f92672">/</span>provisioner<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>namespace: kube<span style="color:#f92672">-</span>storage
-    csi.storage.k8s.io<span style="color:#f92672">/</span>node<span style="color:#f92672">-</span>stage<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>name: rook<span style="color:#f92672">-</span>csi<span style="color:#f92672">-</span>rbd<span style="color:#f92672">-</span>node
-    csi.storage.k8s.io<span style="color:#f92672">/</span>node<span style="color:#f92672">-</span>stage<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>namespace: kube<span style="color:#f92672">-</span>storage
-
-    <span style="color:#75715e"># Specify the filesystem type of the volume. If not specified, csi-provisioner
-</span><span style="color:#75715e"></span>    <span style="color:#75715e"># will set default as `ext4`.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">#csi.storage.k8s.io/fstype: xfs
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e"># Delete the rbd volume when a PVC is deleted
-</span><span style="color:#75715e"></span>reclaimPolicy: <span style="color:#66d9ef">Delete</span>
-</code></pre></div><p>创建</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl -n kube-storage create -f rook-block-storageclass.yaml
-</code></pre></div><p>标记默认 StorageClass</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl annotate storageclasses.storage.k8s.io rook-ceph-block storageclass.kubernetes.io/is-default-class=true
-</code></pre></div><h3 id="cephfilesystem">CephFileSystem</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span>apiVersion: ceph.rook.io<span style="color:#f92672">/</span>v1
+</span></span><span style="display:flex;"><span>kind: CephBlockPool
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: replicapool
+</span></span><span style="display:flex;"><span>  namespace: kube<span style="color:#f92672">-</span>storage
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  failureDomain: host
+</span></span><span style="display:flex;"><span>  replicated:
+</span></span><span style="display:flex;"><span>    size: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span><span style="color:#75715e">--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">apiVersion: storage.k8s.io/v1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>kind: StorageClass
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>   name: rook<span style="color:#f92672">-</span>ceph<span style="color:#f92672">-</span>block
+</span></span><span style="display:flex;"><span>   annotations:
+</span></span><span style="display:flex;"><span>    storageclass.kubernetes.io<span style="color:#f92672">/</span><span style="color:#66d9ef">is</span><span style="color:#f92672">-</span><span style="color:#66d9ef">default</span><span style="color:#f92672">-</span>class: <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Change &#34;rook-ceph&#34; provisioner prefix to match the operator namespace if needed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>provisioner: kube<span style="color:#f92672">-</span>storage.rbd.csi.ceph.com
+</span></span><span style="display:flex;"><span>parameters:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># clusterID is the namespace where the rook cluster is running
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    clusterID: kube<span style="color:#f92672">-</span>storage
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Ceph pool into which the RBD image shall be created
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    pool: replicapool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># RBD image format. Defaults to &#34;2&#34;.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    imageFormat: <span style="color:#e6db74">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># RBD image features. Available for imageFormat: &#34;2&#34;. CSI RBD currently supports only `layering` feature.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    imageFeatures: layering
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The secrets contain Ceph admin credentials.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    csi.storage.k8s.io<span style="color:#f92672">/</span>provisioner<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>name: rook<span style="color:#f92672">-</span>csi<span style="color:#f92672">-</span>rbd<span style="color:#f92672">-</span>provisioner
+</span></span><span style="display:flex;"><span>    csi.storage.k8s.io<span style="color:#f92672">/</span>provisioner<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>namespace: kube<span style="color:#f92672">-</span>storage
+</span></span><span style="display:flex;"><span>    csi.storage.k8s.io<span style="color:#f92672">/</span>node<span style="color:#f92672">-</span>stage<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>name: rook<span style="color:#f92672">-</span>csi<span style="color:#f92672">-</span>rbd<span style="color:#f92672">-</span>node
+</span></span><span style="display:flex;"><span>    csi.storage.k8s.io<span style="color:#f92672">/</span>node<span style="color:#f92672">-</span>stage<span style="color:#f92672">-</span>secret<span style="color:#f92672">-</span>namespace: kube<span style="color:#f92672">-</span>storage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Specify the filesystem type of the volume. If not specified, csi-provisioner
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e"># will set default as `ext4`.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">#csi.storage.k8s.io/fstype: xfs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Delete the rbd volume when a PVC is deleted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>reclaimPolicy: <span style="color:#66d9ef">Delete</span>
+</span></span></code></pre></div><p>创建</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl -n kube-storage create -f rook-block-storageclass.yaml
+</span></span></code></pre></div><p>标记默认 StorageClass</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl annotate storageclasses.storage.k8s.io rook-ceph-block storageclass.kubernetes.io/is-default-class=true
+</span></span></code></pre></div><h3 id="cephfilesystem">CephFileSystem</h3>
 <p><code>rook-filesystem-storageclass.yaml</code> 文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">apiVersion: ceph.rook.io/v1
-kind: CephFilesystem
-metadata:
-  name: cephfs
-  namespace: kube-storage
-spec:
-  metadataPool:
-    replicated:
-      size: 3
-  dataPools:
-    - replicated:
-        size: 3
-  preservePoolsOnDelete: true
-  metadataServer:
-    activeCount: 1
-    activeStandby: true
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: rook-cephfs
-# Change &#34;rook-ceph&#34; provisioner prefix to match the operator namespace if needed
-provisioner: kube-storage.cephfs.csi.ceph.com
-parameters:
-  # clusterID is the namespace where operator is deployed.
-  clusterID: kube-storage
-
-  # CephFS filesystem name into which the volume shall be created
-  fsName: cephfs
-
-  # Ceph pool into which the volume shall be created
-  # Required for provisionVolume: &#34;true&#34;
-  pool: cephfs-data0
-
-  # Root path of an existing CephFS volume
-  # Required for provisionVolume: &#34;false&#34;
-  # rootPath: /absolute/path
-
-  # The secrets contain Ceph admin credentials. These are generated automatically by the operator
-  # in the same namespace as the cluster.
-  csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
-  csi.storage.k8s.io/provisioner-secret-namespace: kube-storage
-  csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
-  csi.storage.k8s.io/node-stage-secret-namespace: kube-storage
-
-reclaimPolicy: Delete
-</code></pre></div><p>创建</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl -n kube-storage create -f rook-filesystem-storageclass.yaml
-</code></pre></div><p>s</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: ceph.rook.io/v1
+</span></span><span style="display:flex;"><span>kind: CephFilesystem
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: cephfs
+</span></span><span style="display:flex;"><span>  namespace: kube-storage
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  metadataPool:
+</span></span><span style="display:flex;"><span>    replicated:
+</span></span><span style="display:flex;"><span>      size: 3
+</span></span><span style="display:flex;"><span>  dataPools:
+</span></span><span style="display:flex;"><span>    - replicated:
+</span></span><span style="display:flex;"><span>        size: 3
+</span></span><span style="display:flex;"><span>  preservePoolsOnDelete: true
+</span></span><span style="display:flex;"><span>  metadataServer:
+</span></span><span style="display:flex;"><span>    activeCount: 1
+</span></span><span style="display:flex;"><span>    activeStandby: true
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>apiVersion: storage.k8s.io/v1
+</span></span><span style="display:flex;"><span>kind: StorageClass
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: rook-cephfs
+</span></span><span style="display:flex;"><span># Change &#34;rook-ceph&#34; provisioner prefix to match the operator namespace if needed
+</span></span><span style="display:flex;"><span>provisioner: kube-storage.cephfs.csi.ceph.com
+</span></span><span style="display:flex;"><span>parameters:
+</span></span><span style="display:flex;"><span>  # clusterID is the namespace where operator is deployed.
+</span></span><span style="display:flex;"><span>  clusterID: kube-storage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  # CephFS filesystem name into which the volume shall be created
+</span></span><span style="display:flex;"><span>  fsName: cephfs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  # Ceph pool into which the volume shall be created
+</span></span><span style="display:flex;"><span>  # Required for provisionVolume: &#34;true&#34;
+</span></span><span style="display:flex;"><span>  pool: cephfs-data0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  # Root path of an existing CephFS volume
+</span></span><span style="display:flex;"><span>  # Required for provisionVolume: &#34;false&#34;
+</span></span><span style="display:flex;"><span>  # rootPath: /absolute/path
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  # The secrets contain Ceph admin credentials. These are generated automatically by the operator
+</span></span><span style="display:flex;"><span>  # in the same namespace as the cluster.
+</span></span><span style="display:flex;"><span>  csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+</span></span><span style="display:flex;"><span>  csi.storage.k8s.io/provisioner-secret-namespace: kube-storage
+</span></span><span style="display:flex;"><span>  csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+</span></span><span style="display:flex;"><span>  csi.storage.k8s.io/node-stage-secret-namespace: kube-storage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>reclaimPolicy: Delete
+</span></span></code></pre></div><p>创建</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl -n kube-storage create -f rook-filesystem-storageclass.yaml
+</span></span></code></pre></div><p>s</p>
 <h2 id="访问-ceph-dashboard">访问 Ceph Dashboard</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">max@k8s-10-219-12-13:~$ kubectl -n kube-storage get svc
-NAME                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-rook-ceph-mgr-dashboard    ClusterIP   10.101.182.69    &lt;none&gt;        8443/TCP            16h
-</code></pre></div><p>默认是暴露一个 ClusterIP 类型的 Service。可以配置 Ingress  从集群外访问</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: rook-ceph-mgr-dashboard
-  namespace: kube-storage
-  annotations:
-    kubernetes.io/ingress.class: &#34;nginx&#34;
-    kubernetes.io/tls-acme: &#34;true&#34;
-    nginx.ingress.kubernetes.io/backend-protocol: &#34;HTTPS&#34;
-    nginx.ingress.kubernetes.io/server-snippet: |
-      proxy_ssl_verify off;
-spec:
-  tls:
-   - hosts:
-     - ceph.internal
-     secretName: ceph.internal
-  rules:
-  - host: ceph.internal
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: rook-ceph-mgr-dashboard
-          servicePort: https-dashboard
-</code></pre></div><p>配置 ceph.internal 指向 10.219.12.8 就可以访问了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>max@k8s-10-219-12-13:~$ kubectl -n kube-storage get svc
+</span></span><span style="display:flex;"><span>NAME                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+</span></span><span style="display:flex;"><span>rook-ceph-mgr-dashboard    ClusterIP   10.101.182.69    &lt;none&gt;        8443/TCP            16h
+</span></span></code></pre></div><p>默认是暴露一个 ClusterIP 类型的 Service。可以配置 Ingress  从集群外访问</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>apiVersion: networking.k8s.io/v1beta1
+</span></span><span style="display:flex;"><span>kind: Ingress
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: rook-ceph-mgr-dashboard
+</span></span><span style="display:flex;"><span>  namespace: kube-storage
+</span></span><span style="display:flex;"><span>  annotations:
+</span></span><span style="display:flex;"><span>    kubernetes.io/ingress.class: &#34;nginx&#34;
+</span></span><span style="display:flex;"><span>    kubernetes.io/tls-acme: &#34;true&#34;
+</span></span><span style="display:flex;"><span>    nginx.ingress.kubernetes.io/backend-protocol: &#34;HTTPS&#34;
+</span></span><span style="display:flex;"><span>    nginx.ingress.kubernetes.io/server-snippet: |
+</span></span><span style="display:flex;"><span>      proxy_ssl_verify off;
+</span></span><span style="display:flex;"><span>spec:
+</span></span><span style="display:flex;"><span>  tls:
+</span></span><span style="display:flex;"><span>   - hosts:
+</span></span><span style="display:flex;"><span>     - ceph.internal
+</span></span><span style="display:flex;"><span>     secretName: ceph.internal
+</span></span><span style="display:flex;"><span>  rules:
+</span></span><span style="display:flex;"><span>  - host: ceph.internal
+</span></span><span style="display:flex;"><span>    http:
+</span></span><span style="display:flex;"><span>      paths:
+</span></span><span style="display:flex;"><span>      - path: /
+</span></span><span style="display:flex;"><span>        backend:
+</span></span><span style="display:flex;"><span>          serviceName: rook-ceph-mgr-dashboard
+</span></span><span style="display:flex;"><span>          servicePort: https-dashboard
+</span></span></code></pre></div><p>配置 ceph.internal 指向 10.219.12.8 就可以访问了</p>
 <ul>
 <li>默认用户名： <code>admin</code></li>
 <li>默认密码: <code>kubectl -n kube-storage get secret rook-ceph-dashboard-password -o jsonpath=&quot;{['data']['password']}&quot; | base64 --decode &amp;&amp; echo</code></li>
@@ -708,52 +708,52 @@ spec:
 <blockquote>
 <p><a href="https://rook.io/docs/rook/v1.2/ceph-teardown.html">https://rook.io/docs/rook/v1.2/ceph-teardown.html</a></p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># 1. Delete the Block and File artifacts
-kubectl delete -n kube-storage cephblockpool replicapool
-kubectl delete storageclass rook-ceph-block
-
-# 2. Delete the CephCluster CRD
-kubectl -n kube-storage delete cephcluster rook-ceph
-
-# 3. Delete the Operator and related Resources
-helm -n kube-storage uninstall rook-ceph
-
-# 4. Delete the daemonsets
-kubectl -n kube-storage delete daemonsets.apps csi-cephfsplugin
-kubectl -n kube-storage delete daemonsets.apps csi-rbdplugin
-
-# 4. Delete the data on hosts
-sudo rm -rf /var/lib/storage
-
-# 如果一直 Terminating, 强制删除 Pod
-kubectl -n kube-storage delete pod --all --force --grace-period=0
-
-# 或直接强制删除 namespace
-kubectl delete namespace kube-storage --force --grace-period=0
-
-# 删除 cluster-wide 资源
-kubectl delete psp 00-rook-ceph-operator
-kubectl delete crd objectbucketclaims.objectbucket.io
-kubectl delete crd objectbuckets.objectbucket.io
-</code></pre></div><h1 id="部署-harbor">部署 Harbor</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 1. Delete the Block and File artifacts
+</span></span><span style="display:flex;"><span>kubectl delete -n kube-storage cephblockpool replicapool
+</span></span><span style="display:flex;"><span>kubectl delete storageclass rook-ceph-block
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 2. Delete the CephCluster CRD
+</span></span><span style="display:flex;"><span>kubectl -n kube-storage delete cephcluster rook-ceph
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 3. Delete the Operator and related Resources
+</span></span><span style="display:flex;"><span>helm -n kube-storage uninstall rook-ceph
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 4. Delete the daemonsets
+</span></span><span style="display:flex;"><span>kubectl -n kube-storage delete daemonsets.apps csi-cephfsplugin
+</span></span><span style="display:flex;"><span>kubectl -n kube-storage delete daemonsets.apps csi-rbdplugin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 4. Delete the data on hosts
+</span></span><span style="display:flex;"><span>sudo rm -rf /var/lib/storage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 如果一直 Terminating, 强制删除 Pod
+</span></span><span style="display:flex;"><span>kubectl -n kube-storage delete pod --all --force --grace-period=0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 或直接强制删除 namespace
+</span></span><span style="display:flex;"><span>kubectl delete namespace kube-storage --force --grace-period=0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 删除 cluster-wide 资源
+</span></span><span style="display:flex;"><span>kubectl delete psp 00-rook-ceph-operator
+</span></span><span style="display:flex;"><span>kubectl delete crd objectbucketclaims.objectbucket.io
+</span></span><span style="display:flex;"><span>kubectl delete crd objectbuckets.objectbucket.io
+</span></span></code></pre></div><h1 id="部署-harbor">部署 Harbor</h1>
 <p><code>Harbor</code> 提供了私有 registry 的功能，而且能够存储 <code>Helm Chart</code> 等云原生制品。这是由中国团队开发的，非常强大。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl create namespace kube-harbor
-</code></pre></div><p>这里使用自有公钥创建 Secret <code>harbor-harbor-ingress</code>，不含 ca.crt 属性，这样 Harbor 不用下载证书。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm upgrade --install harbor \
-  --namespace kube-harbor \
-  --set expose.type=ingress \
-  --set expose.tls.enabled=true \
-  --set expose.tls.secretName=&#39;harbor-harbor-ingress&#39; \
-  --set expose.ingress.hosts.core=mirrors.internal \
-  --set expose.ingress.hosts.notary=notary.mirrors.internal \
-  --set externalURL=https://mirrors.internal \
-  --set notary.enabled=false \
-  --set clair.enabled=false \
-  --set trivy.enabled=false \
-  --set chartmuseum.enabled=true \
-  --set persistence.enabled=true \
-  harbor/harbor
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace kube-harbor
+</span></span></code></pre></div><p>这里使用自有公钥创建 Secret <code>harbor-harbor-ingress</code>，不含 ca.crt 属性，这样 Harbor 不用下载证书。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm upgrade --install harbor \
+</span></span><span style="display:flex;"><span>  --namespace kube-harbor \
+</span></span><span style="display:flex;"><span>  --set expose.type=ingress \
+</span></span><span style="display:flex;"><span>  --set expose.tls.enabled=true \
+</span></span><span style="display:flex;"><span>  --set expose.tls.secretName=&#39;harbor-harbor-ingress&#39; \
+</span></span><span style="display:flex;"><span>  --set expose.ingress.hosts.core=mirrors.internal \
+</span></span><span style="display:flex;"><span>  --set expose.ingress.hosts.notary=notary.mirrors.internal \
+</span></span><span style="display:flex;"><span>  --set externalURL=https://mirrors.internal \
+</span></span><span style="display:flex;"><span>  --set notary.enabled=false \
+</span></span><span style="display:flex;"><span>  --set clair.enabled=false \
+</span></span><span style="display:flex;"><span>  --set trivy.enabled=false \
+</span></span><span style="display:flex;"><span>  --set chartmuseum.enabled=true \
+</span></span><span style="display:flex;"><span>  --set persistence.enabled=true \
+</span></span><span style="display:flex;"><span>  harbor/harbor
+</span></span></code></pre></div><ul>
 <li>默认用户: <code>admin</code></li>
 <li>默认密码: <code>Harbor12345</code></li>
 </ul>
@@ -768,60 +768,60 @@ kubectl delete crd objectbuckets.objectbucket.io
 <li>通过 GUI (Harbor portal 的系统管理 - 配置管理 - 系统设置 - 镜像库根证书下载) 下载</li>
 <li>通过 kubectl 导出为 <code>mirrors.internal.ca.crt</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl -n kube-harbor get secrets harbor-harbor-ingress -o jsonpath=&#34;{.data.ca\.crt}&#34; | base64 --decode &gt; mirrors.internal.ca.crt
-</code></pre></div><h2 id="分发证书">分发证书</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl -n kube-harbor get secrets harbor-harbor-ingress -o jsonpath=&#34;{.data.ca\.crt}&#34; | base64 --decode &gt; mirrors.internal.ca.crt
+</span></span></code></pre></div><h2 id="分发证书">分发证书</h2>
 <p><strong>Docker 证书设置</strong></p>
 <p>所有节点执行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo mkdir -p /etc/docker/certs.d/mirrors.internal
-sudo cp mirrors.internal.ca.crt /etc/docker/certs.d/mirrors.internal/ca.crt
-</code></pre></div><p><strong>Helm 证书设置</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo mkdir -p /etc/docker/certs.d/mirrors.internal
+</span></span><span style="display:flex;"><span>sudo cp mirrors.internal.ca.crt /etc/docker/certs.d/mirrors.internal/ca.crt
+</span></span></code></pre></div><p><strong>Helm 证书设置</strong></p>
 <p>需要使用 <code>helm</code> 的客户端需要设置</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo cp mirrors.internal.ca.crt /etc/ssl/certs/mirrors.internal.ca.crt
-</code></pre></div><h1 id="部署-gitlab">部署 GitLab</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo cp mirrors.internal.ca.crt /etc/ssl/certs/mirrors.internal.ca.crt
+</span></span></code></pre></div><h1 id="部署-gitlab">部署 GitLab</h1>
 <p><code>DevOps</code> 平台功能由 <code>GitLab</code> 提供。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl create namespace kube-gitlab
-</code></pre></div><p>使用 <code>helm</code> 部署</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm upgrade --install gitlab \
-  --namespace kube-gitlab \
-  --timeout 600s \
-  --set global.edition=ce \
-  --set global.hosts.domain=code.internal \
-  --set global.hosts.gitlab.name=code.internal \
-  --set global.hosts.gitlab.https=true \
-  --set global.hosts.registry.name=registry.code.internal \
-  --set global.hosts.registry.https=true \
-  --set global.hosts.minio.name=minio.code.internal \
-  --set global.hosts.minio.https=true \
-  --set global.ingress.class=nginx \
-  --set global.ingress.configureCertmanager=false \
-  --set nginx-ingress.enabled=false \
-  --set certmanager.install=false \
-  --set prometheus.install=true \
-  --set prometheus.alertmanager.enabled=false \
-  --set prometheus.kubeStateMetrics.enabled=false \
-  --set prometheus.nodeExporter.enabled=false \
-  --set prometheus.pushgateway.enabled=false \
-  --set gitlab-runner.install=false \
-  --set upgradeCheck.enabled=false \
-  gitlab/gitlab
-</code></pre></div><p>输出如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">WARNING: Automatic TLS certificate generation <span style="color:#66d9ef">with</span> cert<span style="color:#f92672">-</span>manager <span style="color:#66d9ef">is</span> disabled <span style="color:#66d9ef">and</span> no TLS certificates were provided. Self<span style="color:#f92672">-</span>signed certificates were generated.
-
-You may retrieve the CA root <span style="color:#66d9ef">for</span> these certificates <span style="color:#66d9ef">from</span> the <span style="color:#f92672">`</span>gitlab<span style="color:#f92672">-</span>wildcard<span style="color:#f92672">-</span>tls<span style="color:#f92672">-</span>ca<span style="color:#f92672">`</span> secret, via the following command. It can <span style="color:#66d9ef">then</span> be imported <span style="color:#66d9ef">to</span> a web browser <span style="color:#66d9ef">or</span> system store.
-
-    kubectl get secret gitlab<span style="color:#f92672">-</span>wildcard<span style="color:#f92672">-</span>tls<span style="color:#f92672">-</span>ca <span style="color:#f92672">-</span>ojsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.cfssl_ca}&#39;</span> <span style="color:#f92672">|</span> base64 <span style="color:#f92672">--</span>decode <span style="color:#f92672">&gt;</span> code.internal.ca.pem
-
-<span style="color:#66d9ef">If</span> you do <span style="color:#66d9ef">not</span> wish <span style="color:#66d9ef">to</span> <span style="color:#66d9ef">use</span> self<span style="color:#f92672">-</span>signed certificates, please <span style="color:#66d9ef">set</span> the following properties:
-  <span style="color:#f92672">-</span> global.ingress.tls.secretName
-  <span style="color:#66d9ef">OR</span>
-  <span style="color:#f92672">-</span> global.ingress.tls.<span style="color:#a6e22e">enabled</span> (<span style="color:#66d9ef">set</span> <span style="color:#66d9ef">to</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">true</span><span style="color:#f92672">`</span>)
-  <span style="color:#f92672">-</span> gitlab.unicorn.ingress.tls.secretName
-  <span style="color:#f92672">-</span> registry.ingress.tls.secretName
-  <span style="color:#f92672">-</span> minio.ingress.tls.secretName
-
-
-WARNING: <span style="color:#66d9ef">If</span> you are upgrading <span style="color:#66d9ef">from</span> a previous version of the GitLab Helm Chart, there <span style="color:#66d9ef">is</span> a major upgrade <span style="color:#66d9ef">to</span> the included PostgreSQL chart, which requires manual steps be performed. Please see our upgrade documentation <span style="color:#66d9ef">for</span> more information: https:<span style="color:#f92672">//</span>docs.gitlab.com<span style="color:#f92672">/</span>charts<span style="color:#f92672">/</span>installation<span style="color:#f92672">/</span>upgrade.html
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl create namespace kube-gitlab
+</span></span></code></pre></div><p>使用 <code>helm</code> 部署</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm upgrade --install gitlab \
+</span></span><span style="display:flex;"><span>  --namespace kube-gitlab \
+</span></span><span style="display:flex;"><span>  --timeout 600s \
+</span></span><span style="display:flex;"><span>  --set global.edition=ce \
+</span></span><span style="display:flex;"><span>  --set global.hosts.domain=code.internal \
+</span></span><span style="display:flex;"><span>  --set global.hosts.gitlab.name=code.internal \
+</span></span><span style="display:flex;"><span>  --set global.hosts.gitlab.https=true \
+</span></span><span style="display:flex;"><span>  --set global.hosts.registry.name=registry.code.internal \
+</span></span><span style="display:flex;"><span>  --set global.hosts.registry.https=true \
+</span></span><span style="display:flex;"><span>  --set global.hosts.minio.name=minio.code.internal \
+</span></span><span style="display:flex;"><span>  --set global.hosts.minio.https=true \
+</span></span><span style="display:flex;"><span>  --set global.ingress.class=nginx \
+</span></span><span style="display:flex;"><span>  --set global.ingress.configureCertmanager=false \
+</span></span><span style="display:flex;"><span>  --set nginx-ingress.enabled=false \
+</span></span><span style="display:flex;"><span>  --set certmanager.install=false \
+</span></span><span style="display:flex;"><span>  --set prometheus.install=true \
+</span></span><span style="display:flex;"><span>  --set prometheus.alertmanager.enabled=false \
+</span></span><span style="display:flex;"><span>  --set prometheus.kubeStateMetrics.enabled=false \
+</span></span><span style="display:flex;"><span>  --set prometheus.nodeExporter.enabled=false \
+</span></span><span style="display:flex;"><span>  --set prometheus.pushgateway.enabled=false \
+</span></span><span style="display:flex;"><span>  --set gitlab-runner.install=false \
+</span></span><span style="display:flex;"><span>  --set upgradeCheck.enabled=false \
+</span></span><span style="display:flex;"><span>  gitlab/gitlab
+</span></span></code></pre></div><p>输出如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span>WARNING: Automatic TLS certificate generation <span style="color:#66d9ef">with</span> cert<span style="color:#f92672">-</span>manager <span style="color:#66d9ef">is</span> disabled <span style="color:#66d9ef">and</span> no TLS certificates were provided. Self<span style="color:#f92672">-</span>signed certificates were generated.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You may retrieve the CA root <span style="color:#66d9ef">for</span> these certificates <span style="color:#66d9ef">from</span> the <span style="color:#f92672">`</span>gitlab<span style="color:#f92672">-</span>wildcard<span style="color:#f92672">-</span>tls<span style="color:#f92672">-</span>ca<span style="color:#f92672">`</span> secret, via the following command. It can <span style="color:#66d9ef">then</span> be imported <span style="color:#66d9ef">to</span> a web browser <span style="color:#66d9ef">or</span> system store.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    kubectl get secret gitlab<span style="color:#f92672">-</span>wildcard<span style="color:#f92672">-</span>tls<span style="color:#f92672">-</span>ca <span style="color:#f92672">-</span>ojsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.cfssl_ca}&#39;</span> <span style="color:#f92672">|</span> base64 <span style="color:#f92672">--</span>decode <span style="color:#f92672">&gt;</span> code.internal.ca.pem
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">If</span> you do <span style="color:#66d9ef">not</span> wish <span style="color:#66d9ef">to</span> <span style="color:#66d9ef">use</span> self<span style="color:#f92672">-</span>signed certificates, please <span style="color:#66d9ef">set</span> the following properties:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> global.ingress.tls.secretName
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">OR</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> global.ingress.tls.<span style="color:#a6e22e">enabled</span> (<span style="color:#66d9ef">set</span> <span style="color:#66d9ef">to</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">true</span><span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> gitlab.unicorn.ingress.tls.secretName
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> registry.ingress.tls.secretName
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span> minio.ingress.tls.secretName
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WARNING: <span style="color:#66d9ef">If</span> you are upgrading <span style="color:#66d9ef">from</span> a previous version of the GitLab Helm Chart, there <span style="color:#66d9ef">is</span> a major upgrade <span style="color:#66d9ef">to</span> the included PostgreSQL chart, which requires manual steps be performed. Please see our upgrade documentation <span style="color:#66d9ef">for</span> more information: https:<span style="color:#f92672">//</span>docs.gitlab.com<span style="color:#f92672">/</span>charts<span style="color:#f92672">/</span>installation<span style="color:#f92672">/</span>upgrade.html
+</span></span></code></pre></div><ul>
 <li>默认用户名: <code>root</code></li>
 <li>默认密码: 在 Secret <code>gitlab-gitlab-initial-root-password</code></li>
 </ul>
@@ -829,36 +829,36 @@ WARNING: <span style="color:#66d9ef">If</span> you are upgrading <span style="co
 <ul>
 <li>使用 kubectl 导出为 <code>code.internal.ca.crt</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">kubectl -n kube-gitlab get secrets gitlab-wildcard-tls-ca -ojsonpath=&#34;{.data.cfssl_ca}&#34; | base64 --decode &gt; code.internal.ca.crt
-</code></pre></div><h2 id="分发证书-1">分发证书</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>kubectl -n kube-gitlab get secrets gitlab-wildcard-tls-ca -ojsonpath=&#34;{.data.cfssl_ca}&#34; | base64 --decode &gt; code.internal.ca.crt
+</span></span></code></pre></div><h2 id="分发证书-1">分发证书</h2>
 <p><strong>Docker 证书设置</strong></p>
 <p>所有节点执行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo mkdir -p /etc/docker/certs.d/registry.code.internal
-sudo cp code.internal.ca.crt /etc/docker/certs.d/registry.code.internal/ca.crt
-</code></pre></div><p><strong>CA 证书设置</strong>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo mkdir -p /etc/docker/certs.d/registry.code.internal
+</span></span><span style="display:flex;"><span>sudo cp code.internal.ca.crt /etc/docker/certs.d/registry.code.internal/ca.crt
+</span></span></code></pre></div><p><strong>CA 证书设置</strong>
 需要执行 https pull 的节点执行:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo cp code.internal.ca.crt /etc/ssl/certs/
-</code></pre></div><h1 id="部署-gitlab-runner">部署 GitLab Runner</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo cp code.internal.ca.crt /etc/ssl/certs/
+</span></span></code></pre></div><h1 id="部署-gitlab-runner">部署 GitLab Runner</h1>
 <p><code>GitLab Runner</code> 是实际的 CI/CD 任务的执行者。</p>
 <p>首先根据 gitlab 的根证书创建 Secret:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cp code.internal.ca.crt code.internal.crt
-cp code.internal.ca.crt registry.code.internal.crt
-cp mirrors.internal.ca.crt mirrors.internal.crt
-
-kubectl -n kube-gitlab create secret generic gitlab-runner.crt --from-file code.internal.crt --from-file registry.code.internal.crt --from-file mirrors.internal.crt
-</code></pre></div><p>部署一个 Shared Runner:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm upgrade --install gitlab-runner-shared \
-   --namespace kube-gitlab \
-   --set gitlabUrl=&#34;https://code.internal&#34; \
-   --set runnerRegistrationToken=&#34;WIRNHWqSIlCi1vh0W3IGiDPMtgs58YGdB01aVLSCuHrPkCmY8xrOtUaRu97LEOiq&#34; \
-   --set certsSecretName=&#34;gitlab-runner.crt&#34; \
-   --set rbac.create=true \
-   --set rbac.clusterWideAccess=true \
-   --set runners.privileged=true \
-   --set runners.imagePullPolicy=&#34;always&#34; \
-   --set image=&#34;gitlab/gitlab-runner:alpine-v12.9.0&#34; \
-   gitlab/gitlab-runner
-</code></pre></div><p>设置 <code>--set runners.imagePullPolicy=&quot;always&quot;</code> 表示每次 Runner 都去拉最新的 build 镜像.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cp code.internal.ca.crt code.internal.crt
+</span></span><span style="display:flex;"><span>cp code.internal.ca.crt registry.code.internal.crt
+</span></span><span style="display:flex;"><span>cp mirrors.internal.ca.crt mirrors.internal.crt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>kubectl -n kube-gitlab create secret generic gitlab-runner.crt --from-file code.internal.crt --from-file registry.code.internal.crt --from-file mirrors.internal.crt
+</span></span></code></pre></div><p>部署一个 Shared Runner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm upgrade --install gitlab-runner-shared \
+</span></span><span style="display:flex;"><span>   --namespace kube-gitlab \
+</span></span><span style="display:flex;"><span>   --set gitlabUrl=&#34;https://code.internal&#34; \
+</span></span><span style="display:flex;"><span>   --set runnerRegistrationToken=&#34;WIRNHWqSIlCi1vh0W3IGiDPMtgs58YGdB01aVLSCuHrPkCmY8xrOtUaRu97LEOiq&#34; \
+</span></span><span style="display:flex;"><span>   --set certsSecretName=&#34;gitlab-runner.crt&#34; \
+</span></span><span style="display:flex;"><span>   --set rbac.create=true \
+</span></span><span style="display:flex;"><span>   --set rbac.clusterWideAccess=true \
+</span></span><span style="display:flex;"><span>   --set runners.privileged=true \
+</span></span><span style="display:flex;"><span>   --set runners.imagePullPolicy=&#34;always&#34; \
+</span></span><span style="display:flex;"><span>   --set image=&#34;gitlab/gitlab-runner:alpine-v12.9.0&#34; \
+</span></span><span style="display:flex;"><span>   gitlab/gitlab-runner
+</span></span></code></pre></div><p>设置 <code>--set runners.imagePullPolicy=&quot;always&quot;</code> 表示每次 Runner 都去拉最新的 build 镜像.</p>
 <h1 id="总结">总结</h1>
 <p>至此，Kubernetes 高可用集群已搭建完成，基于 GitLab 的 DevOps 平台也已部署就位，接下来就是去使用、去深入。</p>
 <p>当然，目前的集群已然存在很多问题，比如 <code>etcd</code> 是堆叠的，数据没有做进一步保障等，也需要进一步解决。</p>
@@ -945,7 +945,7 @@ kubectl -n kube-gitlab create secret generic gitlab-runner.crt --from-file code.
       <footer class="footer">
   <section class="container">
     
-     © 2021
+     © 2022
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.

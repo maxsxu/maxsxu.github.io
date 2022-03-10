@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.93.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -179,10 +179,10 @@ GMT 已被 UTC 取代。</p>
 <li>UTC</li>
 </ul>
 <p>UTC（Coordinated Universal Time, 协调世界时）是标准时间。是目前通用的世界时间标准, UTC 作为一个标准时间和各个时区时间换算。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">GMT: UTC +0    =    GMT: GMT +0
-CST: UTC +8    =    CST: GMT +8
-PST: UTC -8    =    PST: GMT -8
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>GMT: UTC +0    =    GMT: GMT +0
+</span></span><span style="display:flex;"><span>CST: UTC +8    =    CST: GMT +8
+</span></span><span style="display:flex;"><span>PST: UTC -8    =    PST: GMT -8
+</span></span></code></pre></div><ul>
 <li>PST</li>
 </ul>
 <p>PST (Pacific Standard Time, 太平洋时间)</p>
@@ -234,10 +234,10 @@ PST: UTC -8    =    PST: GMT -8
 <p>国际标准。</p>
 </blockquote>
 <p>RFC3339 详细定义了互联网上日期 / 时间的偏移量表示：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">2017-12-08T00:00:00.00Z
-</code></pre></div><p>这个代表了 UTC 时间的 2017 年 12 月 08 日零时</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">2017-12-08T00:08:00.00+08:00
-</code></pre></div><p>这个代表了同一时刻的，东八区北京时间（CST）表示的方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>2017-12-08T00:00:00.00Z
+</span></span></code></pre></div><p>这个代表了 UTC 时间的 2017 年 12 月 08 日零时</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>2017-12-08T00:08:00.00+08:00
+</span></span></code></pre></div><p>这个代表了同一时刻的，东八区北京时间（CST）表示的方法</p>
 <p>上面两个时间的时间戳是等价的。两个的区别，就是在本地时间后面增加了时区信息。Z 表示零时区。+08:00 表示 UTC 时间增加 8 小时。</p>
 <p>这种表示方式容易让人疑惑的点是从标准时间换算 UTC 时间。以 CST 转换 UTC 为例，没有看文档的情况下，根据 +08:00 的结尾，很容易根据直觉在本地时间再加上 8 小时。正确的计算方法是本地时间减去多增加的 8 小时。+08:00 减去 8 小时才是 UTC 时间，-08:00 加上 8 小时才是 UTC 时间。</p>
 <h2 id="gbt-7408-2005">GB/T 7408-2005</h2>
@@ -293,7 +293,7 @@ PST: UTC -8    =    PST: GMT -8
       <footer class="footer">
   <section class="container">
     
-     © 2021
+     © 2022
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.

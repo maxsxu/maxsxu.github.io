@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.93.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -150,25 +150,25 @@
 <h1 id="基于阿里云-serverless-函数计算">基于阿里云 Serverless 函数计算</h1>
 <p>使用阿里云的 <code>Funcraft</code> 工具来进行开发、构建和部署操作.</p>
 <p>执行 <code>npm install @alicloud/fun -g</code> 安装 Funcraft，然后执行 <code>fun init http-trigger-python3</code> 初始化项目. 最终的项目结构如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">serverless/
-├── Funfile
-├── index.py
-├── template.yml
-└── test.jpg
-</code></pre></div><p>其中 <code>Funfile</code> 用于管理依赖, <code>template.yml</code> 用于配置服务和函数, <code>index.py</code> 为核心代码，<code>test.jpg</code> 为测试用车牌照片.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>serverless/
+</span></span><span style="display:flex;"><span>├── Funfile
+</span></span><span style="display:flex;"><span>├── index.py
+</span></span><span style="display:flex;"><span>├── template.yml
+</span></span><span style="display:flex;"><span>└── test.jpg
+</span></span></code></pre></div><p>其中 <code>Funfile</code> 用于管理依赖, <code>template.yml</code> 用于配置服务和函数, <code>index.py</code> 为核心代码，<code>test.jpg</code> 为测试用车牌照片.</p>
 <h2 id="1-编写核心业务逻辑">1. 编写核心业务逻辑</h2>
 <p>首先使用 <code>Funcraft</code> 安装 <code>hyperlpr</code> 和 <code>opencv-python</code> 依赖，<code>hyperlpr</code> 是一个高性能的车牌识别 Python 库.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">fun install --runtime python3 --package-type pip --save --index-url https://mirrors.aliyun.com/pypi/simple/ hyperlpr opencv-python<span style="color:#f92672">==</span>3.4.8.29
-</code></pre></div><p>其中 <code>--save</code> 参数用于写入依赖到 <code>Funfile</code> 文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>fun install --runtime python3 --package-type pip --save --index-url https://mirrors.aliyun.com/pypi/simple/ hyperlpr opencv-python<span style="color:#f92672">==</span>3.4.8.29
+</span></span></code></pre></div><p>其中 <code>--save</code> 参数用于写入依赖到 <code>Funfile</code> 文件。</p>
 <p>车牌识别核心函数如下，输入为车牌图片的 base64 字符串，输出识别结果:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">licence_plate_parser</span>(img_base64: str):
-    base64data <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b64decode(img_base64<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>))
-    nparr <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>fromstring(base64data, np<span style="color:#f92672">.</span>uint8)
-    img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imdecode(nparr, cv2<span style="color:#f92672">.</span>IMREAD_COLOR)
-    <span style="color:#66d9ef">return</span> {
-        <span style="color:#e6db74">&#34;result&#34;</span>: hyperlpr<span style="color:#f92672">.</span>HyperLPR_plate_recognition(img)
-    }
-</code></pre></div><p>核心业务逻辑依托强大的 Python 库，代码十分简洁，仅需四行即可实现车牌识别的功能。简单解释下逻辑: opencv 将图片的 base64 字符串读取为内存图片，传递给 hyperlpr 识别。其中，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">licence_plate_parser</span>(img_base64: str):
+</span></span><span style="display:flex;"><span>    base64data <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b64decode(img_base64<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>))
+</span></span><span style="display:flex;"><span>    nparr <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>fromstring(base64data, np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>    img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imdecode(nparr, cv2<span style="color:#f92672">.</span>IMREAD_COLOR)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;result&#34;</span>: hyperlpr<span style="color:#f92672">.</span>HyperLPR_plate_recognition(img)
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>核心业务逻辑依托强大的 Python 库，代码十分简洁，仅需四行即可实现车牌识别的功能。简单解释下逻辑: opencv 将图片的 base64 字符串读取为内存图片，传递给 hyperlpr 识别。其中，</p>
 <ul>
 <li><code>np.fromstring</code> 函数用于将数组的字符流转换成结构化的 <code>ndarray</code> 数组</li>
 <li><code>cv2.imdecode</code> 函数从内存读取图片数组并转换成 RBG image</li>
@@ -177,19 +177,19 @@
 <p>以上所有操作都在内存中进行，无须申请外部存储。</p>
 <h2 id="2-编写触发器">2. 编写触发器</h2>
 <p>触发器就是一个接收到某类事件会自动执行的函数，HTTP 触发器就是收到 HTTP 请求时会自动执行的函数，这里使用的就是 HTTP 触发器。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handler</span>(environ, start_response):
-    <span style="color:#66d9ef">try</span>:
-        query_string <span style="color:#f92672">=</span> environ[<span style="color:#e6db74">&#39;QUERY_STRING&#39;</span>]
-        img_base64 <span style="color:#f92672">=</span> query_string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]
-        result <span style="color:#f92672">=</span> licence_plate_parser(img_base64)
-    <span style="color:#66d9ef">except</span> (<span style="color:#a6e22e">KeyError</span>):
-        result <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;image base64 required.&#34;</span>}
-
-    status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;200 OK&#39;</span>
-    response_headers <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#39;Content-type&#39;</span>, <span style="color:#e6db74">&#39;application/json&#39;</span>)]
-    start_response(status, response_headers)
-    <span style="color:#66d9ef">return</span> [json<span style="color:#f92672">.</span>dumps(result)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>)]
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handler</span>(environ, start_response):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        query_string <span style="color:#f92672">=</span> environ[<span style="color:#e6db74">&#39;QUERY_STRING&#39;</span>]
+</span></span><span style="display:flex;"><span>        img_base64 <span style="color:#f92672">=</span> query_string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> licence_plate_parser(img_base64)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> (<span style="color:#a6e22e">KeyError</span>):
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;image base64 required.&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;200 OK&#39;</span>
+</span></span><span style="display:flex;"><span>    response_headers <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#39;Content-type&#39;</span>, <span style="color:#e6db74">&#39;application/json&#39;</span>)]
+</span></span><span style="display:flex;"><span>    start_response(status, response_headers)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [json<span style="color:#f92672">.</span>dumps(result)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>)]
+</span></span></code></pre></div><blockquote>
 <p>Python HTTP 触发器遵循 <code>WSGI</code> 规范，输入参数为:</p>
 <ul>
 <li><code>environ</code>：是一个 Python <code>dict</code>，里面存放了所有和客户端相关的信息</li>
@@ -198,56 +198,56 @@
 <p>返回值为 HTTP 响应的具体 body 数据, 必须为 bytestring 的可迭代对象.</p>
 </blockquote>
 <p>同时为了便于测试核心算法，写了一个测试用的触发器:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handler_test</span>(environ, start_response):
-    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;test.jpg&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f:
-        base64data <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b64encode(f<span style="color:#f92672">.</span>read())
-    img_base64 <span style="color:#f92672">=</span> base64data<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;utf8&#34;</span>)
-
-    result <span style="color:#f92672">=</span> licence_plate_parser(img_base64)
-    status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;200 OK&#39;</span>
-    response_headers <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#39;Content-type&#39;</span>, <span style="color:#e6db74">&#39;application/json&#39;</span>)]
-    start_response(status, response_headers)
-    <span style="color:#66d9ef">return</span> [json<span style="color:#f92672">.</span>dumps(result)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>)]
-</code></pre></div><h2 id="3-部署服务">3. 部署服务</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handler_test</span>(environ, start_response):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;test.jpg&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        base64data <span style="color:#f92672">=</span> base64<span style="color:#f92672">.</span>b64encode(f<span style="color:#f92672">.</span>read())
+</span></span><span style="display:flex;"><span>    img_base64 <span style="color:#f92672">=</span> base64data<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;utf8&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> licence_plate_parser(img_base64)
+</span></span><span style="display:flex;"><span>    status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;200 OK&#39;</span>
+</span></span><span style="display:flex;"><span>    response_headers <span style="color:#f92672">=</span> [(<span style="color:#e6db74">&#39;Content-type&#39;</span>, <span style="color:#e6db74">&#39;application/json&#39;</span>)]
+</span></span><span style="display:flex;"><span>    start_response(status, response_headers)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [json<span style="color:#f92672">.</span>dumps(result)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>)]
+</span></span></code></pre></div><h2 id="3-部署服务">3. 部署服务</h2>
 <p>部署前我们看下 <code>template.yml</code> 文件内容如下，都是由工具自动生成，描述了服务和两个函数的配置详情，包括运行环境、触发方式、入口函数、资源规格等:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">ROSTemplateFormatVersion</span>: <span style="color:#e6db74">&#39;2015-09-01&#39;</span>
-<span style="color:#f92672">Transform</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless-2018-04-03&#39;</span>
-<span style="color:#f92672">Resources</span>:
-  <span style="color:#f92672">lpr</span>:
-    <span style="color:#f92672">Type</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless::Service&#39;</span>
-    <span style="color:#f92672">Properties</span>:
-      <span style="color:#f92672">Description</span>: <span style="color:#ae81ff">LPR Service</span>
-    <span style="color:#f92672">lpr</span>:
-      <span style="color:#f92672">Type</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless::Function&#39;</span>
-      <span style="color:#f92672">Properties</span>:
-        <span style="color:#f92672">Handler</span>: <span style="color:#ae81ff">index.handler</span>
-        <span style="color:#f92672">Runtime</span>: <span style="color:#ae81ff">python3</span>
-        <span style="color:#f92672">Timeout</span>: <span style="color:#ae81ff">60</span>
-        <span style="color:#f92672">MemorySize</span>: <span style="color:#ae81ff">512</span>
-        <span style="color:#f92672">CodeUri</span>: <span style="color:#ae81ff">./</span>
-      <span style="color:#f92672">Events</span>:
-        <span style="color:#f92672">httpTrigger</span>:
-          <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HTTP</span>
-          <span style="color:#f92672">Properties</span>:
-            <span style="color:#f92672">AuthType</span>: <span style="color:#ae81ff">ANONYMOUS</span>
-            <span style="color:#f92672">Methods</span>:
-              - <span style="color:#ae81ff">GET</span>
-    <span style="color:#f92672">test</span>:
-      <span style="color:#f92672">Type</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless::Function&#39;</span>
-      <span style="color:#f92672">Properties</span>:
-        <span style="color:#f92672">Handler</span>: <span style="color:#ae81ff">index.handler_test</span>
-        <span style="color:#f92672">Runtime</span>: <span style="color:#ae81ff">python3</span>
-        <span style="color:#f92672">Timeout</span>: <span style="color:#ae81ff">60</span>
-        <span style="color:#f92672">MemorySize</span>: <span style="color:#ae81ff">512</span>
-        <span style="color:#f92672">CodeUri</span>: <span style="color:#ae81ff">./ </span>
-      <span style="color:#f92672">Events</span>:
-        <span style="color:#f92672">httpTrigger</span>:
-          <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HTTP</span>
-          <span style="color:#f92672">Properties</span>:
-            <span style="color:#f92672">AuthType</span>: <span style="color:#ae81ff">ANONYMOUS</span>
-            <span style="color:#f92672">Methods</span>:
-              - <span style="color:#ae81ff">GET</span>
-</code></pre></div><p>现在，我们执行 <code>fun deploy</code> 将服务部署到线上，结果如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">ROSTemplateFormatVersion</span>: <span style="color:#e6db74">&#39;2015-09-01&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Transform</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless-2018-04-03&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Resources</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">lpr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Type</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless::Service&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Description</span>: <span style="color:#ae81ff">LPR Service</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">lpr</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Type</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless::Function&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Handler</span>: <span style="color:#ae81ff">index.handler</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Runtime</span>: <span style="color:#ae81ff">python3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Timeout</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">MemorySize</span>: <span style="color:#ae81ff">512</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">CodeUri</span>: <span style="color:#ae81ff">./</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Events</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">httpTrigger</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HTTP</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">AuthType</span>: <span style="color:#ae81ff">ANONYMOUS</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">Methods</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#ae81ff">GET</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">test</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Type</span>: <span style="color:#e6db74">&#39;Aliyun::Serverless::Function&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Handler</span>: <span style="color:#ae81ff">index.handler_test</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Runtime</span>: <span style="color:#ae81ff">python3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Timeout</span>: <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">MemorySize</span>: <span style="color:#ae81ff">512</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">CodeUri</span>: <span style="color:#ae81ff">./ </span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Events</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">httpTrigger</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HTTP</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">AuthType</span>: <span style="color:#ae81ff">ANONYMOUS</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">Methods</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#ae81ff">GET</span>
+</span></span></code></pre></div><p>现在，我们执行 <code>fun deploy</code> 将服务部署到线上，结果如下:</p>
 <p><img src="https://jsonbruce.com/images/lpr-based-on-serverless_2020-11-10-23-35-08.png" alt=""></p>
 <p>可以看到部署完成后输出了两个触发器对应的 HTTP 端点，这就是提供 RESTful 车牌识别服务的 URL. 接下来就可以在应用中请求 <code>https://1812616409925047.cn-shenzhen.fc.aliyuncs.com/2016-08-15/proxy/lpr/lpr/?image={image_base64}</code> 来获取车牌识别结果。我们来请求下测试 URL 得到响应如下:</p>
 <p><img src="https://jsonbruce.com/images/lpr-based-on-serverless_2020-11-10-23-45-23.png" alt=""></p>
@@ -255,20 +255,20 @@
 <p>同时可以在阿里云的控制台看到刚部署成功的两个函数:</p>
 <p><img src="https://jsonbruce.com/images/lpr-based-on-serverless_2020-11-10-23-42-46.png" alt=""></p>
 <p>在部署到线上之前，可以先执行 <code>fun local start</code> 进行本地运行调试，输出如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">➜ fun local start
-using template: template.yml
-HttpTrigger httpTrigger of lpr/lpr was registered
-        url: http://localhost:8000/2016-08-15/proxy/lpr/lpr
-        methods: <span style="color:#f92672">[</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">]</span>
-        authType: ANONYMOUS
-HttpTrigger httpTrigger of lpr/test was registered
-        url: http://localhost:8000/2016-08-15/proxy/lpr/test
-        methods: <span style="color:#f92672">[</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">]</span>
-        authType: ANONYMOUS
-
-
-<span style="color:#66d9ef">function</span> compute app listening on port 8000!
-</code></pre></div><p>本地调试通过之后再执行 <code>fun deploy</code> 部署到线上。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>➜ fun local start
+</span></span><span style="display:flex;"><span>using template: template.yml
+</span></span><span style="display:flex;"><span>HttpTrigger httpTrigger of lpr/lpr was registered
+</span></span><span style="display:flex;"><span>        url: http://localhost:8000/2016-08-15/proxy/lpr/lpr
+</span></span><span style="display:flex;"><span>        methods: <span style="color:#f92672">[</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        authType: ANONYMOUS
+</span></span><span style="display:flex;"><span>HttpTrigger httpTrigger of lpr/test was registered
+</span></span><span style="display:flex;"><span>        url: http://localhost:8000/2016-08-15/proxy/lpr/test
+</span></span><span style="display:flex;"><span>        methods: <span style="color:#f92672">[</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        authType: ANONYMOUS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> compute app listening on port 8000!
+</span></span></code></pre></div><p>本地调试通过之后再执行 <code>fun deploy</code> 部署到线上。</p>
 <h1 id="总结">总结</h1>
 <p>可以看到，基于 Serverless 来开发并上线一个车牌识别云服务已经变得非常简单，流程只需三步走:</p>
 <ol>
@@ -293,20 +293,20 @@ HttpTrigger httpTrigger of lpr/test was registered
 <p><img src="https://jsonbruce.com/images/aliyun-serverless_2020-11-06-23-54-42.png" alt=""></p>
 <p>错误原因: Python Runtime 中函数的签名遵循 <code>WSGI</code> 规范</p>
 <p>解决方案: handler 触发器的返回值必须为 bytestring 的可迭代对象, 如返回元素为 <code>bytes</code> 的 <code>list</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">result <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;result&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span> }
-
-<span style="color:#75715e"># 不合格返回值</span>
-
-<span style="color:#66d9ef">return</span> result
-
-<span style="color:#66d9ef">return</span> [ result ]
-
-<span style="color:#66d9ef">return</span> [ json<span style="color:#f92672">.</span>dumps(result) ]
-
-<span style="color:#75715e"># 合格返回值. bytes list</span>
-
-<span style="color:#66d9ef">return</span> [ json<span style="color:#f92672">.</span>dumps(result)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>) ]
-</code></pre></div><h1 id="参考">参考</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>result <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;result&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 不合格返回值</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> [ result ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> [ json<span style="color:#f92672">.</span>dumps(result) ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 合格返回值. bytes list</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> [ json<span style="color:#f92672">.</span>dumps(result)<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf8&#34;</span>) ]
+</span></span></code></pre></div><h1 id="参考">参考</h1>
 <ul>
 <li>什么是 Serverless? <a href="https://docs.google.com/presentation/d/1bCxqoblAkl9IwxgLWkVIfWoUF-Oh1R0DTwz8Gysy6Dc/edit?usp=sharing">https://docs.google.com/presentation/d/1bCxqoblAkl9IwxgLWkVIfWoUF-Oh1R0DTwz8Gysy6Dc/edit?usp=sharing</a></li>
 <li>阿里云文档 - 函数计算 - Python HTTP 函数, <a href="http://help.aliyun.com/document_detail/74756.html">http://help.aliyun.com/document_detail/74756.html</a></li>
@@ -356,7 +356,7 @@ HttpTrigger httpTrigger of lpr/test was registered
       <footer class="footer">
   <section class="container">
     
-     © 2021
+     © 2022
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.

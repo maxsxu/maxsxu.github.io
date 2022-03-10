@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.93.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -138,14 +138,14 @@
 <p><code>GitHub Pages</code> 是 <code>GitHub</code> 提供的一项服务，可以直接从 <code>GitHub</code> 仓库为个人，组织或项目页面提供基于SSL的免费和快速静态托管。</p>
 <p>之前个人主页使用的 <code>hexo</code> 来生成的，是基于 <code>node.js</code> 构建的，速度较慢，</p>
 <h1 id="安装-hugo">安装 <code>hugo</code></h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">brew install hugo
-</code></pre></div><p>在 Linux 上安装</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mkdir $HOME/src
-cd $HOME/src
-git clone https://github.com/gohugoio/hugo.git
-cd hugo
-go install --tags extended
-</code></pre></div><p><strong>注意</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>brew install hugo
+</span></span></code></pre></div><p>在 Linux 上安装</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>mkdir $HOME/src
+</span></span><span style="display:flex;"><span>cd $HOME/src
+</span></span><span style="display:flex;"><span>git clone https://github.com/gohugoio/hugo.git
+</span></span><span style="display:flex;"><span>cd hugo
+</span></span><span style="display:flex;"><span>go install --tags extended
+</span></span></code></pre></div><p><strong>注意</strong></p>
 <ul>
 <li>从 <code>hugo 0.48</code> 开始使用 <code>go mod</code> 进行依赖管理</li>
 <li>使用 Linux 包管理安装的 <code>hugo</code> 版本可能较低，有些主题不支持</li>
@@ -158,98 +158,98 @@ go install --tags extended
 <li>不同分支: <code>master</code> 分支用于静态页面，<code>hugo</code> 分支用于源码, <code>hexo</code> 分支用于之前 hexo 源码</li>
 </ul>
 <h2 id="初始化">初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#ae81ff">1</span>. <span style="color:#960050;background-color:#1e0010">克隆仓库</span>
-git clone git<span style="color:#f92672">@</span>github.com:jsonbruce<span style="color:#f92672">/</span>jsonbruce.github.io.git
-
-cd jsonbruce.github.io.git
-
-<span style="color:#ae81ff">2</span>. <span style="color:#960050;background-color:#1e0010">创建一个空分支</span> <span style="color:#f92672">`</span>hugo<span style="color:#f92672">`</span> <span style="color:#960050;background-color:#1e0010">用于放源码</span>
-git checkout <span style="color:#f92672">--</span>orphan hugo
-git rm <span style="color:#f92672">-</span>rf .
-
-<span style="color:#ae81ff">3</span>. <span style="color:#960050;background-color:#1e0010">初始化源码</span>
-hugo new site .
-
-<span style="color:#ae81ff">4</span>. <span style="color:#960050;background-color:#1e0010">添加主题</span>
-git submodule <span style="color:#66d9ef">add</span> git<span style="color:#f92672">@</span>github.com:jsonbruce<span style="color:#f92672">/</span>hugo<span style="color:#f92672">-</span>coder.git themes<span style="color:#f92672">/</span>hugo<span style="color:#f92672">-</span>coder
-
-<span style="color:#ae81ff">5</span>. <span style="color:#960050;background-color:#1e0010">添加自定义域名</span>
-echo <span style="color:#e6db74">&#34;jsonbruce.com&#34;</span> <span style="color:#f92672">&gt;</span> static<span style="color:#f92672">/</span>CNAME
-
-<span style="color:#ae81ff">6</span>. <span style="color:#960050;background-color:#1e0010">配置</span> <span style="color:#f92672">`</span>config.toml<span style="color:#f92672">`</span>
-
-<span style="color:#ae81ff">7</span>. <span style="color:#960050;background-color:#1e0010">设置</span> <span style="color:#f92672">`</span>public<span style="color:#f92672">`</span> <span style="color:#960050;background-color:#1e0010">目录为</span> <span style="color:#f92672">`</span>master<span style="color:#f92672">`</span> <span style="color:#960050;background-color:#1e0010">分支目录树</span>
-git worktree <span style="color:#66d9ef">add</span> <span style="color:#f92672">-</span>B master public origin<span style="color:#f92672">/</span>master
-</code></pre></div><h2 id="创建文章">创建文章</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">hugo new posts/&lt;new-post&gt;.md
-</code></pre></div><p>创建新的导航栏使用</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">hugo new &lt;new-nav&gt;.md
-</code></pre></div><h2 id="部署脚本">部署脚本</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>1. 克隆仓库
+</span></span><span style="display:flex;"><span>git clone git@github.com:jsonbruce/jsonbruce.github.io.git
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>cd jsonbruce.github.io.git
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>2. 创建一个空分支 `hugo` 用于放源码
+</span></span><span style="display:flex;"><span>git checkout --orphan hugo
+</span></span><span style="display:flex;"><span>git rm -rf .
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>3. 初始化源码
+</span></span><span style="display:flex;"><span>hugo new site .
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>4. 添加主题
+</span></span><span style="display:flex;"><span>git submodule add git@github.com:jsonbruce/hugo-coder.git themes/hugo-coder
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>5. 添加自定义域名
+</span></span><span style="display:flex;"><span>echo &#34;jsonbruce.com&#34; &gt; static/CNAME
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>6. 配置 `config.toml`
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>7. 设置 `public` 目录为 `master` 分支目录树
+</span></span><span style="display:flex;"><span>git worktree add -B master public origin/master
+</span></span></code></pre></div><h2 id="创建文章">创建文章</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>hugo new posts/&lt;new-post&gt;.md
+</span></span></code></pre></div><p>创建新的导航栏使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>hugo new &lt;new-nav&gt;.md
+</span></span></code></pre></div><h2 id="部署脚本">部署脚本</h2>
 <p>在 <code>hugo</code> 分支的根目录创建 <code>deploy.sh</code> 脚本:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#66d9ef">$(</span>git status -s<span style="color:#66d9ef">)</span> <span style="color:#f92672">]]</span>
-<span style="color:#66d9ef">then</span>
-    echo <span style="color:#e6db74">&#34;The working directory is dirty. Please commit any pending changes.&#34;</span>
-    exit 1;
-<span style="color:#66d9ef">fi</span>
-
-echo -e <span style="color:#e6db74">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
-
-echo <span style="color:#e6db74">&#34;Deleting old publication&#34;</span>
-rm -rf public
-mkdir public
-git worktree prune
-rm -rf .git/worktrees/public/
-
-echo <span style="color:#e6db74">&#34;Checking out master branch into public&#34;</span>
-git worktree add -B master public origin/master
-
-echo <span style="color:#e6db74">&#34;Removing existing files&#34;</span>
-rm -rf public/*
-
-echo <span style="color:#e6db74">&#34;Generating site&#34;</span>
-hugo <span style="color:#75715e"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
-
-echo <span style="color:#e6db74">&#34;Updating master branch&#34;</span>
-<span style="color:#75715e"># Go To Public folder and add changes to git.</span>
-cd public <span style="color:#f92672">&amp;&amp;</span> git add --all 
-
-<span style="color:#75715e"># Commit changes.</span>
-msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site `date`&#34;</span>
-<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>
-  <span style="color:#66d9ef">then</span> msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
-<span style="color:#66d9ef">fi</span>
-git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
-
-<span style="color:#75715e"># Push source.</span>
-git push -f origin master
-
-<span style="color:#75715e"># Come Back up to the Project Root</span>
-cd ..
-</code></pre></div><p>之后写好文章发布就直接在 <code>hugo</code> 分支的根目录执行 <code>deploy.sh</code> 脚本即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#66d9ef">$(</span>git status -s<span style="color:#66d9ef">)</span> <span style="color:#f92672">]]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;The working directory is dirty. Please commit any pending changes.&#34;</span>
+</span></span><span style="display:flex;"><span>    exit 1;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Deleting old publication&#34;</span>
+</span></span><span style="display:flex;"><span>rm -rf public
+</span></span><span style="display:flex;"><span>mkdir public
+</span></span><span style="display:flex;"><span>git worktree prune
+</span></span><span style="display:flex;"><span>rm -rf .git/worktrees/public/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Checking out master branch into public&#34;</span>
+</span></span><span style="display:flex;"><span>git worktree add -B master public origin/master
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Removing existing files&#34;</span>
+</span></span><span style="display:flex;"><span>rm -rf public/*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Generating site&#34;</span>
+</span></span><span style="display:flex;"><span>hugo <span style="color:#75715e"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Updating master branch&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Go To Public folder and add changes to git.</span>
+</span></span><span style="display:flex;"><span>cd public <span style="color:#f92672">&amp;&amp;</span> git add --all 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Commit changes.</span>
+</span></span><span style="display:flex;"><span>msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site `date`&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">then</span> msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Push source.</span>
+</span></span><span style="display:flex;"><span>git push -f origin master
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Come Back up to the Project Root</span>
+</span></span><span style="display:flex;"><span>cd ..
+</span></span></code></pre></div><p>之后写好文章发布就直接在 <code>hugo</code> 分支的根目录执行 <code>deploy.sh</code> 脚本即可。</p>
 <h1 id="域名解析">域名解析</h1>
 <p>添加指向以下 IP 的 <code>A</code> 记录:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-</code></pre></div><p>主机记录为 <code>@</code> 和 <code>www</code>，最终生成八条解析记录。解析列表如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">jsonbruce.com.		600	IN	A	185.199.111.153
-jsonbruce.com.		600	IN	A	185.199.110.153
-jsonbruce.com.		600	IN	A	185.199.109.153
-jsonbruce.com.		600	IN	A	185.199.108.153
-www.jsonbruce.com.	600	IN	A	185.199.111.153
-www.jsonbruce.com.	600	IN	A	185.199.110.153
-www.jsonbruce.com.	600	IN	A	185.199.109.153
-www.jsonbruce.com.	600	IN	A	185.199.108.153
-</code></pre></div><h1 id="设置-github">设置 <code>GitHub</code></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>185.199.108.153
+</span></span><span style="display:flex;"><span>185.199.109.153
+</span></span><span style="display:flex;"><span>185.199.110.153
+</span></span><span style="display:flex;"><span>185.199.111.153
+</span></span></code></pre></div><p>主机记录为 <code>@</code> 和 <code>www</code>，最终生成八条解析记录。解析列表如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.111.153
+</span></span><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.110.153
+</span></span><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.109.153
+</span></span><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.108.153
+</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.111.153
+</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.110.153
+</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.109.153
+</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.108.153
+</span></span></code></pre></div><h1 id="设置-github">设置 <code>GitHub</code></h1>
 <p><code>GitHub Pages</code> 绑定自定义域名:</p>
 <p>在仓库的 <code>Settings -&gt; GitHub Pages -&gt; Custom domain</code> 页面下填写自定义的域名。</p>
 <h1 id="静态资源">静态资源</h1>
 <p>如图片放在 <code>static/images/avatar.png</code>，文章中的引用方式为</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">![](/images/avatar.png)
-</code></pre></div><h1 id="参考">参考</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>![](/images/avatar.png)
+</span></span></code></pre></div><h1 id="参考">参考</h1>
 <ul>
 <li>Host on GitHub, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li>
 <li>Using a custom domain with GitHub Pages, <a href="https://help.github.com/en/articles/using-a-custom-domain-with-github-pages">https://help.github.com/en/articles/using-a-custom-domain-with-github-pages</a></li>
@@ -293,7 +293,7 @@ www.jsonbruce.com.	600	IN	A	185.199.108.153
       <footer class="footer">
   <section class="container">
     
-     © 2021
+     © 2022
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.

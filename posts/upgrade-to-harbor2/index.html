@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://jsonbruce.com/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.93.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -143,12 +143,12 @@
 <p>早就看到 Harbor v2 GA 了，但线上业务在正常跑也就没有管，上周 Harbor 正式从 CNCF 毕业了（第 11 个毕业毕业项目），我想是时候拥抱变化了。</p>
 <h1 id="升级">升级</h1>
 <p>线上的 Harbor v1 是用 Helm 部署在 K8s 集群。升级很简单:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># 首先更新 Chart Repo
-helm repo update
-
-# 执行升级
-helm upgrade --install harbor harbor/harbor
-</code></pre></div><p>Harbor 的 database 和 redis 组件是 StatefulSet，存储接的 PVC，所以升级对数据没有影响，不用担心。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 首先更新 Chart Repo
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 执行升级
+</span></span><span style="display:flex;"><span>helm upgrade --install harbor harbor/harbor
+</span></span></code></pre></div><p>Harbor 的 database 和 redis 组件是 StatefulSet，存储接的 PVC，所以升级对数据没有影响，不用担心。</p>
 <h1 id="新特性">新特性</h1>
 <h2 id="oci-规范的支持">OCI 规范的支持</h2>
 <p>这应该是最激动的一个特性，统一。</p>
@@ -160,38 +160,38 @@ Harbor 1.0 的 Helm Chart 是放在 Project-&gt;Helm Chart 里，升级后原有
 <li>存储在 Project -&gt; Repository. 使用 Helm v3 的实验特性 helm chart pull 和 helm chart push 命令</li>
 </ul>
 <p>Helm Chart OCI Registry 的存储目录为 <code>~/.cache/helm/registry</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">~/.cache/helm/registry/
-├── cache/
-│   ├── blobs/
-│   │   └── sha256/
-│   │       ├── 0ebcb18716bb0f7778914315255d561deecb7d1d6c8691f949070b4252eacfc9
-│   │       ├── 5202f80d4df471a986cbea192f331c6f4d5f5e36a617f1102042faade2e0ba54
-│   │       ├── 847317a2b1a500082da4f2d62da66acd95950b14f45704ec133042623db9f662
-│   │       ├── 85c5ee407074291d4b6686d85347cc295ecc973d17e1fee9358493beb004dacb
-│   │       ├── 8dd036c9a8f4b5c9934047f5e8a3a5f4edac9252e0588d6a9fecf060a9e3f141
-│   │       ├── e00492b73b6e18b24d880df5e4d3043e59e807e10ccd2945eca9f09773293fbd
-│   │       └── fd07ebfefb5b619878fd9a4af0bac249241127cfbb59e574a2e9b3366dc0ed8c
-│   ├── .build/
-│   ├── ingest/
-│   ├── index.json
-│   └── oci-layout
-└── config.json
-</code></pre></div><p>其中 <code>index.json</code> 文件包含了对所有 Helm Chart 清单的引用：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ cat ~/.cache/helm/registry/cache/index.json | jq
-{
-  &#34;schemaVersion&#34;: 2,
-  &#34;manifests&#34;: [
-    {
-      &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1+json&#34;,
-      &#34;digest&#34;: &#34;sha256:fd07ebfefb5b619878fd9a4af0bac249241127cfbb59e574a2e9b3366dc0ed8c&#34;,
-      &#34;size&#34;: 322,
-      &#34;annotations&#34;: {
-        &#34;org.opencontainers.image.ref.name&#34;: &#34;mirrors.jsonbruce.com/library/nginx-chart:0.1.0&#34;
-      }
-    }
-  ]
-}
-</code></pre></div><h1 id="使用">使用</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>~/.cache/helm/registry/
+</span></span><span style="display:flex;"><span>├── cache/
+</span></span><span style="display:flex;"><span>│   ├── blobs/
+</span></span><span style="display:flex;"><span>│   │   └── sha256/
+</span></span><span style="display:flex;"><span>│   │       ├── 0ebcb18716bb0f7778914315255d561deecb7d1d6c8691f949070b4252eacfc9
+</span></span><span style="display:flex;"><span>│   │       ├── 5202f80d4df471a986cbea192f331c6f4d5f5e36a617f1102042faade2e0ba54
+</span></span><span style="display:flex;"><span>│   │       ├── 847317a2b1a500082da4f2d62da66acd95950b14f45704ec133042623db9f662
+</span></span><span style="display:flex;"><span>│   │       ├── 85c5ee407074291d4b6686d85347cc295ecc973d17e1fee9358493beb004dacb
+</span></span><span style="display:flex;"><span>│   │       ├── 8dd036c9a8f4b5c9934047f5e8a3a5f4edac9252e0588d6a9fecf060a9e3f141
+</span></span><span style="display:flex;"><span>│   │       ├── e00492b73b6e18b24d880df5e4d3043e59e807e10ccd2945eca9f09773293fbd
+</span></span><span style="display:flex;"><span>│   │       └── fd07ebfefb5b619878fd9a4af0bac249241127cfbb59e574a2e9b3366dc0ed8c
+</span></span><span style="display:flex;"><span>│   ├── .build/
+</span></span><span style="display:flex;"><span>│   ├── ingest/
+</span></span><span style="display:flex;"><span>│   ├── index.json
+</span></span><span style="display:flex;"><span>│   └── oci-layout
+</span></span><span style="display:flex;"><span>└── config.json
+</span></span></code></pre></div><p>其中 <code>index.json</code> 文件包含了对所有 Helm Chart 清单的引用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ cat ~/.cache/helm/registry/cache/index.json | jq
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#34;schemaVersion&#34;: 2,
+</span></span><span style="display:flex;"><span>  &#34;manifests&#34;: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1+json&#34;,
+</span></span><span style="display:flex;"><span>      &#34;digest&#34;: &#34;sha256:fd07ebfefb5b619878fd9a4af0bac249241127cfbb59e574a2e9b3366dc0ed8c&#34;,
+</span></span><span style="display:flex;"><span>      &#34;size&#34;: 322,
+</span></span><span style="display:flex;"><span>      &#34;annotations&#34;: {
+</span></span><span style="display:flex;"><span>        &#34;org.opencontainers.image.ref.name&#34;: &#34;mirrors.jsonbruce.com/library/nginx-chart:0.1.0&#34;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="使用">使用</h1>
 <h2 id="操作-helm-chart">操作 Helm Chart</h2>
 <p>要使用 OCI 规范的 Helm Chart, 要确保:</p>
 <ul>
@@ -200,16 +200,16 @@ Harbor 1.0 的 Helm Chart 是放在 Project-&gt;Helm Chart 里，升级后原有
 </ul>
 <p>首先要登录 Harbor: <code>helm registry login mirrors.jsonbruce.com</code></p>
 <p><strong>上传</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm chart save nginx-chart mirrors.jsonbruce.com/library/nginx-chart:0.1.0
-
-helm chart push mirrors.jsonbruce.com/library/nginx-chart:0.1.0 
-</code></pre></div><p><strong>拉取</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm chart pull mirrors.jsonbruce.com/library/nginx-chart:0.1.0 
-</code></pre></div><p><strong>安装</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm chart save nginx-chart mirrors.jsonbruce.com/library/nginx-chart:0.1.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>helm chart push mirrors.jsonbruce.com/library/nginx-chart:0.1.0 
+</span></span></code></pre></div><p><strong>拉取</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm chart pull mirrors.jsonbruce.com/library/nginx-chart:0.1.0 
+</span></span></code></pre></div><p><strong>安装</strong></p>
 <p>目前还不能直接从 OCI Registry 安装</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">helm chart export mirrors.jsonbruce.com/library/nginx-chart:0.1.0
-helm install nginx ./nginx-chart
-</code></pre></div><h1 id="问题">问题</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>helm chart export mirrors.jsonbruce.com/library/nginx-chart:0.1.0
+</span></span><span style="display:flex;"><span>helm install nginx ./nginx-chart
+</span></span></code></pre></div><h1 id="问题">问题</h1>
 <ol>
 <li>统一存储的问题</li>
 </ol>
@@ -269,7 +269,7 @@ helm install nginx ./nginx-chart
       <footer class="footer">
   <section class="container">
     
-     © 2021
+     © 2022
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/jsonbruce/hugo-coder/">Coder</a>.
