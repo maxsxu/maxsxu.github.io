@@ -2,85 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jsonbruce.com/categories/</loc>
+    <loc>https://atmax.io/categories/</loc>
     <lastmod>2021-04-15T18:10:05+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/datetime/</loc>
+    <loc>https://atmax.io/tags/datetime/</loc>
     <lastmod>2021-04-15T18:10:05+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/categories/develop/</loc>
+    <loc>https://atmax.io/categories/develop/</loc>
     <lastmod>2021-04-15T18:10:05+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/</loc>
+    <loc>https://atmax.io/</loc>
     <lastmod>2021-07-15T21:50:12+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/</loc>
+    <loc>https://atmax.io/posts/</loc>
     <lastmod>2021-07-15T21:50:12+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/</loc>
+    <loc>https://atmax.io/tags/</loc>
     <lastmod>2021-04-15T18:10:05+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/datetime-standards/</loc>
+    <loc>https://atmax.io/posts/datetime-standards/</loc>
     <lastmod>2021-04-15T18:10:05+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/announcing-containerd-support-for-the-nvidia-gpu-operator/</loc>
+    <loc>https://atmax.io/posts/announcing-containerd-support-for-the-nvidia-gpu-operator/</loc>
     <lastmod>2021-07-15T21:50:12+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/categories/cloudnative/</loc>
+    <loc>https://atmax.io/categories/cloudnative/</loc>
     <lastmod>2020-11-11T11:50:45+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/serverless/</loc>
+    <loc>https://atmax.io/tags/serverless/</loc>
     <lastmod>2020-11-11T01:38:07+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/lpr-based-on-serverless/</loc>
+    <loc>https://atmax.io/posts/lpr-based-on-serverless/</loc>
     <lastmod>2020-11-11T01:38:07+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/macos/</loc>
+    <loc>https://atmax.io/tags/macos/</loc>
     <lastmod>2020-07-04T18:54:41+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/changes-of-ca-in-macos-catlina/</loc>
+    <loc>https://atmax.io/posts/changes-of-ca-in-macos-catlina/</loc>
     <lastmod>2020-07-04T18:54:41+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/categories/security/</loc>
+    <loc>https://atmax.io/categories/security/</loc>
     <lastmod>2020-07-04T18:54:41+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/tls/</loc>
+    <loc>https://atmax.io/tags/tls/</loc>
     <lastmod>2020-07-04T18:54:41+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/harbor/</loc>
+    <loc>https://atmax.io/tags/harbor/</loc>
     <lastmod>2020-06-28T21:08:42+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/upgrade-to-harbor2/</loc>
+    <loc>https://atmax.io/posts/upgrade-to-harbor2/</loc>
     <lastmod>2020-06-28T21:08:42+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/devops/</loc>
+    <loc>https://atmax.io/tags/devops/</loc>
     <lastmod>2020-11-11T11:50:45+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/kubernetes/</loc>
+    <loc>https://atmax.io/tags/kubernetes/</loc>
     <lastmod>2020-11-11T11:50:45+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/kubernetes-ha-cluster-devops/</loc>
+    <loc>https://atmax.io/posts/kubernetes-ha-cluster-devops/</loc>
     <lastmod>2020-11-11T11:50:45+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/reset-aws-ec2-ssh-keypair/</loc>
+    <loc>https://atmax.io/posts/reset-aws-ec2-ssh-keypair/</loc>
     <lastmod>2019-10-12T11:45:59+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/categories/contest/</loc>
+    <loc>https://atmax.io/categories/contest/</loc>
     <lastmod>2019-10-11T17:54:28+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/tags/helm/</loc>
+    <loc>https://atmax.io/tags/helm/</loc>
     <lastmod>2019-10-11T17:54:28+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/contest-aliyun-cloudnative/</loc>
+    <loc>https://atmax.io/posts/contest-aliyun-cloudnative/</loc>
     <lastmod>2019-10-11T17:54:28+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/helm-chart-develop-autocreate-tls-secret/</loc>
+    <loc>https://atmax.io/posts/helm-chart-develop-autocreate-tls-secret/</loc>
     <lastmod>2019-05-23T23:17:04+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/about/</loc>
+    <loc>https://atmax.io/about/</loc>
     <lastmod>2020-07-04T18:54:41+08:00</lastmod>
   </url><url>
-    <loc>https://jsonbruce.com/posts/userguide/</loc>
+    <loc>https://atmax.io/posts/userguide/</loc>
     <lastmod>2019-10-11T20:49:12+08:00</lastmod>
   </url>
 </urlset>

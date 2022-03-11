@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Develop on Max</title>
-    <link>https://jsonbruce.com/categories/develop/</link>
+    <link>https://atmax.io/categories/develop/</link>
     <description>Recent content in Develop on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Feb 2021 15:52:46 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/categories/develop/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Feb 2021 15:52:46 +0800</lastBuildDate><atom:link href="https://atmax.io/categories/develop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>日期时间规范</title>
-      <link>https://jsonbruce.com/posts/datetime-standards/</link>
+      <link>https://atmax.io/posts/datetime-standards/</link>
       <pubDate>Wed, 03 Feb 2021 15:52:46 +0800</pubDate>
       
-      <guid>https://jsonbruce.com/posts/datetime-standards/</guid>
+      <guid>https://atmax.io/posts/datetime-standards/</guid>
       <description>日期时间格式规范的目标是作为统一的标准，来规范和统一不同时区、不同语言、不同国家对同一个时刻的表示。 概念 时区 时区（Time Zone) 是地球上的区域使</description>
     </item>
     

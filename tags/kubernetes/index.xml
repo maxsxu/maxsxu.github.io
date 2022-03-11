@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on Max</title>
-    <link>https://jsonbruce.com/tags/kubernetes/</link>
+    <link>https://atmax.io/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jun 2020 02:03:59 +0800</lastBuildDate><atom:link href="https://jsonbruce.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Jun 2020 02:03:59 +0800</lastBuildDate><atom:link href="https://atmax.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes 高可用集群和 DevOps 平台部署</title>
-      <link>https://jsonbruce.com/posts/kubernetes-ha-cluster-devops/</link>
+      <link>https://atmax.io/posts/kubernetes-ha-cluster-devops/</link>
       <pubDate>Thu, 11 Jun 2020 02:03:59 +0800</pubDate>
       
-      <guid>https://jsonbruce.com/posts/kubernetes-ha-cluster-devops/</guid>
+      <guid>https://atmax.io/posts/kubernetes-ha-cluster-devops/</guid>
       <description>Kubernetes 已然成为了云原生时代的操作系统，在容器管理、自动化编排等方面扮演着重要的角色。本文记录了部署 Kubernetes 高可用集群作为底层容器集群管理平台，并基于此</description>
     </item>
     
     <item>
       <title>阿里云开发者社区云原生应用大赛</title>
-      <link>https://jsonbruce.com/posts/contest-aliyun-cloudnative/</link>
+      <link>https://atmax.io/posts/contest-aliyun-cloudnative/</link>
       <pubDate>Sat, 21 Sep 2019 16:54:44 +0800</pubDate>
       
-      <guid>https://jsonbruce.com/posts/contest-aliyun-cloudnative/</guid>
+      <guid>https://atmax.io/posts/contest-aliyun-cloudnative/</guid>
       <description>前一阵子看到钉钉群里有同学分享了这个比赛，点进去看了下，结果第二天就要截止了。。。但是觉得大赛出发点非常好（主要是又有机会拿 T 恤，哈哈哈），</description>
     </item>
     
     <item>
       <title>Helm Chart 开发: 自动生成 Kubernetes Dashbord 的 TLS Secret</title>
-      <link>https://jsonbruce.com/posts/helm-chart-develop-autocreate-tls-secret/</link>
+      <link>https://atmax.io/posts/helm-chart-develop-autocreate-tls-secret/</link>
       <pubDate>Thu, 23 May 2019 21:21:24 +0800</pubDate>
       
-      <guid>https://jsonbruce.com/posts/helm-chart-develop-autocreate-tls-secret/</guid>
+      <guid>https://atmax.io/posts/helm-chart-develop-autocreate-tls-secret/</guid>
       <description>背景 部署 Kubernetes Dashbord 有很多方式，其中最方便的还是通过 Helm 来部署。 官方提供了 Helm Chart，在其 README 中说只需要执行下面一条命令就可以部署 Dashboard: helm install stable/kubernetes-dashboard 但实际上发现</description>
     </item>
     
