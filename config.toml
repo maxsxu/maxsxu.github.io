@@ -1,4 +1,4 @@
-baseURL = "https://jsonbruce.com"
+baseURL = "https://atmax.io"
 title = "Max"
 theme = "hugo-coder"
 languageCode = "en"
@@ -46,17 +46,17 @@ enableGitInfo = true
     name = "Github"
     icon = "fab fa-github fa-2x"
     weight = 1
-    url = "https://github.com/jsonbruce/"
+    url = "https://github.com/maxsxu/"
 [[params.social]]
     name = "Gitlab"
     icon = "fab fa-gitlab fa-2x"
     weight = 2
-    url = "https://gitlab.com/jsonbruce/"
+    url = "https://gitlab.com/maxsxu"
 [[params.social]]
     name = "Twitter"
     icon = "fab fa-twitter fa-2x"
     weight = 3
-    url = "https://twitter.com/jsonbruce/"
+    url = "https://twitter.com/maxsxu"
 [[params.social]]
     name="LinkedIn"
     icon = "fab fa-linkedin fa-2x"
