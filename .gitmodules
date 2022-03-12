@@ -5,3 +5,4 @@
 	path = themes/hugo-coder
 	url = git@github.com:maxsxu/hugo-coder.git
 	branch = master
+	update = rebase
