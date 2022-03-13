@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://atmax.io/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://atmax.io/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.93.0" />
+    <meta name="generator" content="Hugo 0.94.2" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -154,14 +154,14 @@
 <p>官方教程是创建两个仓库: 一个放源码(<code>hugo new site .</code>的所有文件)，一个放静态页面(生成的 <code>public/</code>目录)。</p>
 <p>个人习惯使用一个仓库，不同分支。</p>
 <ul>
-<li>一个仓库: <code>jsonbruce.github.io</code></li>
+<li>一个仓库: <code>maxsxu.github.io</code></li>
 <li>不同分支: <code>master</code> 分支用于静态页面，<code>hugo</code> 分支用于源码, <code>hexo</code> 分支用于之前 hexo 源码</li>
 </ul>
 <h2 id="初始化">初始化</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>1. 克隆仓库
-</span></span><span style="display:flex;"><span>git clone git@github.com:jsonbruce/jsonbruce.github.io.git
+</span></span><span style="display:flex;"><span>git clone git@github.com:maxsxu/maxsxu.github.io.git
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>cd jsonbruce.github.io.git
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>cd maxsxu.github.io.git
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>2. 创建一个空分支 `hugo` 用于放源码
 </span></span><span style="display:flex;"><span>git checkout --orphan hugo
@@ -171,10 +171,10 @@
 </span></span><span style="display:flex;"><span>hugo new site .
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>4. 添加主题
-</span></span><span style="display:flex;"><span>git submodule add git@github.com:jsonbruce/hugo-coder.git themes/hugo-coder
+</span></span><span style="display:flex;"><span>git submodule add git@github.com:maxsxu/hugo-coder.git themes/hugo-coder
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>5. 添加自定义域名
-</span></span><span style="display:flex;"><span>echo &#34;jsonbruce.com&#34; &gt; static/CNAME
+</span></span><span style="display:flex;"><span>echo &#34;atmax.io&#34; &gt; static/CNAME
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>6. 配置 `config.toml`
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
@@ -235,14 +235,14 @@
 </span></span><span style="display:flex;"><span>185.199.110.153
 </span></span><span style="display:flex;"><span>185.199.111.153
 </span></span></code></pre></div><p>主机记录为 <code>@</code> 和 <code>www</code>，最终生成八条解析记录。解析列表如下:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.111.153
-</span></span><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.110.153
-</span></span><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.109.153
-</span></span><span style="display:flex;"><span>jsonbruce.com.		600	IN	A	185.199.108.153
-</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.111.153
-</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.110.153
-</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.109.153
-</span></span><span style="display:flex;"><span>www.jsonbruce.com.	600	IN	A	185.199.108.153
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>atmax.io.		600	IN	A	185.199.111.153
+</span></span><span style="display:flex;"><span>atmax.io.		600	IN	A	185.199.110.153
+</span></span><span style="display:flex;"><span>atmax.io.		600	IN	A	185.199.109.153
+</span></span><span style="display:flex;"><span>atmax.io.		600	IN	A	185.199.108.153
+</span></span><span style="display:flex;"><span>www.atmax.io.	600	IN	A	185.199.111.153
+</span></span><span style="display:flex;"><span>www.atmax.io.	600	IN	A	185.199.110.153
+</span></span><span style="display:flex;"><span>www.atmax.io.	600	IN	A	185.199.109.153
+</span></span><span style="display:flex;"><span>www.atmax.io.	600	IN	A	185.199.108.153
 </span></span></code></pre></div><h1 id="设置-github">设置 <code>GitHub</code></h1>
 <p><code>GitHub Pages</code> 绑定自定义域名:</p>
 <p>在仓库的 <code>Settings -&gt; GitHub Pages -&gt; Custom domain</code> 页面下填写自定义的域名。</p>
