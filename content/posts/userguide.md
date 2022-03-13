@@ -36,15 +36,15 @@ go install --tags extended
 
 个人习惯使用一个仓库，不同分支。
 
-- 一个仓库: `jsonbruce.github.io`
+- 一个仓库: `maxsxu.github.io`
 - 不同分支: `master` 分支用于静态页面，`hugo` 分支用于源码, `hexo` 分支用于之前 hexo 源码
 
 ## 初始化
 ```console
 1. 克隆仓库
-git clone git@github.com:jsonbruce/jsonbruce.github.io.git
+git clone git@github.com:maxsxu/maxsxu.github.io.git
 
-cd jsonbruce.github.io.git
+cd maxsxu.github.io.git
 
 2. 创建一个空分支 `hugo` 用于放源码
 git checkout --orphan hugo
@@ -54,10 +54,10 @@ git rm -rf .
 hugo new site .
 
 4. 添加主题
-git submodule add git@github.com:jsonbruce/hugo-coder.git themes/hugo-coder
+git submodule add git@github.com:maxsxu/hugo-coder.git themes/hugo-coder
 
 5. 添加自定义域名
-echo "jsonbruce.com" > static/CNAME
+echo "atmax.io" > static/CNAME
 
 6. 配置 `config.toml`
 
@@ -138,14 +138,14 @@ cd ..
 主机记录为 `@` 和 `www`，最终生成八条解析记录。解析列表如下:
 
 ```
-jsonbruce.com.		600	IN	A	185.199.111.153
-jsonbruce.com.		600	IN	A	185.199.110.153
-jsonbruce.com.		600	IN	A	185.199.109.153
-jsonbruce.com.		600	IN	A	185.199.108.153
-www.jsonbruce.com.	600	IN	A	185.199.111.153
-www.jsonbruce.com.	600	IN	A	185.199.110.153
-www.jsonbruce.com.	600	IN	A	185.199.109.153
-www.jsonbruce.com.	600	IN	A	185.199.108.153
+atmax.io.		600	IN	A	185.199.111.153
+atmax.io.		600	IN	A	185.199.110.153
+atmax.io.		600	IN	A	185.199.109.153
+atmax.io.		600	IN	A	185.199.108.153
+www.atmax.io.	600	IN	A	185.199.111.153
+www.atmax.io.	600	IN	A	185.199.110.153
+www.atmax.io.	600	IN	A	185.199.109.153
+www.atmax.io.	600	IN	A	185.199.108.153
 ```
 
 # 设置 `GitHub`
