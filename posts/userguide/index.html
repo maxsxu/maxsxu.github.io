@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://atmax.io/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://atmax.io/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.94.2" />
+    <meta name="generator" content="Hugo 0.96.0" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -269,9 +269,8 @@
     repo: 'maxsxu.github.io',
     owner: 'maxsxu',
     admin: ['maxsxu'],
-    createIssueManually: 'false',
-    id: location.pathname, 
-    distractionFreeMode: false 
+    id: hex_md5(hex_md5(window.location.pathname + window.location.hash)), 
+    distractionFreeMode: 'false', 
   });
   (function() {
     if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
