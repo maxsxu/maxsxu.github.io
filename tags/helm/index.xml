@@ -6,7 +6,16 @@
     <description>Recent content in Helm on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Sep 2019 16:54:44 +0800</lastBuildDate><atom:link href="https://atmax.io/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Nov 2019 17:01:21 +0800</lastBuildDate><atom:link href="https://atmax.io/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Helm 3 的新特性</title>
+      <link>https://atmax.io/posts/helm3-whats-new/</link>
+      <pubDate>Wed, 13 Nov 2019 17:01:21 +0800</pubDate>
+      
+      <guid>https://atmax.io/posts/helm3-whats-new/</guid>
+      <description>本文介绍 Helm 3 中引入的一些重大更改。 重大改变 移除了 Tiller 在 Helm 2 的开发周期中，我们引入了 Tiller。Tiller 在团队协作中共享集群时扮演了重要角</description>
+    </item>
+    
     <item>
       <title>阿里云开发者社区云原生应用大赛</title>
       <link>https://atmax.io/posts/contest-aliyun-cloudnative/</link>

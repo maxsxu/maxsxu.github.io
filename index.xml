@@ -62,6 +62,15 @@
     </item>
     
     <item>
+      <title>Helm 3 的新特性</title>
+      <link>https://atmax.io/posts/helm3-whats-new/</link>
+      <pubDate>Wed, 13 Nov 2019 17:01:21 +0800</pubDate>
+      
+      <guid>https://atmax.io/posts/helm3-whats-new/</guid>
+      <description>本文介绍 Helm 3 中引入的一些重大更改。 重大改变 移除了 Tiller 在 Helm 2 的开发周期中，我们引入了 Tiller。Tiller 在团队协作中共享集群时扮演了重要角</description>
+    </item>
+    
+    <item>
       <title>重置 AWS EC2 的 SSH Keypair</title>
       <link>https://atmax.io/posts/reset-aws-ec2-ssh-keypair/</link>
       <pubDate>Thu, 10 Oct 2019 20:51:01 +0800</pubDate>
