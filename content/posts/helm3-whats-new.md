@@ -1,9 +1,9 @@
-+++ 
++++
 draft = false
 date = 2019-11-13T17:01:21+08:00
 title = "Helm 3 的新特性"
 description = ""
-slug = "" 
+slug = ""
 tags = ["Helm"]
 categories = ["CloudNative"]
 externalLink = ""
@@ -179,4 +179,5 @@ Helm 3 默认允许更改密钥作为额外的安全措施在 Kubernetes 中和�
 
 
 # 参考
+- Helm 3.0.0 has been released! https://helm.sh/blog/helm-3-released/
 - Changes since Helm 2, https://helm.sh/docs/faq/changes_since_helm2/
