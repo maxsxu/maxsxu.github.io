@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>HelmHub 迁移到 ArtifactHub</title>
+      <link>https://atmax.io/posts/helm-hub-moving-to-artifact-hub/</link>
+      <pubDate>Wed, 07 Oct 2020 14:21:39 +0800</pubDate>
+      
+      <guid>https://atmax.io/posts/helm-hub-moving-to-artifact-hub/</guid>
+      <description>现在访问 HelmHub 会被重定向到 ArtifactHub. References Helm Hub Moving To Artifact Hub, https://helm.sh/blog/helm-hub-moving-to-artifact-hub/</description>
+    </item>
+    
+    <item>
       <title>升级到 Harbor 2.0.0</title>
       <link>https://atmax.io/posts/upgrade-to-harbor2/</link>
       <pubDate>Sun, 28 Jun 2020 16:19:24 +0800</pubDate>
