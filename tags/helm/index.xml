@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>CRD 在 Helm3 中的使用和限制</title>
+      <link>https://atmax.io/posts/helm3-crd/</link>
+      <pubDate>Mon, 27 Apr 2020 14:38:44 +0800</pubDate>
+      
+      <guid>https://atmax.io/posts/helm3-crd/</guid>
+      <description>Kubernetes 提供了一种机制来声明新类型的 Kubernetes 对象。使用 CustomResourceDefinitions (CRD)，Kubernetes 开发人员可以声明自定义资源类型。 在 Helm3 中，CRD 被视为一种特殊的对</description>
+    </item>
+    
+    <item>
       <title>Helm 3 的新特性</title>
       <link>https://atmax.io/posts/helm3-whats-new/</link>
       <pubDate>Wed, 13 Nov 2019 17:01:21 +0800</pubDate>
