@@ -1,5 +1,5 @@
 +++
-draft = true
+draft = false 
 date = 2020-04-27T14:38:44+08:00
 title = "CRD 在 Helm3 中的使用和限制"
 description = ""
