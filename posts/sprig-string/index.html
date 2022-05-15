@@ -10,27 +10,27 @@
     <meta name="keywords" content="blog,software,engineer,developer,personal">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Kubernetes 1.24 发布"/>
-<meta name="twitter:description" content="Kubernetes 1.24 于 2022.05.03正式发布。同时这也是 2022 年的第一个版本。 此版本包含 46 个增强功能：14 个增强功能已升级为稳定版，15 个增强功能正在进入"/>
+<meta name="twitter:title" content="Sprig 模板函数系列: string 函数"/>
+<meta name="twitter:description" content="sprig 是一个 Golang 模板函数库，大规模使用 sprig 的知名软件有 Helm 等。 目前，Sprig 库为 Go 的模板语言提供了 70 多个模板函数。接下来一共分为 12 个系列总结 sprig 的这些"/>
 
-    <meta property="og:title" content="Kubernetes 1.24 发布" />
-<meta property="og:description" content="Kubernetes 1.24 于 2022.05.03正式发布。同时这也是 2022 年的第一个版本。 此版本包含 46 个增强功能：14 个增强功能已升级为稳定版，15 个增强功能正在进入" />
+    <meta property="og:title" content="Sprig 模板函数系列: string 函数" />
+<meta property="og:description" content="sprig 是一个 Golang 模板函数库，大规模使用 sprig 的知名软件有 Helm 等。 目前，Sprig 库为 Go 的模板语言提供了 70 多个模板函数。接下来一共分为 12 个系列总结 sprig 的这些" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://atmax.io/posts/kubernetes-1-24-release-announcement/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-05-04T18:13:49+08:00" />
-<meta property="article:modified_time" content="2022-05-04T20:44:19+08:00" />
+<meta property="og:url" content="https://atmax.io/posts/sprig-string/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-15T23:45:47+08:00" />
+<meta property="article:modified_time" content="2022-05-15T23:45:47+08:00" />
 
 
 
     
-      <base href="https://atmax.io/posts/kubernetes-1-24-release-announcement/">
+      <base href="https://atmax.io/posts/sprig-string/">
     
     <title>
-  Kubernetes 1.24 发布 · Max
+  Sprig 模板函数系列: string 函数 · Max
 </title>
 
     
-      <link rel="canonical" href="https://atmax.io/posts/kubernetes-1-24-release-announcement/">
+      <link rel="canonical" href="https://atmax.io/posts/sprig-string/">
     
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
@@ -112,14 +112,14 @@
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">Kubernetes 1.24 发布</h1>
+          <h1 class="title">Sprig 模板函数系列: string 函数</h1>
         </div>
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
               <i class="fas fa-calendar"></i>
-              <time datetime='2022-05-04T18:13:49&#43;08:00'>
-                May 4, 2022
+              <time datetime='2022-05-15T23:45:47&#43;08:00'>
+                May 15, 2022
               </time>
             </span>
             <span class="reading-time">
@@ -129,30 +129,43 @@
           </div>
           <div class="categories">
   <i class="fas fa-folder"></i>
-    <a href="https://atmax.io/categories/cloudnative/">CloudNative</a></div>
+    <a href="https://atmax.io/categories/golang/">Golang</a></div>
 
           <div class="tags">
   <i class="fas fa-tag"></i>
-    <a href="https://atmax.io/tags/kubernetes/">Kubernetes</a></div>
+    <a href="https://atmax.io/tags/golang/">Golang</a>
+      <span class="separator">•</span>
+    <a href="https://atmax.io/tags/sprig/">Sprig</a></div>
 
         </div>
       </header>
 
       <div>
-        <p>Kubernetes 1.24 于 2022.05.03正式发布。同时这也是 2022 年的第一个版本。</p>
-<p>此版本包含 46 个增强功能：14 个增强功能已升级为稳定版，15 个增强功能正在进入 beta 阶段，13 个增强功能正在进入 alpha 阶段。此外，两个功能已被弃用，两个功能已被删除。</p>
-<p>主要包含两个重大变更：</p>
-<ul>
-<li><code>Dockershim</code> 被彻底移除</li>
-<li>Beta API 默认关闭</li>
-</ul>
-<h2 id="dockershim-从-kubelet-中移除">Dockershim 从 kubelet 中移除</h2>
-<p>在 v1.20 中弃用后，<code>dockershim</code> 组件已从 Kubernetes v1.24 中的 <code>kubelet</code> 中删除。从 v1.24 开始，用户将需要使用其他受支持的运行时之一（例如 <code>containerd</code> 或 <code>CRI-O</code>），或者如果您依赖 Docker Engine 作为容器运行时，则使用 <code>cri-dockerd</code>。</p>
-<h2 id="beta-api-默认关闭">Beta API 默认关闭</h2>
-<p>默认情况下，不会在集群中启用新的 beta API。默认情况下，现有 beta API 和现有 beta API 的新版本将继续启用。</p>
+        <p><code>sprig</code> 是一个 Golang 模板函数库，大规模使用 <code>sprig</code> 的知名软件有 <code>Helm</code> 等。</p>
+<p>目前，Sprig 库为 Go 的模板语言提供了 70 多个模板函数。接下来一共分为 12 个系列总结 <code>sprig</code> 的这些模板函数，今天是第一个系列: 操作 <code>string</code> 的模板函数.</p>
+<h2 id="trim"><code>trim</code></h2>
+<p><code>trim</code> 函数删除字符串的空格.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>trim &#34;   hello    &#34;
+</span></span></code></pre></div><p>输出 <code>hello</code></p>
+<h2 id="trimall"><code>trimAll</code></h2>
+<p>从字符串的前面或后面删除给定的字符.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>trimAll &#34;$&#34; &#34;$5.00&#34;
+</span></span></code></pre></div><p>输出字符串 <code>5.00</code></p>
+<h2 id="trimsuffix"><code>trimSuffix</code></h2>
+<p>删除字符串的后缀.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>trimSuffix &#34;-&#34; &#34;hello-&#34;
+</span></span></code></pre></div><p>输出 <code>hello</code></p>
+<h2 id="trimprefix"><code>trimPrefix</code></h2>
+<p>删除字符串的前缀.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>trimPrefix &#34;-&#34; &#34;-hello&#34;
+</span></span></code></pre></div><p>输出 <code>hello</code></p>
 <h1 id="references">References</h1>
 <ul>
-<li>Kubernetes 1.24: Stargazer, <a href="https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/">https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/</a></li>
+<li><a href="http://masterminds.github.io/sprig/">http://masterminds.github.io/sprig/</a></li>
 </ul>
 
       </div>
@@ -179,8 +192,10 @@
       <div class="toc-title">Table of Contents</div>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#dockershim-从-kubelet-中移除">Dockershim 从 kubelet 中移除</a></li>
-    <li><a href="#beta-api-默认关闭">Beta API 默认关闭</a></li>
+    <li><a href="#trim"><code>trim</code></a></li>
+    <li><a href="#trimall"><code>trimAll</code></a></li>
+    <li><a href="#trimsuffix"><code>trimSuffix</code></a></li>
+    <li><a href="#trimprefix"><code>trimPrefix</code></a></li>
   </ul>
 </nav>
     </aside>

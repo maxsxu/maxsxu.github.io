@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 04 May 2022 18:13:49 +0800</lastBuildDate><atom:link href="https://atmax.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 23:45:47 +0800</lastBuildDate><atom:link href="https://atmax.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang</title>
+      <link>https://atmax.io/categories/golang/</link>
+      <pubDate>Sun, 15 May 2022 23:45:47 +0800</pubDate>
+      
+      <guid>https://atmax.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>CloudNative</title>
       <link>https://atmax.io/categories/cloudnative/</link>

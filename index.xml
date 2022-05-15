@@ -6,7 +6,16 @@
     <description>Recent content on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 04 May 2022 18:13:49 +0800</lastBuildDate><atom:link href="https://atmax.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 23:45:47 +0800</lastBuildDate><atom:link href="https://atmax.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sprig 模板函数系列: string 函数</title>
+      <link>https://atmax.io/posts/sprig-string/</link>
+      <pubDate>Sun, 15 May 2022 23:45:47 +0800</pubDate>
+      
+      <guid>https://atmax.io/posts/sprig-string/</guid>
+      <description>sprig 是一个 Golang 模板函数库，大规模使用 sprig 的知名软件有 Helm 等。 目前，Sprig 库为 Go 的模板语言提供了 70 多个模板函数。接下来一共分为 12 个系列总结 sprig 的这些</description>
+    </item>
+    
     <item>
       <title>Kubernetes 1.24 发布</title>
       <link>https://atmax.io/posts/kubernetes-1-24-release-announcement/</link>
