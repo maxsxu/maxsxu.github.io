@@ -52,7 +52,7 @@
     <link rel="icon" type="image/png" href="https://atmax.io/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://atmax.io/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.98.0" />
+    <meta name="generator" content="Hugo 0.99.1" />
 
     
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -124,7 +124,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              One minute read
+              2 minutes read
             </span>
           </div>
           <div class="categories">
@@ -163,6 +163,89 @@
 <p>如:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>trimPrefix &#34;-&#34; &#34;-hello&#34;
 </span></span></code></pre></div><p>输出 <code>hello</code></p>
+<h2 id="upper">upper</h2>
+<p>将整个字符串转换为大写.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>lower &#34;hello&#34;
+</span></span></code></pre></div><p>输出 <code>HELLO</code></p>
+<h2 id="lower">lower</h2>
+<p>将整个字符串转换为小写.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>lower &#34;HELLO&#34;
+</span></span></code></pre></div><p>输出 <code>hello</code></p>
+<h2 id="title">title</h2>
+<p>将首字母大写.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>title &#34;hello world&#34;
+</span></span></code></pre></div><p>输出 <code>Hello World</code></p>
+<h2 id="untitle">untitle</h2>
+<p>移除首字母大写.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>untitle &#34;Hello World&#34;
+</span></span></code></pre></div><p>输出 <code>hello world</code></p>
+<h2 id="repeat">repeat</h2>
+<p>多次重复一个字符串.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>repeat 3 &#34;hello&#34;
+</span></span></code></pre></div><p>输出 <code>hellohellohello</code></p>
+<h2 id="substr">substr</h2>
+<p>从字符串中获取子字符串。需要三个参数：</p>
+<ul>
+<li>开始下标 (int) 闭区间</li>
+<li>结束下标 (int) 开区间</li>
+<li>源字符串 (string)</li>
+</ul>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>substr 0 5 &#34;hello world&#34;
+</span></span></code></pre></div><p>输出 <code>hello</code></p>
+<h2 id="nospace">nospace</h2>
+<p>删除字符串中的所有空格。</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>nospace &#34;hello w o r l d&#34;
+</span></span></code></pre></div><p>输出 <code>helloworld</code></p>
+<h2 id="trunc">trunc</h2>
+<p>截断字符串（不添加后缀）.</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>trunc 5 &#34;hello world&#34;
+</span></span></code></pre></div><p>输出 <code>hello</code></p>
+<p>如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>trunc -5 &#34;hello world&#34;
+</span></span></code></pre></div><p>输出 <code>world</code></p>
+<h2 id="abbrev">abbrev</h2>
+<p>用省略号(<code>...</code>)截断字符串右边. 需要两个参数:</p>
+<ul>
+<li>目标最大长度. 其中省略号长度为 3</li>
+<li>源字符串</li>
+</ul>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>abbrev 5 &#34;hello world&#34;
+</span></span></code></pre></div><p>输出 <code>he...</code></p>
+<h2 id="abbrevboth">abbrevboth</h2>
+<p>用省略号(<code>...</code>)截断字符串两边. 需要三个参数:</p>
+<ul>
+<li>左边开始下标</li>
+<li>目标最大长度</li>
+<li>源字符串</li>
+</ul>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>abbrevboth 5 10 &#34;1234 5678 9123&#34;
+</span></span></code></pre></div><p>输出 <code>...5678...</code></p>
+<h2 id="initials">initials</h2>
+<p>给定多个单词，取每个单词的第一个字母组合成一个新字符串。</p>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>initials &#34;First Try&#34;
+</span></span></code></pre></div><p>输出 <code>FT</code></p>
+<h2 id="randalphanumrandalpharandnumericrandascii">randAlphaNum/randAlpha/randNumeric/randAscii</h2>
+<p>这四个函数生成加密安全（使用 crypto/rand）随机字符串，但具有不同的基本字符集：</p>
+<ul>
+<li><code>randAlphaNum</code> 使用 <code>0-9a-zA-Z</code></li>
+<li><code>randAlpha</code> 使用 <code>a-zA-Z</code></li>
+<li><code>randNumeric</code> 使用 <code>0-9</code></li>
+<li><code>randAscii</code> 使用所有可打印的 ASCII 字符</li>
+</ul>
+<p>如:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>randNumeric 3
+</span></span></code></pre></div><p>输出三位数的随机字符串。</p>
 <h1 id="references">References</h1>
 <ul>
 <li><a href="http://masterminds.github.io/sprig/">http://masterminds.github.io/sprig/</a></li>
@@ -196,6 +279,18 @@
     <li><a href="#trimall">trimAll</a></li>
     <li><a href="#trimsuffix">trimSuffix</a></li>
     <li><a href="#trimprefix">trimPrefix</a></li>
+    <li><a href="#upper">upper</a></li>
+    <li><a href="#lower">lower</a></li>
+    <li><a href="#title">title</a></li>
+    <li><a href="#untitle">untitle</a></li>
+    <li><a href="#repeat">repeat</a></li>
+    <li><a href="#substr">substr</a></li>
+    <li><a href="#nospace">nospace</a></li>
+    <li><a href="#trunc">trunc</a></li>
+    <li><a href="#abbrev">abbrev</a></li>
+    <li><a href="#abbrevboth">abbrevboth</a></li>
+    <li><a href="#initials">initials</a></li>
+    <li><a href="#randalphanumrandalpharandnumericrandascii">randAlphaNum/randAlpha/randNumeric/randAscii</a></li>
   </ul>
 </nav>
     </aside>
