@@ -3,28 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://atmax.io/categories/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
-  </url><url>
-    <loc>https://atmax.io/tags/golang/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
-  </url><url>
-    <loc>https://atmax.io/categories/golang/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
+    <lastmod>2022-06-08T20:18:06+08:00</lastmod>
   </url><url>
     <loc>https://atmax.io/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
+    <lastmod>2022-06-08T20:18:06+08:00</lastmod>
   </url><url>
     <loc>https://atmax.io/posts/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
+    <lastmod>2022-06-08T20:18:06+08:00</lastmod>
+  </url><url>
+    <loc>https://atmax.io/categories/tools/</loc>
+    <lastmod>2022-06-08T20:18:06+08:00</lastmod>
+  </url><url>
+    <loc>https://atmax.io/posts/news-sunsetting-atom/</loc>
+    <lastmod>2022-06-08T20:18:06+08:00</lastmod>
+  </url><url>
+    <loc>https://atmax.io/tags/golang/</loc>
+    <lastmod>2022-05-22T20:59:39+08:00</lastmod>
+  </url><url>
+    <loc>https://atmax.io/categories/golang/</loc>
+    <lastmod>2022-05-22T20:59:39+08:00</lastmod>
   </url><url>
     <loc>https://atmax.io/tags/sprig/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
+    <lastmod>2022-05-22T20:59:39+08:00</lastmod>
   </url><url>
     <loc>https://atmax.io/posts/sprig-string/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
+    <lastmod>2022-05-22T20:59:39+08:00</lastmod>
   </url><url>
     <loc>https://atmax.io/tags/</loc>
-    <lastmod>2022-05-15T23:45:47+08:00</lastmod>
+    <lastmod>2022-05-22T20:59:39+08:00</lastmod>
   </url><url>
     <loc>https://atmax.io/categories/cloudnative/</loc>
     <lastmod>2022-05-04T20:44:19+08:00</lastmod>

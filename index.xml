@@ -6,7 +6,16 @@
     <description>Recent content on Max</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 May 2022 23:45:47 +0800</lastBuildDate><atom:link href="https://atmax.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Jun 2022 20:18:06 +0800</lastBuildDate><atom:link href="https://atmax.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>即将被抛弃的 Atom 编辑器</title>
+      <link>https://atmax.io/posts/news-sunsetting-atom/</link>
+      <pubDate>Wed, 08 Jun 2022 20:18:06 +0800</pubDate>
+      
+      <guid>https://atmax.io/posts/news-sunsetting-atom/</guid>
+      <description>根据 GitHub 官方博客的消息[1]，将在 2022 年 12 月 15 日正式关闭 Atom 项目。看到这个消息的我是一阵唏嘘，毕竟本博客的大部分文章都是用 Atom 写的。 我记得当初 Atom 这款</description>
+    </item>
+    
     <item>
       <title>Sprig 模板函数系列: string 函数</title>
       <link>https://atmax.io/posts/sprig-string/</link>
